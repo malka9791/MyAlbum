@@ -1,0 +1,17 @@
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.csproj.AssemblyReference.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.AssemblyInfoInputs.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.AssemblyInfo.cs
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.csproj.CoreCompileInputs.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.DATA.deps.json
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.DATA.runtimeconfig.json
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.DATA.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.DATA.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.CORE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\bin\Debug\net7.0\Gallery.CORE.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.csproj.CopyComplete
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\refint\Gallery.DATA.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.genruntimeconfig.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.DATA\obj\Debug\net7.0\ref\Gallery.DATA.dll

@@ -1,0 +1,15 @@
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\bin\Debug\net7.0\Gallery.SERVICE.deps.json
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\bin\Debug\net7.0\Gallery.SERVICE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\bin\Debug\net7.0\Gallery.SERVICE.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\bin\Debug\net7.0\Gallery.CORE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\bin\Debug\net7.0\Gallery.CORE.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.csproj.AssemblyReference.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.AssemblyInfoInputs.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.AssemblyInfo.cs
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.csproj.CoreCompileInputs.cache
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.csproj.CopyComplete
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\refint\Gallery.SERVICE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\Gallery.SERVICE\obj\Debug\net7.0\ref\Gallery.SERVICE.dll
