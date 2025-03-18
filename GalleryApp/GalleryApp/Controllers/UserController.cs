@@ -8,7 +8,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -24,7 +24,7 @@ namespace Gallery.API.Controllers
             return await _userService.GetAllAsync();
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public async Task<User> GetByIdAsync(int id)
         {
             return await _userService.GetByIdAsync(id);

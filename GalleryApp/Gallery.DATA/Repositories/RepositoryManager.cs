@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Gallery.DATA.Repositories
 {
-    public class RepositoryManager
+    public class RepositoryManager : IRepositoryManager
     {
         public readonly DataContext _context;
-        public IRepository<Image> Images;
-        public IRepository<Album> Albums;
-        public IRepository<User> Users;
-        public IRepository<Tag> Tags;
-        public IRepository<Permissions> Permissions;
+        public IRepository<Image> Images { get; }
+        public IRepository<Album> Albums { get; }
+        public IRepository<User> Users { get; }
+        public IRepository<Tag> Tags {get;}
+        public IRepository<Permissions> Permissions { get; }
 
         public RepositoryManager(DataContext context, IRepository<Image> imagesRepository,
             IRepository<Album> albumsRepository, IRepository<User> usersRepository,

@@ -8,7 +8,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TagController : Controller
+    public class TagController : ControllerBase
     {
         private readonly ITagService _tagService;
 
@@ -24,7 +24,7 @@ namespace Gallery.API.Controllers
             return await _tagService.GetAllAsync();
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public async Task<Tag> GetByIdAsync(int id)
         {
             return await _tagService.GetByIdAsync(id);

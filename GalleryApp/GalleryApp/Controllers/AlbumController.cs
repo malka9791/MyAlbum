@@ -8,7 +8,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlbumController : Controller
+    public class AlbumController : ControllerBase
     {
         private readonly IAlbumService _albumService;
 
@@ -24,7 +24,7 @@ namespace Gallery.API.Controllers
             return await _albumService.GetAllAsync();
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public async Task<Album> GetByIdAsync(int id)
         {
             return await _albumService.GetByIdAsync(id);

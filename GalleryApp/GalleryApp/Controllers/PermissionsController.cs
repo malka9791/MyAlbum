@@ -9,7 +9,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PermissionsController : Controller
+    public class PermissionsController : ControllerBase
     {
         private readonly IPermissionsService _permissionsService;
 
@@ -25,7 +25,7 @@ namespace Gallery.API.Controllers
             return await _permissionsService.GetAllAsync();
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public async Task<Permissions> GetByIdAsync(int id)
         {
             return await _permissionsService.GetByIdAsync(id);

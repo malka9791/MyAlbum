@@ -10,11 +10,11 @@ namespace Gallery.CORE.Repositories
 {
     public interface IRepositoryManager
     {
-         IRepository<Image> Images { get; }
-         IRepository<Album> Albums { get; }
-        IRepository<User> Users { get; }
-        IRepository<Tag> Tags { get; }
-        IRepository<Permissions> Permissions { get; }
-        Task SaveAsync();
+       public  IRepository<Image> Images { get; }
+       public  IRepository<Album> Albums { get; }
+       public IRepository<User> Users { get; }
+       public IRepository<Tag> Tags { get; }
+       public IRepository<Permissions> Permissions { get; }
+       public Task SaveAsync();
     }
 }

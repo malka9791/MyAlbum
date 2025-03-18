@@ -30,8 +30,8 @@ namespace Gallery.DATA.Repositories
         {
             _context.Albums.Include(u => u.User).ToList();
             _context.Images.Include(u => u.User).ToList();
-            _context.Permissions.Include(u => u.Album).ToList();
-            _context.Permissions.Include(u => u.User).ToList();
+            _context.Permissions.Include(u => u.Album).Include(u => u.User).ToList();
+          //  _context.Permissions..ToList();
             return _dbSet.ToList();
         }
         public T? GetById(int id)

@@ -46,3 +46,7 @@ C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\obj\Debug\net7.0\refint\Galle
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\obj\Debug\net7.0\Gallery.API.pdb
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\obj\Debug\net7.0\Gallery.API.genruntimeconfig.cache
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\obj\Debug\net7.0\ref\Gallery.API.dll
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Gallery.SERVICE.dll
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Gallery.SERVICE.pdb

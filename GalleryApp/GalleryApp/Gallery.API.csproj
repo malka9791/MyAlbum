@@ -19,12 +19,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.18" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Gallery.CORE\Gallery.CORE.csproj" />
     <ProjectReference Include="..\Gallery.DATA\Gallery.DATA.csproj" />
+    <ProjectReference Include="..\Gallery.SERVICE\Gallery.SERVICE.csproj" />
   </ItemGroup>
 
 </Project>

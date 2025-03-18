@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Q6YsCBKq5TZh6/Z0kkJQZWkrJVUFKDvS64qSN2z5fQUQ3KwIpYGM+6BVO7fkjoH6s8coqeEjtPQWopg3i4KLyw==",
+  "dgSpecHash": "Q6JTD8O2FLWRUTxvSm1bhLY8dHsv0Hhdbjd6AiVWzLEiNX6UO8YN1W63zvS3UG6uik5sq3Bzun7nhW438mpt8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\Gallery.DATA.csproj",
   "expectedPackageFiles": [
@@ -28,8 +28,10 @@
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\npgsql\\7.0.7\\npgsql.7.0.7.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.18\\npgsql.entityframeworkcore.postgresql.7.0.18.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
