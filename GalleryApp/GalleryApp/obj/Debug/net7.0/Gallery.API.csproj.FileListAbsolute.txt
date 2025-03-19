@@ -50,3 +50,5 @@ C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\MySqlConnect
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Gallery.SERVICE.dll
 C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\Gallery.SERVICE.pdb
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\user1\Desktop\Album\GalleryApp\GalleryApp\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

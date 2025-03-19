@@ -15,6 +15,10 @@ namespace Gallery.CORE.models
         public string Password { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastUpdatedAt { get; set;}
+        public User()
+        {
+            CreatedAt =LastUpdatedAt= DateTime.UtcNow;
+        }
         public string Role { get; set; }
         //Relationships
         public List<Image> Images { get; set; }

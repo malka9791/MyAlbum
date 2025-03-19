@@ -1,7 +1,10 @@
-﻿using Gallery.CORE.models;
+﻿using AutoMapper;
+using Gallery.CORE.DTOs;
+using Gallery.CORE.models;
 using Gallery.CORE.Models;
 using Gallery.CORE.Repositories;
 using Gallery.CORE.Services;
+using Gallery.SERVICE;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,47 +15,56 @@ namespace Gallery.API.Controllers
     public class PermissionsController : ControllerBase
     {
         private readonly IPermissionsService _permissionsService;
+        private readonly IMapper _mapper;
 
-        public PermissionsController(IPermissionsService permissionsService)
+        public PermissionsController(IPermissionsService permissionsService, IMapper mapper)
         {
             _permissionsService = permissionsService;
+            _mapper = mapper;
         }
 
         // GET: ImagesController
         [HttpGet]
-        public async Task<IEnumerable<Permissions>> GetAllAsync()
+        public async Task<ActionResult> GetAll()
         {
-            return await _permissionsService.GetAllAsync();
+            var list = await _permissionsService.GetAllAsync();
+            var listDto = _mapper.Map<IEnumerable<PermissionsDto>>(list);
+            return Ok(listDto);
         }
 
         [HttpGet("{id}")]
-        public async Task<Permissions> GetByIdAsync(int id)
+        public async Task<ActionResult> GetById(int id)
         {
-            return await _permissionsService.GetByIdAsync(id);
+
+            var per = await _permissionsService.GetByIdAsync(id);
+            var perDto = _mapper.Map<PermissionsDto>(per);
+            return Ok(perDto);
         }
         [HttpPost]
-        public async Task PostAsync([FromBody] Permissions permissions)
+        public async Task PostAsync([FromBody] PermissionsPostDto permissions)
         {
-            await _permissionsService.AddValueAsync(permissions);
+            var dto = _mapper.Map<Permissions>(permissions);
+            await _permissionsService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id,[FromBody] Permissions permissions)
+        public async Task<IActionResult> Put(int id, [FromBody] PermissionsPostDto permissions)
         {
-            if (id != permissions.Id)
-            {
-                return BadRequest("The ID in the URL does not match the ID in the request body.");
-            }
-
+      
             var existingPermissions = await _permissionsService.GetByIdAsync(id);
-            if (existingPermissions == null)
+            if (existingPermissions != null)
             {
-                return NotFound();
+               
+                existingPermissions.User.Id = permissions.UserId;
+                existingPermissions.Album.Id = permissions.AlbumId;
+                existingPermissions.Permission=permissions.Permission;
+                existingPermissions.Validity = permissions.Validity;
+                await _permissionsService.UpdateValueAsync(existingPermissions);
+                return Ok(existingPermissions);  
             }
-            await _permissionsService.UpdateValueAsync(permissions);
-            return NoContent();
+            return NoContent();// 204 No Content 
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var permissions = await _permissionsService.GetByIdAsync(id);
             if (permissions == null)
@@ -63,11 +75,11 @@ namespace Gallery.API.Controllers
             await _permissionsService.DeleteValueAsync(permissions);
             return NoContent(); // 204 - הצלחה ללא תוכן
         }
-        
-       
 
-       
-        
-       
+
+
+
+
+
     }
 }

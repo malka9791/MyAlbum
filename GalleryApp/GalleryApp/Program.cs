@@ -1,3 +1,4 @@
+using Gallery.CORE;
 using Gallery.CORE.Models;
 using Gallery.CORE.Repositories;
 using Gallery.DATA;
@@ -34,6 +35,8 @@ builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IPermissionsService, PermissionsService>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();

@@ -1,4 +1,6 @@
-﻿using Gallery.CORE.models;
+﻿using AutoMapper;
+using Gallery.CORE.DTOs;
+using Gallery.CORE.models;
 using Gallery.CORE.Repositories;
 using Gallery.CORE.Services;
 using Microsoft.AspNetCore.Http;
@@ -11,47 +13,44 @@ namespace Gallery.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService,IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         // GET: ImagesController
         [HttpGet]
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<ActionResult> GetAll()
         {
-            return await _userService.GetAllAsync();
+            var list = await _userService.GetAllAsync();
+            var listDto = _mapper.Map<IEnumerable<UserDto>>(list);
+            return Ok(listDto);
         }
 
         [HttpGet("{id}")]
-        public async Task<User> GetByIdAsync(int id)
+        public async Task<ActionResult> GetById(int id)
         {
-            return await _userService.GetByIdAsync(id);
+            var user=await _userService.GetByIdAsync(id);
+            var userDto=_mapper.Map<UserDto>(user);
+            return Ok(userDto);
         }
         [HttpPost]
-        public async Task PostAsync([FromBody] User user)
+        public async Task Post([FromBody] UserPostDto user)
         {
-            await _userService.AddValueAsync(user);
+            var dto=_mapper.Map<User>(user);
+            await _userService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id,[FromBody] User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest("The ID in the URL does not match the ID in the request body.");
-            }
-
-            var existingUser = await _userService.GetByIdAsync(id);
-            if (existingUser == null)
-            {
-                return NotFound();
-            }
-            await _userService.UpdateValueAsync(user);
-            return NoContent();
+        public async Task Put(int id,[FromBody] UserDto user)
+        {          
+            var dto = _mapper.Map<User>(user);        
+            await _userService.UpdateValueAsync(dto);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = await _userService.GetByIdAsync(id);
             if (user == null)

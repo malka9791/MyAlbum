@@ -14,6 +14,10 @@ namespace Gallery.CORE.models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
+        public Album()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
         //Relationships
         public User User { get; set; }
         public List<Image> Images { get; set; }

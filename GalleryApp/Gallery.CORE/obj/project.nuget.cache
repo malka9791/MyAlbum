@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LvP4ajMPGMmuhWIgvvOxetRkXVnOW0fL5tz6hrVOOckp3QAcp/OhteMQjKaRnbpDo+CZjvLc+DA1vkrZ35x7BA==",
+  "dgSpecHash": "NsnbUwz1lGWszXHrNcLBh+3MvkWlBxjT42b89K2+vb50lyTOQllRK6CIGxwiWL+Om3u4LX9pQMgVoHUnbrmnpQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.CORE\\Gallery.CORE.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

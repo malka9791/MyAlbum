@@ -1,4 +1,6 @@
-﻿using Gallery.CORE.models;
+﻿using AutoMapper;
+using Gallery.CORE.DTOs;
+using Gallery.CORE.models;
 using Gallery.CORE.Repositories;
 using Gallery.CORE.Services;
 using Microsoft.AspNetCore.Http;
@@ -11,47 +13,46 @@ namespace Gallery.API.Controllers
     public class ImageController : ControllerBase
     {
         private readonly IImageService _imageService;
+        private readonly IMapper _mapper;
 
-        public ImageController(IImageService imageService)
+        public ImageController(IImageService imageService,IMapper mapper)
         {
             _imageService = imageService;
+            _mapper = mapper;
         }
 
         // GET: ImagesController
         [HttpGet]
-        public async Task<IEnumerable<Image>> GetAllAsync()
+        public async Task<ActionResult> GetAll()
         {
-            return await _imageService.GetAllAsync();
+            var list=await _imageService.GetAllAsync();
+            var listDto=_mapper.Map<IEnumerable<ImageDto>> (list);
+            return Ok(listDto);
         }
 
         [HttpGet("{id}")]
-        public async Task<Image> GetByIdAsync(int id)
+        public async Task<ActionResult> GetById(int id)
         {
-            return await _imageService.GetByIdAsync(id);
+
+            var image= await _imageService.GetByIdAsync(id);
+            var imageDto=_mapper.Map<ImageDto> (image);
+            return Ok(imageDto);
         }
         [HttpPost]
-        public async Task PostAsync([FromBody] Image image)
+        public async Task Post([FromBody] ImagePostDto image)
         {
-            await _imageService.AddValueAsync(image);
+            var dto=_mapper.Map<Image>(image);
+            await _imageService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id,[FromBody] Image image)
+        public async Task Put(int id,[FromBody] ImagePostDto image)
         {
-            if (id != image.Id)
-            {
-                return BadRequest("The ID in the URL does not match the ID in the request body.");
-            }
-
-            var existingImage = await _imageService.GetByIdAsync(id);
-            if (existingImage == null)
-            {
-                return NotFound();
-            }
-            await _imageService.UpdateValueAsync(image);
-            return NoContent();
+            
+            var dto = _mapper.Map<Image>(image);
+            await _imageService.UpdateValueAsync(dto);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var image = await _imageService.GetByIdAsync(id);
             if (image == null)

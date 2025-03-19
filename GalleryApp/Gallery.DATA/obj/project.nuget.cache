@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Q6JTD8O2FLWRUTxvSm1bhLY8dHsv0Hhdbjd6AiVWzLEiNX6UO8YN1W63zvS3UG6uik5sq3Bzun7nhW438mpt8A==",
+  "dgSpecHash": "sSz6N8fJG0MVDgrSrE5RuKzYhR9TCEwkkFm8PoRsGz4ucqqTC0iRIn8Kt4u1sZUv7Z1u4KBebfH4BBRafnpSOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\Gallery.DATA.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.20\\microsoft.entityframeworkcore.7.0.20.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.20\\microsoft.entityframeworkcore.abstractions.7.0.20.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.20\\microsoft.entityframeworkcore.analyzers.7.0.20.nupkg.sha512",
