@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gallery.DATA.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250317171123_up")]
-    partial class up
+    [Migration("20250319223339_up3")]
+    partial class up3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

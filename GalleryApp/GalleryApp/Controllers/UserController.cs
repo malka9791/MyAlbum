@@ -3,6 +3,7 @@ using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Repositories;
 using Gallery.CORE.Services;
+using Gallery.SERVICE;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,10 +45,21 @@ namespace Gallery.API.Controllers
             await _userService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task Put(int id,[FromBody] UserDto user)
-        {          
-            var dto = _mapper.Map<User>(user);        
-            await _userService.UpdateValueAsync(dto);
+        public async Task<ActionResult> Put(int id,[FromBody] UserPostDto user)
+        {
+            var existingUser = await _userService.GetByIdAsync(id);
+            if (existingUser != null)
+            {
+                // אם התג קיים, עדכון פשוט
+                existingUser.FirstName = user.FirstName;
+                existingUser.LastName = user.LastName;
+                existingUser.Email = user.Email;
+                existingUser.Password=user.Password;
+                existingUser.Role=user.Role;
+                await _userService.UpdateValueAsync(existingUser);  // כאן אנחנו פשוט מעדכנים
+                return Ok(existingUser);
+            }
+            return NoContent();  // 204 No Content
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

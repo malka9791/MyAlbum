@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Gallery.DATA.Migrations
 {
     /// <inheritdoc />
-    public partial class up : Migration
+    public partial class up3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -40,63 +40,74 @@ namespace Gallery.DATA
         }
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
-        //    // הגדרת הקשרים בין טבלאות
+          
+            modelBuilder.Entity<Album>()
+               .HasOne(a => a.User)
+               .WithMany(u => u.Albums) 
+               .HasForeignKey(a => a.UserId)
+               .OnDelete(DeleteBehavior.Cascade); 
+                base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Image>()
+               .HasOne(a => a.User)
+               .WithMany(u => u.Images)
+               .HasForeignKey(a => a.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
 
-        //    // קשרים בין Users ל-Images
-        //    modelBuilder.Entity<Image>()
-        //        .HasOne(i => i.User)
-        //        .WithMany(u => u.Images)
-        //        .HasForeignKey(i => i.UserId);
+            //    // קשרים בין Users ל-Images
+            //    modelBuilder.Entity<Image>()
+            //        .HasOne(i => i.User)
+            //        .WithMany(u => u.Images)
+            //        .HasForeignKey(i => i.UserId);
 
-        //    // קשרים בין Users ל-Albums
-        //    modelBuilder.Entity<Album>()
-        //        .HasOne(a => a.User)
-        //        .WithMany(u => u.Albums)
-        //        .HasForeignKey(a => a.UserId);
+            //    // קשרים בין Users ל-Albums
+            //    modelBuilder.Entity<Album>()
+            //        .HasOne(a => a.User)
+            //        .WithMany(u => u.Albums)
+            //        .HasForeignKey(a => a.UserId);
 
-        //    // קשרים בין Albums ל-Images (דרך טבלת ImagesAlbumss)
-        //    modelBuilder.Entity<ImagesAlbums>()
-        //        .HasKey(af => new { af.AlbumId, af.ImageId });
+            //    // קשרים בין Albums ל-Images (דרך טבלת ImagesAlbumss)
+            //    modelBuilder.Entity<ImagesAlbums>()
+            //        .HasKey(af => new { af.AlbumId, af.ImageId });
 
-        //    modelBuilder.Entity<ImagesAlbums>()
-        //        .HasOne(af => af.Album)
-        //        .WithMany(a => a.ImagesAlbumss)
-        //        .HasForeignKey(af => af.AlbumId);
+            //    modelBuilder.Entity<ImagesAlbums>()
+            //        .HasOne(af => af.Album)
+            //        .WithMany(a => a.ImagesAlbumss)
+            //        .HasForeignKey(af => af.AlbumId);
 
-        //    modelBuilder.Entity<ImagesAlbums>()
-        //        .HasOne(af => af.Image)
-        //        .WithMany(i => i.ImagesAlbumss)
-        //        .HasForeignKey(af => af.FileId);
+            //    modelBuilder.Entity<ImagesAlbums>()
+            //        .HasOne(af => af.Image)
+            //        .WithMany(i => i.ImagesAlbumss)
+            //        .HasForeignKey(af => af.FileId);
 
-        //    // קשרים בין Images ל-ImagesTagss
-        //    modelBuilder.Entity<ImagesTags>()
-        //        .HasKey(it => new { it.ImageId, it.TagId });
+            //    // קשרים בין Images ל-ImagesTagss
+            //    modelBuilder.Entity<ImagesTags>()
+            //        .HasKey(it => new { it.ImageId, it.TagId });
 
-        //    modelBuilder.Entity<ImagesTags>()
-        //        .HasOne(it => it.Image)
-        //        .WithMany(i => i.ImagesTagss)
-        //        .HasForeignKey(it => it.ImageId);
+            //    modelBuilder.Entity<ImagesTags>()
+            //        .HasOne(it => it.Image)
+            //        .WithMany(i => i.ImagesTagss)
+            //        .HasForeignKey(it => it.ImageId);
 
-        //    modelBuilder.Entity<ImagesTags>()
-        //        .HasOne(it => it.Tag)
-        //        .WithMany(t => t.ImagesTagss)
-        //        .HasForeignKey(it => it.TagId);
+            //    modelBuilder.Entity<ImagesTags>()
+            //        .HasOne(it => it.Tag)
+            //        .WithMany(t => t.ImagesTagss)
+            //        .HasForeignKey(it => it.TagId);
 
-        //    // קשרים בין Users ל-Permissions
-        //    modelBuilder.Entity<Permissions>()
-        //        .HasOne(p => p.User)
-        //        .WithMany(u => u.Permissions)
-        //        .HasForeignKey(p => p.UserId);
+            //    // קשרים בין Users ל-Permissions
+            //    modelBuilder.Entity<Permissions>()
+            //        .HasOne(p => p.User)
+            //        .WithMany(u => u.Permissions)
+            //        .HasForeignKey(p => p.UserId);
 
-        //    // קשרים בין Albums ל-Permissions
-        //    modelBuilder.Entity<Permissions>()
-        //        .HasOne(p => p.Album)
-        //        .WithMany(a => a.Permissions)
-        //        .HasForeignKey(p => p.AlbumId);
-        //}
+            //    // קשרים בין Albums ל-Permissions
+            //    modelBuilder.Entity<Permissions>()
+            //        .HasOne(p => p.Album)
+            //        .WithMany(a => a.Permissions)
+            //        .HasForeignKey(p => p.AlbumId);
+        }
     }
 }

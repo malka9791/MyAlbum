@@ -3,6 +3,7 @@ using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Repositories;
 using Gallery.CORE.Services;
+using Gallery.SERVICE;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,11 +46,22 @@ namespace Gallery.API.Controllers
             await _imageService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task Put(int id,[FromBody] ImagePostDto image)
+        public async Task<ActionResult> Put(int id,[FromBody] ImagePostDto image)
         {
-            
-            var dto = _mapper.Map<Image>(image);
-            await _imageService.UpdateValueAsync(dto);
+            var existingImage = await _imageService.GetByIdAsync(id);
+
+            if (existingImage != null)
+            {
+                // אם התג קיים, עדכון פשוט
+                existingImage.ImgType = image.ImgType;
+                existingImage.AlbumId = image.AlbumId;
+                existingImage.ImgUrl = image.ImgUrl;
+                existingImage.User.Id = image.UserId;
+                await _imageService.UpdateValueAsync(existingImage);  
+                return Ok(existingImage);
+            } 
+            return NoContent();  // 204 No Content
+
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

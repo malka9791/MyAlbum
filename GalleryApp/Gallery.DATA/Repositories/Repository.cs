@@ -28,18 +28,19 @@ namespace Gallery.DATA.Repositories
         }
         public IEnumerable<T> GetAll()
         {
-            _context.Albums.Include(u => u.User).ToList();
-            _context.Images.Include(u => u.User).ToList();
-            _context.Permissions.Include(u => u.Album).Include(u => u.User).ToList();
-          //  _context.Permissions..ToList();
+            // _context.Albums.Include(u => u.User).ToList();
+            var images = _context.Images.Include(u => u.User).ToList();
+            var permissions = _context.Permissions.Include(u => u.Album).Include(u => u.User).ToList();
+
+            // החזר את כל הנתונים או את כל הרשומות
             return _dbSet.ToList();
         }
         public T? GetById(int id)
         {
-            _context.Albums.Include(u => u.User).FirstOrDefault((a)=>a.Id==id);
-            _context.Images.Include(u => u.User).FirstOrDefault((i) => i.Id == id);
-            _context.Permissions.Include(u => u.Album).FirstOrDefault((a)=>a.Id==id);
-            _context.Permissions.Include(u => u.User).FirstOrDefault((u)=>u.Id==id);
+            // _context.Albums.Include(u => u.User).FirstOrDefault((a)=>a.Id==id);
+            var image = _context.Images.Include(u => u.User).FirstOrDefault(i => i.Id == id);
+            var permission = _context.Permissions.Include(u => u.Album).FirstOrDefault(a => a.Id == id);
+            var userPermission = _context.Permissions.Include(u => u.User).FirstOrDefault(u => u.Id == id);
             return _dbSet.FirstOrDefault(p => EF.Property<int>(p, "Id") == id);
         }
         public T Update(T entity)
