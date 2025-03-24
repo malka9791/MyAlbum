@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sSz6N8fJG0MVDgrSrE5RuKzYhR9TCEwkkFm8PoRsGz4ucqqTC0iRIn8Kt4u1sZUv7Z1u4KBebfH4BBRafnpSOg==",
+  "dgSpecHash": "5wUujkIhZyOWf+FmWDW/y+Qs6QREC7oE1UStYZR/tEI2nQuBp0rP9g/1Qo6oj4u/DVMyxwGIN9ZxGd0turrHDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\Gallery.DATA.csproj",
+  "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.DATA\\Gallery.DATA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

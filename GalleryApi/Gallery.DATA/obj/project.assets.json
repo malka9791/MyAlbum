@@ -1523,11 +1523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\Gallery.DATA.csproj",
+      "projectUniqueName": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.DATA\\Gallery.DATA.csproj",
       "projectName": "Gallery.DATA",
-      "projectPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\Gallery.DATA.csproj",
+      "projectPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.DATA\\Gallery.DATA.csproj",
       "packagesPath": "C:\\Users\\user1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.DATA\\obj\\",
+      "outputPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.DATA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1544,8 +1544,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.CORE\\Gallery.CORE.csproj": {
-              "projectPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\Gallery.CORE\\Gallery.CORE.csproj"
+            "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.CORE\\Gallery.CORE.csproj": {
+              "projectPath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\Gallery.CORE\\Gallery.CORE.csproj"
             }
           }
         }

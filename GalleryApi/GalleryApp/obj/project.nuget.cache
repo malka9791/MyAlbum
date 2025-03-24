@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MhKwyTs5q77zQ9+NLqz9Bi8zoNTx+ICMS5OZEQiah37+Zji+T1Y4IY7xucwgmJz8bUQtsZzbgcam5Uv+646UZg==",
+  "dgSpecHash": "N7dhmOxXFK3n5YyMKASKJN2jUU6AkwmRMtrbc9+KN8yy3qIxJ7S0uXLCLSLgFVoALe2CYcoisfcgNhEg382dPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApp\\GalleryApp\\Gallery.API.csproj",
+  "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\GalleryApp\\Gallery.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -42,6 +42,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\npgsql\\7.0.7\\npgsql.7.0.7.nupkg.sha512",
