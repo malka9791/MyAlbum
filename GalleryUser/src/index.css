@@ -23,10 +23,17 @@ a:hover {
 }
 
 body {
+  /* background: linear-gradient(135deg, rgb(235, 255, 0), rgb(249, 4, 91)); */
+  background-image: url("./images/bg2.webp");
+  background-size: cover; /* מכסה את כל העמוד */
+  background-position: center; /* ממקם את התמונה במרכז */
+  background-repeat: no-repeat; /* מונע חזרה של התמונה */
+  background-attachment: fixed;
+   /* גורם לתמונה להישאר קבועה בזמן גלילה */
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 100vw;
   min-height: 100vh;
 }
 
