@@ -18,6 +18,7 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.20",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.20",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.18.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.18",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -306,6 +307,7 @@
           }
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {},
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
@@ -445,7 +447,10 @@
           "AutoMapper": "12.0.1"
         },
         "runtime": {
-          "Gallery.CORE.dll": {}
+          "Gallery.CORE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Gallery.DATA/1.0.0": {
@@ -457,7 +462,10 @@
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
         },
         "runtime": {
-          "Gallery.DATA.dll": {}
+          "Gallery.DATA.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Gallery.SERVICE/1.0.0": {
@@ -465,7 +473,10 @@
           "Gallery.CORE": "1.0.0"
         },
         "runtime": {
-          "Gallery.SERVICE.dll": {}
+          "Gallery.SERVICE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -741,6 +752,13 @@
       "sha512": "sha512-rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
       "path": "microsoft.openapi/1.4.3",
       "hashPath": "microsoft.openapi.1.4.3.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RtNQEQQ/bgaxzrsZEkPB+/DFaUgNiq8GtZz/R4lt+mKXPcEvEuawlbl0PB1s7ND9kvkUVZtMphPxE9Ma1VGiFg==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.18.1",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512"
     },
     "Mono.TextTemplating/2.2.1": {
       "type": "package",

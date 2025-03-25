@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "AkMlxXwf1yyCI1gxbHp5/rEx8iF/EWof00f3MbSx2Dw=",
+  "Hash": "c4K/lP0VshqOHoLkOIlNL3aa1hd4PvgNjwpO/Uwn1Vw=",
   "Source": "Gallery.API",
   "BasePath": "_content/Gallery.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

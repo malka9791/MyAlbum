@@ -19,6 +19,7 @@ interface LoginFailAction {
   type: typeof LOGIN_FAIL;
   payload: { user: string; token: string | null };
 }
+
 export type AuthActionTypes = LoginSuccessAction | LoginFailAction;
 
 export const registerUser =
@@ -30,19 +31,25 @@ export const registerUser =
     role: string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
+    console.log(userData);
     try {
-      const res = await axios.post("https://localhost:7177/swagger/index.html/api/auth/signup", userData);
+      const res = await axios.post(
+        "http://localhost:5028/api/auth/signup",
+        userData
+      );
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: {user:userData,
-         token:res.data.token,}
-         
+        payload: { user: userData, token: res.data.token },
       });
+      console.log(res.data.token);
+      sessionStorage.set('token',res.data.token)
+      return res.data;
+
     } catch (error) {
       dispatch({
         type: LOGIN_FAIL,
-        payload:{ user:"error in data or connect to server",
-        token: ""},
+        payload: { user: "error in data or connect to server", token: "" },
       });
+      return {token:null}
     }
   };
