@@ -44,8 +44,9 @@ const Login = () => {
       const res = await axios.post(
         "http://localhost:5028/api/auth/login",
         data
-      );
-      SetName(res.data.user.name);
+      );      
+      
+      SetName(res.data.user.firstName);
       SetUserId(res.data.user.userId);
       alert("success");
       sessionStorage.setItem("token", res.data.token);

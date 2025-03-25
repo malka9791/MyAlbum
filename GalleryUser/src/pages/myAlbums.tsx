@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../hook/login_context";
 import axios from "axios";
-import { Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Modal, Typography } from "@mui/material";
 import { Link } from "react-router";
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import AddAlbum from "./addAlbum";
 
 type Album = {
   id: number;
@@ -25,6 +26,7 @@ const MyAlbums = () => {
   const api = "http://localhost:5028/api";
   const [albums, setAlbums] = useState<Album[]>([]);
   const { name } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const getAlbums = async () => {
@@ -65,8 +67,10 @@ const MyAlbums = () => {
       
     </Grid>
     <Button
-      component={Link}
-      to="/addAlbum"
+    onClick={() => setOpen(true)}
+
+    //   component={Link}
+    //   to="/addAlbum"
       variant="contained"
       startIcon={<CreateNewFolderIcon />}
       sx={{
@@ -85,7 +89,32 @@ const MyAlbums = () => {
     >
       Add Album
     </Button>
-    
+    {/* modal to add album */}
+    <Modal open={open} onClose={() => setOpen(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 3,
+            borderRadius: 2,
+          }}
+        >
+          {/* כאן מוצגת קומפוננטה אחרת */}
+          <AddAlbum/>
+
+          <Button
+            onClick={() => setOpen(false)}
+            sx={{ mt: 2, color: "rgb(249, 4, 91)" }}
+          >
+            Close
+          </Button>
+        </Box>
+      </Modal>
     </>
   );
 };
