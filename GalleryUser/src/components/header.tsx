@@ -14,15 +14,15 @@ import { useContext } from "react";
 import { UserContext } from "../hook/login_context";
 
 const Header = () => {
-    function getTokenFromSessionStorage(key: string): string | null {
-        if (typeof sessionStorage !== 'undefined') {
-          const value = sessionStorage.getItem(key);
-          return value !== null ? value : null; 
-        }
-        return null; 
-      }
-    const {name}=useContext(UserContext);
-    const token=getTokenFromSessionStorage('token');
+  function getTokenFromSessionStorage(key: string): string | null {
+    if (typeof sessionStorage !== "undefined") {
+      const value = sessionStorage.getItem(key);
+      return value !== null ? value : null;
+    }
+    return null;
+  }
+  const { name } = useContext(UserContext);
+  const token = getTokenFromSessionStorage("token");
   return (
     <>
       <AppBar
@@ -104,68 +104,92 @@ const Header = () => {
               </Box>
 
               {/* Share Album Button */}
-             
-             {token==null?<></>: <><Box sx={{ my: 2, px: 2 }}>
-                <Link
-                  to="/sharedImages"
-                  style={{
-                    color: "rgb(249, 4, 91)",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: "4px",
-                    transition: "background-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "rgb(235, 255, 0)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "transparent";
-                  }}
-                >
-                  <ShareIcon sx={{ color: "rgb(249, 4, 91)" }} />
-                  Shared Images
-                </Link>
-              </Box>
 
-              {/* Albums Button */}
-              <Box sx={{ my: 2, px: 2 }}>
-                <Link to="/myAlbums"
-                  style={{
-                    color: "rgb(249, 4, 91)",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: "4px",
-                    transition: "background-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "rgb(235, 255, 0)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "transparent";
-                  }}
-              
-                >
-                    <PhotoAlbumIcon sx={{ color: "rgb(249, 4, 91)" }} />
-                  My Albums
-                </Link>
-              </Box>
-</>}
+              {token == null ? (
+                <></>
+              ) : (
+                <>
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Link
+                      to="/sharedImages"
+                      style={{
+                        color: "rgb(249, 4, 91)",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        transition: "background-color 0.3s ease",
+                      }}
+                      onMouseEnter={(
+                        e: React.MouseEvent<HTMLAnchorElement>
+                      ) => {
+                        (e.target as HTMLAnchorElement).style.backgroundColor =
+                          "rgb(235, 255, 0)";
+                      }}
+                      onMouseLeave={(
+                        e: React.MouseEvent<HTMLAnchorElement>
+                      ) => {
+                        (e.target as HTMLAnchorElement).style.backgroundColor =
+                          "transparent";
+                      }}
+                    >
+                      <ShareIcon sx={{ color: "rgb(249, 4, 91)" }} />
+                      Shared Images
+                    </Link>
+                  </Box>
+
+                  {/* Albums Button */}
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Link
+                      to="/myAlbums"
+                      style={{
+                        color: "rgb(249, 4, 91)",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        transition: "background-color 0.3s ease",
+                      }}
+                      onMouseEnter={(
+                        e: React.MouseEvent<HTMLAnchorElement>
+                      ) => {
+                        (e.target as HTMLAnchorElement).style.backgroundColor =
+                          "rgb(235, 255, 0)";
+                      }}
+                      onMouseLeave={(
+                        e: React.MouseEvent<HTMLAnchorElement>
+                      ) => {
+                        (e.target as HTMLAnchorElement).style.backgroundColor =
+                          "transparent";
+                      }}
+                    >
+                      <PhotoAlbumIcon sx={{ color: "rgb(249, 4, 91)" }} />
+                      My Albums
+                    </Link>
+                  </Box>
+                </>
+              )}
             </Box>
-            
 
             {/* Profile Avatar */}
-            <Box sx={{ flexGrow: 0 }}>
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="User Profile" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+            <Box
+              sx={{
+                color: "#rgb(249, 4, 91)",
+                fontFamily: "cursive",
+                fontSize: "25px",
+                borderRadius: "50%",
+                backgroundColor: "rgb(235, 255, 0)",
+                width: "45px",
+                height: "45px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                border: "solid 3px rgb(249, 4, 91)",
+              }}
+            >
+              <p>{/* {name?.at(0)} */}k</p>
             </Box>
           </Toolbar>
         </Container>
