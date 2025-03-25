@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import SignUp from './components/signup'
-import {store} from "./components/authStore"
-import { Provider } from 'react-redux';
-import { Box } from '@mui/material'
+import { BrowserRouter as Router, Routes, Route, NavLink, RouterProvider } from "react-router-dom";
+import "./App.css";
+import MyRouter from "./Router";
+
 
 function App() {
- 
-
   return (
     <>
-    {/* <Box
+
+      {/* <Box
       sx={{
         background: "linear-gradient(135deg, rgb(235, 255, 0), rgb(249, 4, 91))",
         height: "95vh",
@@ -22,13 +17,21 @@ function App() {
         justifyContent: "center",
       }}
     > */}
-      <Provider store={store}>
+      {/* <Provider store={store}>
           <SignUp/>
-    </Provider>
-    {/* </Box> */}
-    
+    </Provider> */}
+     
+      {/* </Box> */}
+ <RouterProvider router={MyRouter} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+
+
+  
+
+
+

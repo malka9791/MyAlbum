@@ -33,17 +33,21 @@ namespace Gallery.API.Controllers
         {
             User user = await _usersService.GetByEmailAsync(loginModel.Email);
 
-            if (user == null || loginModel.Password!=user.Password)
+            if (user == null )
             {
-                return Unauthorized("Invalid email or password.");
+                return Unauthorized("Invalid email");
+            }
+            if(loginModel.Password != user.Password)
+            {
+                return Unauthorized("Invalid password");
             }
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
+            return Ok(new { Token = token,User=user });
         }
         [HttpPost("signup")]
         public async Task<IActionResult> SignUpAsync([FromBody] UserPostDto userModel)
         {
-
+            await Console.Out.WriteLineAsync(userModel.FirstName);
             User existingUser =await _usersService.GetByEmailAsync(userModel.Email);
             if (existingUser != null)
             {
