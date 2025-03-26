@@ -14,9 +14,11 @@ import * as yup from "yup";
 import axios from "axios";
 import Header from "../components/header";
 import { useForm } from "react-hook-form";
-import { UserContext } from "../hook/login_context";
 import Logo from "../images/Logo.png";
 import { Link } from "react-router-dom";
+import { login, registerUser } from "../hook/authAction";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../hook/authStore";
 
 const schema = yup.object().shape({
   email: yup
@@ -30,9 +32,10 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const { SetName, SetUserId } = useContext(UserContext);
+  // const { SetName, SetUserId } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [message, setErrorMessage] = useState<string>("");
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     register,
@@ -40,24 +43,16 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = async (data: any) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5028/api/auth/login",
-        data
-      );      
-      
-      SetName(res.data.user.firstName);
-      SetUserId(res.data.user.userId);
-      alert("success");
-      sessionStorage.setItem("token", res.data.token);
-    } catch (error: any) {
-      if (error.response?.status === 401) {
-        setErrorMessage(error.response.data);
-      } else {
-        setErrorMessage("Something went wrong. Please try again.");
-      }
+    console.log("in submit ",data);
+        const res = await dispatch(login(data));
+        if(res.token){
+                  console.log(res?.payload?.token);
+        }
+        if (!res.token) {  
+          console.log(res.errorRes);
+        setErrorMessage(res.errorRes);
+      } 
     }
-  };
 
   return (
     <>
