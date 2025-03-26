@@ -1,9 +1,24 @@
 import { BrowserRouter as Router, Routes, Route, NavLink, RouterProvider } from "react-router-dom";
 import "./App.css";
 import MyRouter from "./Router";
+import { useEffect } from "react";
 
 
 function App() {
+  
+  // useEffect(() => {
+  //   const handleUnload = () => {
+  //     sessionStorage.clear();
+  //   };
+  
+  //   window.addEventListener("beforeunload", handleUnload);
+    
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleUnload);
+  //   };
+  // }, []);
+  
+  
   return (
     <>
 
@@ -22,6 +37,7 @@ function App() {
     </Provider> */}
      
       {/* </Box> */}
+      
  <RouterProvider router={MyRouter} />
     </>
   );

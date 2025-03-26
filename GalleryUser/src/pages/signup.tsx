@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AppDispatch } from "../hook/authStore";
 import { useDispatch, UseDispatch } from "react-redux";
-import { signUp } from "../hook/authSlice";
+import { setUser } from "../hook/authSlice";
 import Header from "../components/header";
 import { useState } from "react";
 import { registerUser } from "../hook/authAction";
@@ -25,7 +25,6 @@ type FormValues = {
   lastName: string;
   email: string;
   password: string;
-  role: string;
 };
 
 // סכמת ולידציה עם כל השדות חובה
@@ -38,7 +37,6 @@ const schema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
-  role: Yup.string().required("Role is required"),
 });
 
 const SignUp = () => {
@@ -55,7 +53,6 @@ const SignUp = () => {
       lastName: "",
       email: "",
       password: "",
-      role: "",
     },
     mode: "onBlur",
   });
@@ -204,50 +201,7 @@ const SignUp = () => {
     "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
   }}
 />
-<InputLabel id="role-label" sx={{ color: "rgb(249, 4, 91)" }}>
-  Role
-</InputLabel>
-<Select
-  fullWidth
-  labelId="role-label"
-  id="demo-simple-select-helper"
-  {...register("role")}
-  defaultValue=""
-  sx={{
-    color: "black",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgb(249, 4, 91)",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgb(235, 255, 0)",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgb(235, 255, 0) !important",
-    },
-    "&.Mui-error .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgb(249, 4, 91) !important",
-    },
-  }}
->
-  <MenuItem value="USER">
-    <PersonAdd sx={{ color: "rgb(249, 4, 91)" }} />
-    User
-  </MenuItem>
-  <MenuItem value="ADMIN">
-    <PersonAdd sx={{ color: "rgb(249, 4, 91)" }} />
-    Admin
-  </MenuItem>
-  <MenuItem value="GUEST">
-    <PersonAdd sx={{ color: "rgb(249, 4, 91)" }} />
-    Guest
-  </MenuItem>
-</Select>
 
-            {errors.role && (
-              <FormHelperText sx={{ color: "rgb(249, 4, 91) !important" }}>
-                {errors.role.message}
-              </FormHelperText>
-            )}
             <Button
               type="submit"
               variant="contained"

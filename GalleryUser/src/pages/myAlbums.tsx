@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../hook/login_context";
+// import { UserContext } from "../hook/login_context";
 import axios from "axios";
 import { Box, Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Modal, Typography } from "@mui/material";
 import { Link } from "react-router";
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import AddAlbum from "./addAlbum";
+import { UserContext } from "../hook/user_context";
 
 type Album = {
   id: number;
@@ -23,15 +24,17 @@ type Album = {
 // }
 
 const MyAlbums = () => {
+   const userContext = useContext(UserContext);
+    const UserId = userContext?.userId ?? null;
   const api = "http://localhost:5028/api";
   const [albums, setAlbums] = useState<Album[]>([]);
-  const { name } = useContext(UserContext);
+  // const { name } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const getAlbums = async () => {
       try {
-        const res = await axios.get(`${api}/album`);
+        const res = await axios.get(`${api}/album/`);
         setAlbums(res.data);
       } catch (error) {
         console.error("Error fetching albums:", error);
@@ -46,7 +49,7 @@ const MyAlbums = () => {
       {albums.map((album) => (
         <Grid 
          key={album.id}>
-          <Card sx={{ maxWidth: 345, borderRadius: 2, boxShadow: 3, p: 2 }}>
+          <Card sx={{ maxWidth: 345, borderRadius: 2, boxShadow: 3, p: 2,m:3 }}>
             <CardContent>
               <Typography variant="h6" gutterBottom>
                 {album.name}

@@ -11,18 +11,15 @@ import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router";
 import { useContext } from "react";
-import { UserContext } from "../hook/login_context";
+import { UserContext } from "../hook/user_context";
 
 const Header = () => {
-  function getTokenFromSessionStorage(key: string): string | null {
-    if (typeof sessionStorage !== "undefined") {
-      const value = sessionStorage.getItem(key);
-      return value !== null ? value : null;
-    }
-    return null;
-  }
-  const { name } = useContext(UserContext);
-  const token = getTokenFromSessionStorage("token");
+    const userContext=useContext(UserContext);    
+    const token = userContext?.token ?? null;
+    const name = userContext?.name ?? "?";
+console.log("header",name,"token ",token);
+
+
   return (
     <>
       <AppBar
@@ -105,7 +102,7 @@ const Header = () => {
 
               {/* Share Album Button */}
 
-              {token == null ? (
+              {!token ? (
                 <></>
               ) : (
                 <>
@@ -189,7 +186,9 @@ const Header = () => {
                 border: "solid 3px rgb(249, 4, 91)",
               }}
             >
-              <p>{/* {name?.at(0)} */}k</p>
+              <p>
+                {name?.at(0)}
+                </p>
             </Box>
           </Toolbar>
         </Container>
