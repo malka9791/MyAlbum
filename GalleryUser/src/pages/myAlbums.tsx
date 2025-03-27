@@ -1,21 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-// import { UserContext } from "../hook/login_context";
 import axios from "axios";
 import {
   Box,
   Button,
   Card,
   CardContent,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Grid,
   Modal,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import AddAlbum from "./addAlbum";
 import { UserContext } from "../hook/user_context";
@@ -54,17 +48,17 @@ const MyAlbums = () => {
       try {
         const res = await axios.get(`${api}/album/user/${UserId}`);
         setAlbums(res.data);
+        console.log("here ff");
       } catch (error) {
         console.error("Error fetching albums:", error);
-      }
-      finally{
+      } finally {
         setLoading(false);
       }
     };
     if (UserId) {
       getAlbums();
     }
-  }, [albums]);
+  }, [UserId, loading]);
   // delete album
   const [openDeleten, setOpenDelete] = useState(false);
   const [albumIdToDelete, setAlbumIdToDelete] = useState<number | null>(null);
@@ -75,8 +69,9 @@ const MyAlbums = () => {
   };
   const handleConfirmDelete = async () => {
     try {
-      const res = await axios.delete(`${api}/album/${albumIdToDelete}`);
+      await axios.delete(`${api}/album/${albumIdToDelete}`);
       alert("delete success");
+      setLoading(true);
       setOpenDelete(false);
     } catch (error) {
       console.error("Error delete album:", error);
@@ -84,9 +79,9 @@ const MyAlbums = () => {
   };
   return (
     <>
-    {loading?<LoadingSpinner/>:""}
+      {loading ? <LoadingSpinner /> : ""}
 
-      <Grid container spacing={3} sx={{ m: 3 }} >
+      <Grid container spacing={3} sx={{ m: 3 }}>
         {albums.map((album) => (
           <Grid key={album.id}>
             <Card
@@ -183,52 +178,60 @@ const MyAlbums = () => {
               </Button>
               {/* end delete */}
               {/* show pictures */}
-              {!loading?<Button
-                // type="submit"
-                variant="contained"
-                fullWidth
-                sx={{
-                  bgcolor: "rgb(249, 4, 91)",
-                  color: "#fff",
-                  fontSize: "12px",
-                  // margin: "normal",
-                  mt: 3,
-                  "&:hover": {
-                    bgcolor: "rgb(235, 255, 0)",
-                  },
-                }}
-                size="small"
-                endIcon={<PermMediaOutlinedIcon />}
-              >
-                Show Pictures
-              </Button>:""}
+              {!loading ? (
+                <Button
+                  // type="submit"
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    bgcolor: "rgb(249, 4, 91)",
+                    color: "#fff",
+                    fontSize: "12px",
+                    // margin: "normal",
+                    mt: 3,
+                    "&:hover": {
+                      bgcolor: "rgb(235, 255, 0)",
+                    },
+                  }}
+                  size="small"
+                  endIcon={<PermMediaOutlinedIcon />}
+                >
+                  Show Pictures
+                </Button>
+              ) : (
+                ""
+              )}
             </Card>
           </Grid>
         ))}
       </Grid>
       {/* add album modal */}
-    {!loading?<Button
-        onClick={() => setopenAdd(true)}
-        //   component={Link}
-        //   to="/addAlbum"
-        variant="contained"
-        startIcon={<CreateNewFolderIcon />}
-        sx={{
-          backgroundColor: "rgb(249, 4, 91)",
-          color: "#fff",
-          fontSize: "18px",
-          textTransform: "none",
-          padding: "10px 20px",
-          borderRadius: "8px",
-          transition: "0.3s",
-          "&:hover": {
-            backgroundColor: "rgb(235, 255, 0)",
-            color: "black",
-          },
-        }}
-      > 
-        Add Album
-      </Button>:"" }
+      {!loading ? (
+        <Button
+          onClick={() => setopenAdd(true)}
+          //   component={Link}
+          //   to="/addAlbum"
+          variant="contained"
+          startIcon={<CreateNewFolderIcon />}
+          sx={{
+            backgroundColor: "rgb(249, 4, 91)",
+            color: "#fff",
+            fontSize: "18px",
+            textTransform: "none",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            transition: "0.3s",
+            "&:hover": {
+              backgroundColor: "rgb(235, 255, 0)",
+              color: "black",
+            },
+          }}
+        >
+          Add Album
+        </Button>
+      ) : (
+        ""
+      )}
       {/* modal to add album */}
       <Modal open={openAdd} onClose={() => setopenAdd(false)}>
         <Box

@@ -36,7 +36,7 @@ export const registerUser =
     lastName: string;
     email: string;
     password: string;
-    // role:string;
+    role:string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     

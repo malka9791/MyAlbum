@@ -31,5 +31,4 @@ C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\refint\Gal
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.pdb
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.genruntimeconfig.cache
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\ref\Gallery.DATA.dll
-C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.sourcelink.json
-C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\Gallery..DD5BE110.Up2Date
+C:\Users\user1\Desktop\Album\GalleryApi\Gallery.DATA\obj\Debug\net7.0\Gallery.DATA.csproj.CopyComplete

@@ -121,8 +121,4 @@ C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\refint\Galle
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\Gallery.API.pdb
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\Gallery.API.genruntimeconfig.cache
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\ref\Gallery.API.dll
-C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\Gallery.API.staticwebassets.endpoints.json
-C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\Gallery.API.sourcelink.json
-C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\staticwebassets.build.endpoints.json
-C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\staticwebassets\msbuild.Gallery.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\Gallery..262B68EE.Up2Date
+C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\obj\Debug\net7.0\Gallery.API.csproj.CopyComplete

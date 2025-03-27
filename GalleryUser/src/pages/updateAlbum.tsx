@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';import {
+import { useEffect, useState } from "react";
+import {
   Box,
   Button,
   InputAdornment,
@@ -10,10 +10,9 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';impo
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Description, Person } from "@mui/icons-material";
-import { Link, useNavigate, useParams } from "react-router";
+import {  Person } from "@mui/icons-material";
+import {  useNavigate, useParams } from "react-router";
 import axios from "axios";
-import { UserContext } from "../hook/user_context";
 type Album = {
   id: number;
   name: string;
