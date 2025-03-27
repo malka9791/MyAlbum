@@ -1,7 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, NavLink, RouterProvider } from "react-router-dom";
+import {  RouterProvider } from "react-router-dom";
 import "./App.css";
 import MyRouter from "./Router";
-import { useEffect } from "react";
 
 
 function App() {
