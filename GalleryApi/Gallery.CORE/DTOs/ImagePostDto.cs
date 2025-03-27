@@ -13,5 +13,10 @@ namespace Gallery.CORE.DTOs
         public int TagId { get; set; }
         public string ImgUrl { get; set; }
         public string ImgType { get; set; }
+        public DateTime? UpdateAt { get; set; }
+        public ImagePostDto()
+        {
+            UpdateAt ??= DateTime.UtcNow;
+        }
     }
 }

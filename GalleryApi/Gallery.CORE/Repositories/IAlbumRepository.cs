@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gallery.CORE.Services
+namespace Gallery.CORE.Repositories
 {
-    public interface IAlbumService : IRepositoryService<Album>
+    public interface IAlbumRepository
     {
-        Task<IEnumerable<Album>> GetAlbumOfUserAsync(int UserId);
+        IEnumerable<Album> GetAlbumOfUser(int UserId);
 
     }
 }

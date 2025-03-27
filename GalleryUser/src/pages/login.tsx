@@ -12,6 +12,7 @@ import { Visibility, VisibilityOff, Lock, Email } from "@mui/icons-material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import LoginIcon from "@mui/icons-material/Login";
 import Header from "../components/header";
 import { useForm } from "react-hook-form";
 import Logo from "../images/Logo.png";
@@ -43,16 +44,16 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = async (data: any) => {
-    console.log("in submit ",data);
-        const res = await dispatch(login(data));
-        if(res.token){
-                  console.log(res?.payload?.token);
-        }
-        if (!res.token) {  
-          console.log(res.errorRes);
-        setErrorMessage(res.errorRes);
-      } 
+    console.log("in submit ", data);
+    const res = await dispatch(login(data));
+    if (res.token) {
+      console.log(res?.payload?.token);
     }
+    if (!res.token) {
+      console.log(res.errorRes);
+      setErrorMessage(res.errorRes);
+    }
+  };
 
   return (
     <>
@@ -74,6 +75,7 @@ const Login = () => {
         </Typography>
 
         {/* שדה אימייל */}
+        <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           label="Email"
           variant="outlined"
@@ -161,17 +163,26 @@ const Login = () => {
           sx={{ marginTop: 2 }}
         >
           <Button
-            onClick={handleSubmit(onSubmit)}
+            type="submit"
             variant="contained"
             fullWidth
             sx={{
-              backgroundColor: "rgb(235, 255, 0)",
-              "&:hover": { backgroundColor: "rgb(235, 255, 0)", opacity: 0.9 },
+              bgcolor: "rgb(249, 4, 91)",
+              color: "#fff",
+              fontSize: "18px",
+              margin: "normal",
+              mt: 3,
+              "&:hover": {
+                bgcolor: "rgb(235, 255, 0)",
+              },
             }}
+            size="large"
+            endIcon={<LoginIcon />}
           >
-            Send
+            Login
           </Button>
         </Stack>
+        </form>
         <Box
           sx={{
             display: "flex",
@@ -181,6 +192,7 @@ const Login = () => {
           }}
         >
           <p style={{ margin: "10px  10px" }}>Are you new?</p>
+          
           <Link
             to="/signup"
             style={{

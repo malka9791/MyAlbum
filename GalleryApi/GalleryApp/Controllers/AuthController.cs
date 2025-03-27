@@ -58,7 +58,7 @@ namespace Gallery.API.Controllers
             await _usersService.AddValueAsync(dto);
 
             var token = GenerateJwtToken(dto);
-            return Ok(new { Token = token });
+            return Ok(new { Token = token,User=dto });
         }
         private string GenerateJwtToken(User user)
         {

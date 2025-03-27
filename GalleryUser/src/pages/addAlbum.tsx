@@ -28,7 +28,7 @@ const schema = yup.object().shape({
 const AddAlbum = () => {
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
-console.log(UserId);
+// console.log(UserId);
 
   const [messege, SetMessege] = useState<string>("");
   const api = "http://localhost:5028/api";
@@ -46,7 +46,7 @@ console.log(UserId);
       Name: data.name,
       Description: data.description,
     };
-    console.log(albumData);
+    // console.log(albumData);
     
     try {
       const res = await axios.post(`${api}/album`, albumData);

@@ -5,6 +5,7 @@ using Gallery.CORE.Services;
 using Gallery.SERVICE;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Gallery.API.Controllers
 {
@@ -36,6 +37,13 @@ namespace Gallery.API.Controllers
             var album= await _albumService.GetByIdAsync(id);
             var albumDto=_mapper.Map<AlbumDto>(album);
             return Ok(albumDto);
+        }
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult> GetByUserId(int userId)
+        {
+            var list = await _albumService.GetAlbumOfUserAsync(userId);
+            var listDto = _mapper.Map<IEnumerable<AlbumDto>>(list);
+            return Ok(listDto);
         }
         [HttpPost]
         public async Task Post([FromBody] AlbumPostDto album)

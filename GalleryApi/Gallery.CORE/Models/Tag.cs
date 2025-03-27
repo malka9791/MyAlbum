@@ -15,6 +15,13 @@ namespace Gallery.CORE.models
         //Relationships
 
         public List<Image> Images { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public Tag()
+        {
+            CreatedAt = DateTime.UtcNow;
+            UpdateAt = DateTime.UtcNow;
+        }
 
     }
 }
