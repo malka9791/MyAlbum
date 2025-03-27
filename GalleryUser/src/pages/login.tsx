@@ -7,17 +7,14 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Visibility, VisibilityOff, Lock, Email } from "@mui/icons-material";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import axios from "axios";
-import LoginIcon from "@mui/icons-material/Login";
+import * as yup from "yup";import LoginIcon from "@mui/icons-material/Login";
 import Header from "../components/header";
 import { useForm } from "react-hook-form";
-import Logo from "../images/Logo.png";
 import { Link } from "react-router-dom";
-import { login, registerUser } from "../hook/authAction";
+import { login } from "../hook/authAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../hook/authStore";
 
