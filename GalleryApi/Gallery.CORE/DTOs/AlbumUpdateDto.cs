@@ -11,5 +11,10 @@ namespace Gallery.CORE.DTOs
       
         public string Name { get; set; }
         public string Description { get; set; }
+        public DateTime? UpdateAt { get; set; }
+        public AlbumUpdateDto()
+        {
+            UpdateAt = DateTime.UtcNow;
+        }
     }
 }

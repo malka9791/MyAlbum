@@ -9,6 +9,7 @@ interface User {
   lastName: string;
   email: string;
   password: string;
+  // role:string;
 }
 // interface Login{
 //   name:string,
@@ -35,8 +36,10 @@ export const registerUser =
     lastName: string;
     email: string;
     password: string;
+    // role:string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
+    
     console.log(userData);
     try {
       const res = await axios.post(

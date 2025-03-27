@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gallery.SERVICE
 {
-    public class AlbumService:IAlbumService
+    public class AlbumService : IAlbumService
     { 
         private readonly IRepositoryManager _albumRepository;
         public AlbumService(IRepositoryManager albumRepository)
@@ -39,6 +39,9 @@ namespace Gallery.SERVICE
             _albumRepository.Albums.Delete(album);
             await _albumRepository.SaveAsync();
         }
-
+        public async Task<IEnumerable<Album>> GetAlbumOfUserAsync(int UserId)
+        {
+            return await Task.Run(()=> _albumRepository.AlbumRepository.GetAlbumOfUser(UserId));
+        }
     }
 }

@@ -18,7 +18,7 @@ import { setUser } from "../hook/authSlice";
 import Header from "../components/header";
 import { useState } from "react";
 import { registerUser } from "../hook/authAction";
-import { PersonAdd,Send,Person,Email,Lock } from "@mui/icons-material";
+import { PersonAdd, Send, Person, Email, Lock } from "@mui/icons-material";
 import { Link } from "react-router";
 type FormValues = {
   firstName: string;
@@ -91,116 +91,132 @@ const SignUp = () => {
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-  {...register("firstName")}
-  label="First Name"
-  fullWidth
-  margin="normal"
-  variant="outlined"
-  error={!!errors.firstName}
-  helperText={errors?.firstName?.message}
-  InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
-  InputProps={{
-    style: { color: " black" },
-    startAdornment: (
-      <InputAdornment position="start">
-        <Person sx={{ color: "rgb(249, 4, 91)" }} />
-      </InputAdornment>
-    ),
-  }}
-  sx={{
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": { borderColor: "rgb(249, 4, 91)" },
-      "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
-      "&.Mui-focused fieldset": { borderColor: "rgb(235, 255, 0) !important" },
-      "&.Mui-error fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-    },
-    "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
-  }}
-/>
-<TextField
-  {...register("lastName")}
-  label="Last Name"
-  fullWidth
-  margin="normal"
-  variant="outlined"
-  error={!!errors.lastName}
-  helperText={errors?.lastName?.message}
-  InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
-  InputProps={{
-    style: { color: " black" },
-    startAdornment: (
-      <InputAdornment position="start">
-        <Person sx={{ color: "rgb(249, 4, 91)" }} />
-      </InputAdornment>
-    ),
-  }}
-  sx={{
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": { borderColor: "rgb(249, 4, 91)" },
-      "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
-      "&.Mui-focused fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-      "&.Mui-error fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-    },
-    "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
-  }}
-/>
-<TextField
-  {...register("email")}
-  label="Email"
-  type="email"
-  fullWidth
-  margin="normal"
-  variant="outlined"
-  error={!!errors.email}
-  helperText={errors?.email?.message}
-  InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
-  InputProps={{
-    style: { color: " black" },
-    startAdornment: (
-      <InputAdornment position="start">
-        <Email sx={{ color: "rgb(249, 4, 91)" }} />
-      </InputAdornment>
-    ),
-  }}
-  sx={{
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": { borderColor: "rgb(249, 4, 91)" },
-      "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
-      "&.Mui-focused fieldset": { borderColor: "rgb(235, 255, 0) !important" },
-      "&.Mui-error fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-    },
-    "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
-  }}
-/>
-<TextField
-  {...register("password")}
-  label="Password"
-  type="password"
-  fullWidth
-  margin="normal"
-  variant="outlined"
-  error={!!errors.password}
-  helperText={errors?.password?.message}
-  InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
-  InputProps={{
-    style: { color: " black" },
-    startAdornment: (
-      <InputAdornment position="start">
-        <Lock sx={{ color: "rgb(249, 4, 91)" }} />
-      </InputAdornment>
-    ),
-  }}
-  sx={{
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": { borderColor: "rgb(249, 4, 91)" },
-      "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
-      "&.Mui-focused fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-      "&.Mui-error fieldset": { borderColor: "rgb(249, 4, 91) !important" },
-    },
-    "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
-  }}
-/>
+            <TextField
+              {...register("firstName")}
+              label="First Name"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              error={!!errors.firstName}
+              helperText={errors?.firstName?.message}
+              InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
+              InputProps={{
+                style: { color: " black" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Person sx={{ color: "rgb(249, 4, 91)" }} />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "rgb(249, 4, 91)" },
+                  "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgb(235, 255, 0) !important",
+                  },
+                  "&.Mui-error fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                },
+                "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
+              }}
+            />
+            <TextField
+              {...register("lastName")}
+              label="Last Name"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              error={!!errors.lastName}
+              helperText={errors?.lastName?.message}
+              InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
+              InputProps={{
+                style: { color: " black" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Person sx={{ color: "rgb(249, 4, 91)" }} />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "rgb(249, 4, 91)" },
+                  "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                  "&.Mui-error fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                },
+                "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
+              }}
+            />
+            <TextField
+              {...register("email")}
+              label="Email"
+              type="email"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              error={!!errors.email}
+              helperText={errors?.email?.message}
+              InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
+              InputProps={{
+                style: { color: " black" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Email sx={{ color: "rgb(249, 4, 91)" }} />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "rgb(249, 4, 91)" },
+                  "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgb(235, 255, 0) !important",
+                  },
+                  "&.Mui-error fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                },
+                "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
+              }}
+            />
+            <TextField
+              {...register("password")}
+              label="Password"
+              type="password"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              error={!!errors.password}
+              helperText={errors?.password?.message}
+              InputLabelProps={{ style: { color: " rgb(249, 4, 91)" } }}
+              InputProps={{
+                style: { color: " black" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock sx={{ color: "rgb(249, 4, 91)" }} />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "rgb(249, 4, 91)" },
+                  "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                  "&.Mui-error fieldset": {
+                    borderColor: "rgb(249, 4, 91) !important",
+                  },
+                },
+                "& .MuiFormHelperText-root": { color: "rgb(249, 4, 91)" },
+              }}
+            />
 
             <Button
               type="submit"
@@ -223,22 +239,28 @@ const SignUp = () => {
             </Button>
             {notLogin ? <h1>error!!!</h1> : <></>}
           </form>
-          <Box sx={{display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center"}}>
-          <p style={{margin:"10px  10px"}}>Do you have an account?</p>
-          <Link
-            to="/login"
-            style={{
-              color: "rgb(249, 4, 91)",
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center"
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-          Login
-          </Link>
+            <p style={{ margin: "10px  10px" }}>Do you have an account?</p>
+            <Link
+              to="/login"
+              style={{
+                color: "rgb(249, 4, 91)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Login
+            </Link>
+          </Box>
         </Box>
-        </Box>
-       
       </Box>
     </>
   );
