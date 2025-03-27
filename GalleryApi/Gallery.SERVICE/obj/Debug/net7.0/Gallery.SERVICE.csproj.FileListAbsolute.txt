@@ -27,5 +27,4 @@ C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\Gallery
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\refint\Gallery.SERVICE.dll
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.pdb
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\ref\Gallery.SERVICE.dll
-C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.sourcelink.json
-C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\Gallery..5F48D5AA.Up2Date
+C:\Users\user1\Desktop\Album\GalleryApi\Gallery.SERVICE\obj\Debug\net7.0\Gallery.SERVICE.csproj.CopyComplete

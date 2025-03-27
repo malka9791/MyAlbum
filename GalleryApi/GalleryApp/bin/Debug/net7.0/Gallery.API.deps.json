@@ -447,10 +447,7 @@
           "AutoMapper": "12.0.1"
         },
         "runtime": {
-          "Gallery.CORE.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Gallery.CORE.dll": {}
         }
       },
       "Gallery.DATA/1.0.0": {
@@ -462,10 +459,7 @@
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
         },
         "runtime": {
-          "Gallery.DATA.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Gallery.DATA.dll": {}
         }
       },
       "Gallery.SERVICE/1.0.0": {
@@ -473,10 +467,7 @@
           "Gallery.CORE": "1.0.0"
         },
         "runtime": {
-          "Gallery.SERVICE.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Gallery.SERVICE.dll": {}
         }
       }
     }

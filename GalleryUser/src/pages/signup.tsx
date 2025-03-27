@@ -3,28 +3,24 @@ import {
   TextField,
   Box,
   Typography,
-  MenuItem,
-  FormHelperText,
-  Select,
-  InputLabel,
   InputAdornment,
 } from "@mui/material";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AppDispatch } from "../hook/authStore";
-import { useDispatch, UseDispatch } from "react-redux";
-import { setUser } from "../hook/authSlice";
+import { useDispatch } from "react-redux";
 import Header from "../components/header";
 import { useState } from "react";
 import { registerUser } from "../hook/authAction";
-import { PersonAdd, Send, Person, Email, Lock } from "@mui/icons-material";
+import { Send, Person, Email, Lock } from "@mui/icons-material";
 import { Link } from "react-router";
 type FormValues = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+  role:string;
 };
 
 // סכמת ולידציה עם כל השדות חובה
@@ -37,6 +33,7 @@ const schema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
+  role:Yup.string().required()
 });
 
 const SignUp = () => {
@@ -53,6 +50,7 @@ const SignUp = () => {
       lastName: "",
       email: "",
       password: "",
+      role:"user"
     },
     mode: "onBlur",
   });

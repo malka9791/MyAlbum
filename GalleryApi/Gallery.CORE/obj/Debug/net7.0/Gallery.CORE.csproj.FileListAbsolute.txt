@@ -22,4 +22,3 @@ C:\Users\user1\Desktop\Album\GalleryApi\Gallery.CORE\obj\Debug\net7.0\Gallery.CO
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.CORE\obj\Debug\net7.0\refint\Gallery.CORE.dll
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.CORE\obj\Debug\net7.0\Gallery.CORE.pdb
 C:\Users\user1\Desktop\Album\GalleryApi\Gallery.CORE\obj\Debug\net7.0\ref\Gallery.CORE.dll
-C:\Users\user1\Desktop\Album\GalleryApi\Gallery.CORE\obj\Debug\net7.0\Gallery.CORE.sourcelink.json

@@ -1,9 +1,6 @@
-import { useContext, useState } from "react";
-// import { UserContext } from "../hook/login_context";
+import { useContext } from "react";
 import {
-  Box,
   Button,
-  IconButton,
   InputAdornment,
   Stack,
   TextField,
@@ -13,14 +10,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Person } from "@mui/icons-material";
-import { Link } from "react-router";
 import axios from "axios";
 import { UserContext } from "../hook/user_context";
-type Album = {
-  userId: number;
-  name: string;
-  description: string;
-};
 const schema = yup.object().shape({
   name: yup.string().required("AlbumName is required"),
   description: yup.string().max(50, "Description can be max 50 characters"),
@@ -30,7 +21,7 @@ const AddAlbum = () => {
   const UserId = userContext?.userId ?? null;
 // console.log(UserId);
 
-  const [messege, SetMessege] = useState<string>("");
+  // const [messege, SetMessege] = useState<string>("");
   const api = "http://localhost:5028/api";
 
   const {
@@ -120,7 +111,7 @@ const AddAlbum = () => {
         }}
       />
 
-      {messege && <p style={{ color: "red" }}>{messege}</p>}
+      {/* {messege && <p style={{ color: "red" }}>{messege}</p>} */}
 
       <Stack
         direction="row"
