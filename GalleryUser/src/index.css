@@ -23,10 +23,11 @@ a:hover {
 }
 
 body {
-  /* background: linear-gradient(135deg, rgb(235, 255, 0), rgb(249, 4, 91)); */
-  background-image: 
-  /* linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),  */
-  url("./images/bg2.webp");
+  /* background: */
+   /* linear-gradient(135deg, rgb(235, 255, 0), rgb(249, 4, 91)); */
+  /* linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 255, 255, 0.986));  */
+  background-image:url("./images/bg4.png");
+
   background-size: cover; /* מכסה את כל העמוד */
   background-position: center; /* ממקם את התמונה במרכז */
   background-repeat: no-repeat; /* מונע חזרה של התמונה */

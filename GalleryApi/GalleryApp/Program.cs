@@ -1,3 +1,5 @@
+using Amazon.S3;
+using DotNetEnv;
 using Gallery.CORE;
 using Gallery.CORE.Models;
 using Gallery.CORE.Repositories;
@@ -11,26 +13,34 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
+//aws
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Add services to the container.
-//builder.Services.AddDbContext<DataContext>(options =>
-//    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// connect db
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
 });
+//cors
 builder.Services.AddCors(opt => opt.AddPolicy("MyPolicy", policy =>
 {
     policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
 }));
+
+//jwt 
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -57,6 +67,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+//services
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IImageService, ImageService>();
@@ -72,7 +83,6 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 //builder.Services.AddDbContext<DataContext>();
 //jwt
-//builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -92,6 +102,11 @@ builder.Services.AddAuthentication(options =>
         };
     });
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+app.UseCors("MyPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -110,7 +125,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 //end of jwt
 app.UseHttpsRedirection();
-app.UseCors("MyPolicy");
 app.UseAuthorization();
 
 app.MapControllers();

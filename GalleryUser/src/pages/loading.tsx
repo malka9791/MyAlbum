@@ -6,8 +6,8 @@ const LoadingSpinner = () => (
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "100vh",
-      background: "#rgb(249, 4, 91)",
+      // height: "",
+      color: "#e93345",
     }}
   >
     <CircularProgress />

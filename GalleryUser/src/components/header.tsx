@@ -10,20 +10,19 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../hook/user_context";
+import { Button } from "@mui/material";
 
 const Header = () => {
-    const userContext=useContext(UserContext);    
-    const token = userContext?.token ?? null;
-    const name = userContext?.name ?? "?";
-console.log("header",name,"token ",token);
-
+  const userContext = useContext(UserContext);
+  const token = userContext?.token ?? null;
+  const name = userContext?.name ?? "?";
 
   return (
     <>
       <AppBar
         sx={{
           backgroundColor: "#fff",
-          color: "rgb(249, 4, 91)",
+          color: "#e93345",
           //   boxShadow: "0 2px 8px rgba(253, 229, 229, 0.1)",
           boxShadow: 3,
         }}
@@ -37,65 +36,59 @@ console.log("header",name,"token ",token);
               src={Logo}
               alt="Logo"
               style={{
-                width: "100px",
+                width: "150px",
                 height: "auto",
-                margin: "0px 20px 0px 20px",
+                margin: "0px 5px 0px 20px",
                 cursor: "pointer",
               }}
             />
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {/* Login Button */}
               <Box sx={{ my: 2, px: 2 }}>
-                <Link
+                <Button
+                  component={Link}
                   to="/login"
-                  style={{
-                    color: "rgb(249, 4, 91)",
+                  sx={{
+                    color: "#e93345",
                     display: "flex",
                     alignItems: "center",
                     fontSize: "1rem",
                     padding: "8px 16px",
                     borderRadius: "4px",
                     transition: "background-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "rgb(235, 255, 0)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "transparent";
+                    "&:hover": {
+                      backgroundColor: "#f1ede9",
+                      color: "#e93345",
+                    },
                   }}
                 >
-                  <LoginIcon sx={{ color: "rgb(249, 4, 91)" }} />
+                  <LoginIcon sx={{ color: "#e93345" }} />
                   Login
-                </Link>
+                </Button>
               </Box>
 
               {/* Sign Up Button */}
               <Box sx={{ my: 2, px: 2 }}>
-                <Link
+                <Button
+                  component={Link}
                   to="/signup"
-                  style={{
-                    color: "rgb(249, 4, 91)",
+                  sx={{
+                    color: "#e93345",
                     display: "flex",
                     alignItems: "center",
                     fontSize: "1rem",
                     padding: "8px 16px",
                     borderRadius: "4px",
                     transition: "background-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "rgb(235, 255, 0)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    (e.target as HTMLAnchorElement).style.backgroundColor =
-                      "transparent";
+                    "&:hover": {
+                      backgroundColor: "#f1ede9",
+                      color: "#e93345",
+                    },
                   }}
                 >
-                  <PersonAddIcon sx={{ color: "rgb(249, 4, 91)", mr: 1 }} />
+                  <PersonAddIcon sx={{ color: "#e93345", mr: 1 }} />
                   Sign Up
-                </Link>
+                </Button>{" "}
               </Box>
 
               {/* Share Album Button */}
@@ -105,64 +98,50 @@ console.log("header",name,"token ",token);
               ) : (
                 <>
                   <Box sx={{ my: 2, px: 2 }}>
-                    <Link
+                    <Button
+                      component={Link}
                       to="/sharedImages"
-                      style={{
-                        color: "rgb(249, 4, 91)",
+                      sx={{
+                        color: "#e93345",
                         display: "flex",
                         alignItems: "center",
                         fontSize: "1rem",
                         padding: "8px 16px",
                         borderRadius: "4px",
                         transition: "background-color 0.3s ease",
-                      }}
-                      onMouseEnter={(
-                        e: React.MouseEvent<HTMLAnchorElement>
-                      ) => {
-                        (e.target as HTMLAnchorElement).style.backgroundColor =
-                          "rgb(235, 255, 0)";
-                      }}
-                      onMouseLeave={(
-                        e: React.MouseEvent<HTMLAnchorElement>
-                      ) => {
-                        (e.target as HTMLAnchorElement).style.backgroundColor =
-                          "transparent";
+                        "&:hover": {
+                          backgroundColor: "#f1ede9",
+                          color: "#e93345",
+                        },
                       }}
                     >
-                      <ShareIcon sx={{ color: "rgb(249, 4, 91)" }} />
+                      <ShareIcon sx={{ color: "#e93345" }} />
                       Shared Images
-                    </Link>
+                    </Button>
                   </Box>
 
                   {/* Albums Button */}
                   <Box sx={{ my: 2, px: 2 }}>
-                    <Link
+                    <Button
                       to="/myAlbums"
-                      style={{
-                        color: "rgb(249, 4, 91)",
+                      component={Link}
+                      sx={{
+                        color: "#e93345",
                         display: "flex",
                         alignItems: "center",
                         fontSize: "1rem",
                         padding: "8px 16px",
                         borderRadius: "4px",
                         transition: "background-color 0.3s ease",
-                      }}
-                      onMouseEnter={(
-                        e: React.MouseEvent<HTMLAnchorElement>
-                      ) => {
-                        (e.target as HTMLAnchorElement).style.backgroundColor =
-                          "rgb(235, 255, 0)";
-                      }}
-                      onMouseLeave={(
-                        e: React.MouseEvent<HTMLAnchorElement>
-                      ) => {
-                        (e.target as HTMLAnchorElement).style.backgroundColor =
-                          "transparent";
+                        "&:hover": {
+                          backgroundColor: "#f1ede9",
+                          color: "#e93345",
+                        },
                       }}
                     >
-                      <PhotoAlbumIcon sx={{ color: "rgb(249, 4, 91)" }} />
+                      <PhotoAlbumIcon sx={{ color: "#e93345" }} />
                       My Albums
-                    </Link>
+                    </Button>
                   </Box>
                 </>
               )}
@@ -171,22 +150,20 @@ console.log("header",name,"token ",token);
             {/* Profile Avatar */}
             <Box
               sx={{
-                color: "#rgb(249, 4, 91)",
+                color: "#e93345",
                 fontFamily: "cursive",
                 fontSize: "25px",
                 borderRadius: "50%",
-                backgroundColor: "rgb(235, 255, 0)",
+                backgroundColor: "#f1ede9",
                 width: "45px",
                 height: "45px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                border: "solid 3px rgb(249, 4, 91)",
+                border: "solid 3px #e93345",
               }}
             >
-              <p>
-                {name?.at(0)}
-                </p>
+              <p>{name?.at(0)}</p>
             </Box>
           </Toolbar>
         </Container>

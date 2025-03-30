@@ -7,7 +7,10 @@ using System.Security;
 namespace Gallery.DATA
 {
     public class DataContext : DbContext
+
     {
+        private readonly IConfiguration _configuration;
+
         public DbSet<User> Users { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Tag> Tags { get; set; }

@@ -55,8 +55,7 @@ namespace Gallery.API.Controllers
             if (existingUser != null)
             {
                 // אם התג קיים, עדכון פשוט
-                existingUser.FirstName = user.FirstName;
-                existingUser.LastName = user.LastName;
+                existingUser.FullName = user.FullName;
                 existingUser.Email = user.Email;
                 existingUser.Password=user.Password;
                 existingUser.Role=user.Role;

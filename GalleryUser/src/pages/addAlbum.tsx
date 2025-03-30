@@ -49,7 +49,7 @@ const AddAlbum = () => {
   };
   return (
     <>
-      <Typography variant="h4" color="rgb(249, 4, 91)" gutterBottom>
+      <Typography variant="h4" color="#e93345" gutterBottom>
         Add New Album
       </Typography>
 
@@ -62,23 +62,23 @@ const AddAlbum = () => {
         error={!!errors.name}
         helperText={errors.name?.message}
         margin="normal"
-        InputLabelProps={{ style: { color: "rgb(249, 4, 91)" } }}
+        InputLabelProps={{ style: { color: "#e93345" } }}
         InputProps={{
           style: { color: "black" },
           startAdornment: (
             <InputAdornment position="start">
-              <Person sx={{ color: "rgb(249, 4, 91)" }} />
+              <Person sx={{ color: "#e93345" }} />
             </InputAdornment>
           ),
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
-              borderColor: errors.name ? "red" : "rgb(249, 4, 91)",
+              borderColor: errors.name ? "red" : "#e93345",
             },
-            "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+            "&:hover fieldset": { borderColor: "#f1ede9" },
             "&.Mui-focused fieldset": {
-              borderColor: "rgb(235, 255, 0) !important",
+              borderColor: "#f1ede9 !important",
             },
           },
         }}
@@ -94,18 +94,18 @@ const AddAlbum = () => {
         error={!!errors.description}
         helperText={errors.description?.message}
         margin="normal"
-        InputLabelProps={{ style: { color: "rgb(249, 4, 91)" } }}
+        InputLabelProps={{ style: { color: "#e93345" } }}
         InputProps={{
           style: { backgroundColor: "#ffff", color: "black" },
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
-              borderColor: errors.description ? "red" : "rgb(249, 4, 91)",
+              borderColor: errors.description ? "red" : "#e93345",
             },
-            "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+            "&:hover fieldset": { borderColor: "#f1ede9" },
             "&.Mui-focused fieldset": {
-              borderColor: "rgb(235, 255, 0) !important",
+              borderColor: "#f1ede9 !important",
             },
           },
         }}
@@ -124,8 +124,8 @@ const AddAlbum = () => {
           variant="contained"
           fullWidth
           sx={{
-            backgroundColor: "rgb(235, 255, 0)",
-            "&:hover": { backgroundColor: "rgb(235, 255, 0)", opacity: 0.9 },
+            backgroundColor: "#f1ede9",
+            "&:hover": { backgroundColor: "#f1ede9", opacity: 0.9 },
           }}
         >
           Add

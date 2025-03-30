@@ -79,7 +79,7 @@ const UpdateAlbum = () => {
           opacity: 0.95,
         }}
       >
-        <Typography variant="h4" color="rgb(249, 4, 91)" gutterBottom>
+        <Typography variant="h4" color="#e93345" gutterBottom>
           Update {album?.name} Album
         </Typography>
         <TextField
@@ -91,23 +91,23 @@ const UpdateAlbum = () => {
           error={!!errors.name}
           helperText={errors.name?.message}
           margin="normal"
-          InputLabelProps={{ style: { color: "rgb(249, 4, 91)" } }}
+          InputLabelProps={{ style: { color: "#e93345" } }}
           InputProps={{
             style: { color: "black" },
             startAdornment: (
               <InputAdornment position="start">
-                <Person sx={{ color: "rgb(249, 4, 91)" }} />
+                <Person sx={{ color: "#e93345" }} />
               </InputAdornment>
             ),
           }}
           sx={{
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: errors.name ? "red" : "rgb(249, 4, 91)",
+                borderColor: errors.name ? "red" : "#e93345",
               },
-              "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+              "&:hover fieldset": { borderColor: "#d0d0d0" },
               "&.Mui-focused fieldset": {
-                borderColor: "rgb(235, 255, 0) !important",
+                borderColor: "#d0d0d0 !important",
               },
             },
           }}
@@ -124,18 +124,18 @@ const UpdateAlbum = () => {
           error={!!errors.description}
           helperText={errors.description?.message}
           margin="normal"
-          InputLabelProps={{ style: { color: "rgb(249, 4, 91)" } }}
+          InputLabelProps={{ style: { color: "#e93345" } }}
           InputProps={{
             style: { backgroundColor: "#ffff", color: "black" },
           }}
           sx={{
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: errors.description ? "red" : "rgb(249, 4, 91)",
+                borderColor: errors.description ? "red" : "#e93345",
               },
-              "&:hover fieldset": { borderColor: "rgb(235, 255, 0)" },
+              "&:hover fieldset": { borderColor: "#d0d0d0" },
               "&.Mui-focused fieldset": {
-                borderColor: "rgb(235, 255, 0) !important",
+                borderColor: "#d0d0d0 !important",
               },
             },
           }}
@@ -153,8 +153,8 @@ const UpdateAlbum = () => {
             variant="contained"
             fullWidth
             sx={{
-              backgroundColor: "rgb(235, 255, 0)",
-              "&:hover": { backgroundColor: "rgb(235, 255, 0)", opacity: 0.9 },
+              backgroundColor: "#d0d0d0",
+              "&:hover": { backgroundColor: "#d0d0d0", opacity: 0.9 },
             }}
           >
             Save

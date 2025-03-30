@@ -34,7 +34,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const storedUserId = sessionStorage.getItem("userId");
     const parsedUserId = storedUserId ? Number(storedUserId) : null;
     const storedToken = sessionStorage.getItem("token") || "";
-    console.log(parsedUserId);
     
     setName(storedName);
     setUserId(parsedUserId);

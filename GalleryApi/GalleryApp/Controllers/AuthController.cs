@@ -47,7 +47,7 @@ namespace Gallery.API.Controllers
         [HttpPost("signup")]
         public async Task<IActionResult> SignUpAsync([FromBody] UserPostDto userModel)
         {
-            await Console.Out.WriteLineAsync(userModel.FirstName);
+            await Console.Out.WriteLineAsync(userModel.FullName);
             User existingUser =await _usersService.GetByEmailAsync(userModel.Email);
             if (existingUser != null)
             {
@@ -67,7 +67,7 @@ namespace Gallery.API.Controllers
                // new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
+                new Claim(ClaimTypes.Name, $"{user.FullName}")
             };
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));

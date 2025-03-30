@@ -4,43 +4,39 @@ import { Dispatch } from "react";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_USERDATA = "GET_USERDATA";
-interface User {
-  firstName: string;
-  lastName: string;
+
+interface UserRes {
+  id:number;
+  fullName: string;
   email: string;
   password: string;
-  // role:string;
+  role:string;
+  createdAt:Date;
+  updateAd:Date;
 }
-// interface Login{
-//   name:string,
-// }
+
 interface LoginSuccessAction {
   type: typeof LOGIN_SUCCESS;
-  payload: { user: User; token: string | null };
+  payload: { user: UserRes; token: string | null };
 }
 
 interface LoginFailAction {
   type: typeof LOGIN_FAIL;
   payload: { user: string; token: string | null };
 }
-// interface GetUserData{
-//   type:typeof GET_USERDATA;
-//   payload:{name:string|null;userId:number|undefined;token:string|null;};
-// }
+
 
 export type AuthActionTypes = LoginSuccessAction | LoginFailAction;
-
+//sign up
 export const registerUser =
   (userData: {
-    firstName: string;
-    lastName: string;
+    fullName: string;
     email: string;
     password: string;
     role:string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     
-    console.log(userData);
     try {
       const res = await axios.post(
         "http://localhost:5028/api/auth/signup",
@@ -48,12 +44,12 @@ export const registerUser =
       );
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { user: userData, token: res.data.token },
+        payload: { user: res.data.user, token: res.data.token },
       });
       console.log(res.data.token);
       sessionStorage.setItem("token", res.data.token);
-      sessionStorage.setItem("name", res.data.user.firstName);
-      sessionStorage.setItem("userId", res.data.user.userId);
+      sessionStorage.setItem("name", res.data.user.fullName);
+      sessionStorage.setItem("userId", res.data.user.id);
       // sessionStorage.set()
       return res.data;
     } catch (error) {
@@ -64,6 +60,7 @@ export const registerUser =
       return { token: null };
     }
   };
+  //login
 export const login =
   (userData: { email: string; password: string }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
@@ -79,7 +76,7 @@ export const login =
       });
       console.log("in login act", res.data);
       sessionStorage.setItem("token", res.data.token);
-      sessionStorage.setItem("name", res.data.user.firstName);
+      sessionStorage.setItem("name", res.data.user.fullName);
       sessionStorage.setItem("userId", res.data.user.id);
       return res.data;
     } catch (error: any) {
@@ -96,19 +93,3 @@ export const login =
       return { errorRes: resError, token: null };
     }
   };
-// export const getUserData =
-// (
-// ) =>
-//  (dispatch: Dispatch<GetUserData>) => {
-
-//     const name = sessionStorage.getItem("name");
-//      name ? (JSON.parse(name) as string) : "?";
-//      const userId = sessionStorage.getItem("userId");
-//      const parsedUserId = userId ? Number(userId) : undefined;
-//      const token = sessionStorage.getItem("token");
-//      token ? (JSON.parse(token) as string) : "";
-//      dispatch({
-//       type: GET_USERDATA,
-//       payload: { name: name,userId:parsedUserId, token: token },
-//     });
-// };

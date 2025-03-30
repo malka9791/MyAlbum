@@ -47,8 +47,9 @@ const MyAlbums = () => {
     const getAlbums = async () => {
       try {
         const res = await axios.get(`${api}/album/user/${UserId}`);
-        setAlbums(res.data);
-        console.log("here ff");
+        if(res.status==200)
+        {setLoading(false)}
+        setAlbums(res.data)
       } catch (error) {
         console.error("Error fetching albums:", error);
       } finally {
@@ -114,7 +115,7 @@ const MyAlbums = () => {
                 }}
                 variant="contained"
                 sx={{
-                  backgroundColor: "rgb(249, 4, 91)",
+                  backgroundColor: "#e93345",
                   color: "#fff",
                   fontSize: "18px",
                   textTransform: "none",
@@ -123,7 +124,7 @@ const MyAlbums = () => {
                   transition: "0.3s",
                   mr: 2,
                   "&:hover": {
-                    backgroundColor: "rgb(235, 255, 0)",
+                    backgroundColor: "#f1ede9",
                     color: "black",
                   },
                 }}
@@ -148,7 +149,7 @@ const MyAlbums = () => {
 
                   <Button
                     onClick={() => setopenUpdate(false)}
-                    sx={{ mt: 2, color: "rgb(249, 4, 91)" }}
+                    sx={{ mt: 2, color: "#e93345" }}
                   >
                     Close
                   </Button>
@@ -161,7 +162,7 @@ const MyAlbums = () => {
                 }}
                 variant="contained"
                 sx={{
-                  backgroundColor: "rgb(249, 4, 91)",
+                  backgroundColor: "#e93345",
                   color: "#fff",
                   fontSize: "18px",
                   textTransform: "none",
@@ -169,7 +170,7 @@ const MyAlbums = () => {
                   borderRadius: "8px",
                   transition: "0.3s",
                   "&:hover": {
-                    backgroundColor: "rgb(235, 255, 0)",
+                    backgroundColor: "#f1ede9",
                     color: "black",
                   },
                 }}
@@ -177,20 +178,18 @@ const MyAlbums = () => {
                 <FolderDeleteIcon />
               </Button>
               {/* end delete */}
-              {/* show pictures */}
+              {/* show pictures button */}
               {!loading ? (
                 <Button
-                  // type="submit"
                   variant="contained"
                   fullWidth
                   sx={{
-                    bgcolor: "rgb(249, 4, 91)",
+                    bgcolor: "#e93345",
                     color: "#fff",
                     fontSize: "12px",
-                    // margin: "normal",
                     mt: 3,
                     "&:hover": {
-                      bgcolor: "rgb(235, 255, 0)",
+                      bgcolor: "#f1ede9",
                     },
                   }}
                   size="small"
@@ -209,12 +208,10 @@ const MyAlbums = () => {
       {!loading ? (
         <Button
           onClick={() => setopenAdd(true)}
-          //   component={Link}
-          //   to="/addAlbum"
           variant="contained"
           startIcon={<CreateNewFolderIcon />}
           sx={{
-            backgroundColor: "rgb(249, 4, 91)",
+            backgroundColor: "#e93345",
             color: "#fff",
             fontSize: "18px",
             textTransform: "none",
@@ -222,7 +219,7 @@ const MyAlbums = () => {
             borderRadius: "8px",
             transition: "0.3s",
             "&:hover": {
-              backgroundColor: "rgb(235, 255, 0)",
+              backgroundColor: "#f1ede9",
               color: "black",
             },
           }}
@@ -252,7 +249,7 @@ const MyAlbums = () => {
 
           <Button
             onClick={() => setopenAdd(false)}
-            sx={{ mt: 2, color: "rgb(249, 4, 91)" }}
+            sx={{ mt: 2, color: "#e93345" }}
           >
             Close
           </Button>
@@ -272,18 +269,18 @@ const MyAlbums = () => {
             borderRadius: 2,
           }}
         >
-          <Typography variant="h4" color="rgb(249, 4, 91)" gutterBottom>
+          <Typography variant="h4" color="#e93345" gutterBottom>
             Are you sure you want delete this album?
           </Typography>
           <Button
             onClick={() => setOpenDelete(false)}
-            sx={{ mt: 2, color: "rgb(249, 4, 91)" }}
+            sx={{ mt: 2, color: "#e93345" }}
           >
             Close
           </Button>
           <Button
             onClick={handleConfirmDelete}
-            sx={{ mt: 2, color: "rgb(249, 4, 91)" }}
+            sx={{ mt: 2, color: "#e93345" }}
           >
             Yes
           </Button>

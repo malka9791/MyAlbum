@@ -156,11 +156,7 @@ namespace Gallery.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("longtext");
 

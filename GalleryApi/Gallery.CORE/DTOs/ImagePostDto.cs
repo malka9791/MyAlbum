@@ -16,7 +16,7 @@ namespace Gallery.CORE.DTOs
         public DateTime? UpdateAt { get; set; }
         public ImagePostDto()
         {
-            UpdateAt ??= DateTime.UtcNow;
+            UpdateAt = DateTime.UtcNow;
         }
     }
 }
