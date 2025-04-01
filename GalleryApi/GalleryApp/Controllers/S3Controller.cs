@@ -18,15 +18,17 @@ namespace Gallery.API.Controllers
         }
         // GET: api/<S3Controller>
         [HttpGet("presigned-url")]
-        public async Task<IActionResult> GetPresignedUrl([FromQuery] string fileName)
+        public async Task<IActionResult> GetPresignedUrl([FromQuery] string fileName,[FromQuery] string fileType)
         {
+            if (string.IsNullOrWhiteSpace(fileName) || string.IsNullOrWhiteSpace(fileType))
+                return BadRequest("fileName and fileType are required");
             var request = new GetPreSignedUrlRequest
             {
                 BucketName = _BucketName,
                 Key = fileName,
                 Verb = HttpVerb.PUT,
                 Expires = DateTime.UtcNow.AddMinutes(5),
-                ContentType = "image/png" // או סוג הקובץ המתאים
+                ContentType = fileType ??"image/png"// או סוג הקובץ המתאים
             };
 
             string url = _s3Client.GetPreSignedURL(request);

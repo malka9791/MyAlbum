@@ -54,6 +54,7 @@ namespace Gallery.API.Controllers
             {
                 // אם התג קיים, עדכון פשוט
                 existingTag.Name = tag.Name;
+                existingTag.UpdateAt = DateTime.UtcNow;
                 await _tagService.UpdateValueAsync(existingTag);
                 return Ok(existingTag);
             }

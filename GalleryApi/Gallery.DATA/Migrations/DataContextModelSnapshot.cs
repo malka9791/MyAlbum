@@ -102,7 +102,11 @@ namespace Gallery.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TagId")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("TagId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateAt")
@@ -220,9 +224,7 @@ namespace Gallery.DATA.Migrations
 
                     b.HasOne("Gallery.CORE.models.Tag", "Tag")
                         .WithMany("Images")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TagId");
 
                     b.HasOne("Gallery.CORE.models.User", "User")
                         .WithMany("Images")

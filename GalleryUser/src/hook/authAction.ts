@@ -6,13 +6,13 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_USERDATA = "GET_USERDATA";
 
 interface UserRes {
-  id:number;
+  id: number;
   fullName: string;
   email: string;
   password: string;
-  role:string;
-  createdAt:Date;
-  updateAd:Date;
+  role: string;
+  createdAt: Date;
+  updateAd: Date;
 }
 
 interface LoginSuccessAction {
@@ -25,7 +25,6 @@ interface LoginFailAction {
   payload: { user: string; token: string | null };
 }
 
-
 export type AuthActionTypes = LoginSuccessAction | LoginFailAction;
 //sign up
 export const registerUser =
@@ -33,10 +32,9 @@ export const registerUser =
     fullName: string;
     email: string;
     password: string;
-    role:string;
+    role: string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
-    
     try {
       const res = await axios.post(
         "http://localhost:5028/api/auth/signup",
@@ -47,9 +45,11 @@ export const registerUser =
         payload: { user: res.data.user, token: res.data.token },
       });
       console.log(res.data.token);
+      sessionStorage.setItem("isLogin", "true");
       sessionStorage.setItem("token", res.data.token);
       sessionStorage.setItem("name", res.data.user.fullName);
       sessionStorage.setItem("userId", res.data.user.id);
+      window.dispatchEvent(new CustomEvent("sessionUpdated"));
       // sessionStorage.set()
       return res.data;
     } catch (error) {
@@ -60,7 +60,7 @@ export const registerUser =
       return { token: null };
     }
   };
-  //login
+//login
 export const login =
   (userData: { email: string; password: string }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
@@ -75,9 +75,12 @@ export const login =
         payload: { user: res.data.user, token: res.data.token },
       });
       console.log("in login act", res.data);
+      sessionStorage.setItem("isLogin", "true");
       sessionStorage.setItem("token", res.data.token);
       sessionStorage.setItem("name", res.data.user.fullName);
       sessionStorage.setItem("userId", res.data.user.id);
+      window.dispatchEvent(new CustomEvent("sessionUpdated"));
+
       return res.data;
     } catch (error: any) {
       let resError: string = "";

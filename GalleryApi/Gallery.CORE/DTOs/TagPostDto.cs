@@ -9,10 +9,8 @@ namespace Gallery.CORE.DTOs
     public class TagPostDto
     {
         public string Name { get; set; }
+
         public DateTime? UpdateAt { get; set; }
-        public TagPostDto()
-        {
-            UpdateAt ??= DateTime.UtcNow;
-        }
+
     }
 }

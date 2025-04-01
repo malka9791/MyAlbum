@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AppDispatch } from "../hook/authStore";
 import { useDispatch } from "react-redux";
-import Header from "../components/header";
 import { useState } from "react";
 import { registerUser } from "../hook/authAction";
 import { Send, Person, Email, Lock } from "@mui/icons-material";
@@ -36,8 +35,8 @@ const schema = Yup.object().shape({
 
 const SignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [notLogin, SetNotLogin] = useState<boolean>(false);
-  const nav=useNavigate();
+  const [message, setErrorMessage] = useState<string>("");
+  const nav = useNavigate();
   const {
     register,
     handleSubmit,
@@ -60,13 +59,12 @@ const SignUp = () => {
     nav("/");
 
     if (!res?.payload?.token) {
-      SetNotLogin(true);
+      setErrorMessage(res.errorRes);
     }
   };
 
   return (
     <>
-      <Header />
       <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
         <Box
           sx={{
@@ -78,12 +76,7 @@ const SignUp = () => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h5"
-            fontWeight="bold"
-            color="#e93345"
-            mb={3}
-          >
+          <Typography variant="h5" fontWeight="bold" color="#e93345" mb={3}>
             Sign Up
           </Typography>
 
@@ -203,7 +196,7 @@ const SignUp = () => {
             >
               Sign Up
             </Button>
-            {notLogin ? <h1>error!!!</h1> : <></>}
+            {message && <p style={{ color: "red" }}>{message}</p>}
           </form>
           <Box
             sx={{

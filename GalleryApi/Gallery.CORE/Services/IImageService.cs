@@ -9,5 +9,6 @@ namespace Gallery.CORE.Services
 {
     public interface IImageService : IRepositoryService<Image>
     {
+        Task<IEnumerable<Image>> GetImagesByAlbumIdAsync(int albumId);
     }
 }

@@ -12,6 +12,8 @@ namespace Gallery.CORE.DTOs
     {
         
         public int Id { get; set; }
+        public string Name { get; set; }
+
         public string ImgUrl { get; set; }
         public string ImgType { get; set; }
         public DateTime CreatedAt { get; set; }

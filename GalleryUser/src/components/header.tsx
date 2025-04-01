@@ -8,15 +8,29 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../hook/user_context";
 import { Button } from "@mui/material";
 
 const Header = () => {
-  const userContext = useContext(UserContext);
-  const token = userContext?.token ?? null;
-  const name = userContext?.name ?? "?";
+  const {name,isLogin} = useContext(UserContext);
+  
+  // const [isLogin, setIsLogin] = useState<string | null>();
+  // const [name,setName] =useState<string>();
+  // console.log("h",isLogin);
 
+  // const updateSessionData = () => {
+  //   console.log("🔄 Updating session data...");
+    
+  //   setIsLogin(userContext?.isLogin ?? null);
+  //   setName(userContext?.name ?? "?"); 
+  //      console.log("in header",isLogin,name);
+
+  // };
+
+  // useEffect(() => {
+  //   updateSessionData(); // טוען מחדש כאשר הנתיב משתנה
+  // }, [location.pathname,isLogin]);
   return (
     <>
       <AppBar
@@ -93,8 +107,8 @@ const Header = () => {
 
               {/* Share Album Button */}
 
-              {!token ? (
-                <></>
+              {isLogin!="true" ? (
+                <>{isLogin}</>
               ) : (
                 <>
                   <Box sx={{ my: 2, px: 2 }}>

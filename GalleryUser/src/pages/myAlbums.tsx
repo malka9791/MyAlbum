@@ -82,11 +82,20 @@ const MyAlbums = () => {
     <>
       {loading ? <LoadingSpinner /> : ""}
 
-      <Grid container spacing={3} sx={{ m: 3 }}>
+      <Grid 
+      container 
+      sx={{ 
+        mt:8
+      }}
+
+      >
         {albums.map((album) => (
           <Grid key={album.id}>
+            
             <Card
-              sx={{ maxWidth: 345, borderRadius: 2, boxShadow: 3, p: 1, m: 3 }}
+              sx={{ maxWidth: 250, borderRadius: 2, boxShadow: 3, p: 1, 
+                m: 2
+              }}
             >
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -190,6 +199,7 @@ const MyAlbums = () => {
                     mt: 3,
                     "&:hover": {
                       bgcolor: "#f1ede9",
+                      color:"black"
                     },
                   }}
                   size="small"

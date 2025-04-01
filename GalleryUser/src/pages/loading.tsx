@@ -6,11 +6,11 @@ const LoadingSpinner = () => (
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      // height: "",
       color: "#e93345",
     }}
   >
-    <CircularProgress />
+    <CircularProgress disableShrink sx={{ color: "#e93345" }} />
+    <h2>Loading your Albums...</h2>
   </Box>
 );
 

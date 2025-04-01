@@ -12,6 +12,7 @@ namespace Gallery.CORE.models
     public class Image
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public int UserId { get; set; }
         public string ImgUrl { get; set; }
         public string ImgType { get; set; }
@@ -27,8 +28,8 @@ namespace Gallery.CORE.models
         public User User { get; set; }
         public int AlbumId { get; set; }
         public Album Album { get; set; }
-        public int TagId { get;set; }
-        public Tag Tag{ get; set; }
+        public int? TagId { get;set; }
+        public Tag? Tag{ get; set; }
         public List<Permissions> Permissions { get; set; }
 
     }

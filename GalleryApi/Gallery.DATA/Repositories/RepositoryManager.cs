@@ -19,12 +19,12 @@ namespace Gallery.DATA.Repositories
         public IRepository<Permissions> Permissions { get; }
         public IUserRepository UserRepository { get; }
         public IAlbumRepository AlbumRepository { get; }
-
+        public IImageRepository ImageRepository { get; }
 
         public RepositoryManager(DataContext context, IRepository<Image> imagesRepository,
             IRepository<Album> albumsRepository, IRepository<User> usersRepository,
             IRepository<Tag> tagsRepository,IRepository<Permissions> permissionsRepository,IUserRepository userRepository
-            ,IAlbumRepository albumRepository)
+            ,IAlbumRepository albumRepository,ImageRepository imageRepository)
         {
             _context = context;
             Images = imagesRepository;
@@ -34,6 +34,7 @@ namespace Gallery.DATA.Repositories
             Permissions = permissionsRepository;
             UserRepository = userRepository; 
             AlbumRepository = albumRepository;
+            ImageRepository = imageRepository;
         }
         public async Task SaveAsync()
         {

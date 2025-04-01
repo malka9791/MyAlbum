@@ -13,15 +13,16 @@ const MyRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayOut />,
-    children: [       
+    children: [
       { path: "/", element: <Home /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <SignUp /> },
       { path: "sharedImages", element: <SharedImages /> },
       { path: "myAlbums", element: <MyAlbums /> },
       { path: "addAlbum", element: <AddAlbum /> },
-      {path:"updateAlbum/:albumId",element:<UpdateAlbum/>},
-      {path:"uploadImg",element:<UploadImage/>}
+      { path: "updateAlbum/:albumId", element: <UpdateAlbum /> },
+      { path: "uploadImg/:albumId", element: <UploadImage /> },
+      { path: "showImages/:albumId", element: <SharedImages /> },
       //  {path:"songs", element:<Songs />, children:[{path:"uploadSong", element:<UploadSong/>}
       // ]},{path:'newSongs',element:<NewSongs/>}
     ],

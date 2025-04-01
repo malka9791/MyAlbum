@@ -17,6 +17,7 @@ namespace Gallery.CORE.Repositories
        public IRepository<Permissions> Permissions { get; }
         public IUserRepository UserRepository { get; }
         public IAlbumRepository AlbumRepository { get; }
+        public IImageRepository ImageRepository { get; }
 
         public Task SaveAsync();
     }

@@ -59,6 +59,7 @@ namespace Gallery.API.Controllers
             {
                 existingAlbum.Description = album.Description;
                 existingAlbum.Name=album.Name;
+                existingAlbum.UpdateAt = DateTime.UtcNow;
                 
               await _albumService.UpdateValueAsync(existingAlbum);  // כאן אנחנו פשוט מעדכנים
               return Ok(existingAlbum);

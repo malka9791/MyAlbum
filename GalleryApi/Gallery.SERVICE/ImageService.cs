@@ -37,6 +37,11 @@ namespace Gallery.SERVICE
             _imageRepository.Images.Delete(image);
             await _imageRepository.SaveAsync();
         }
+        public async Task<IEnumerable<Image>> GetImagesByAlbumIdAsync(int albumId)
+        {
+           return await Task.Run(()=> _imageRepository.ImageRepository.GetImagesByAlbumId(albumId));
+
+        }
 
     }
 }

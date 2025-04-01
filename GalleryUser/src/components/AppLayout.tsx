@@ -11,7 +11,7 @@ const AppLayOut = () => {
         <UserProvider> 
         <Provider store={store}>
             <Header />
-            <Outlet />
+            <Outlet/>
         </Provider> 
         </UserProvider> 
     

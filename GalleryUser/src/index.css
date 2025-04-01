@@ -23,11 +23,7 @@ a:hover {
 }
 
 body {
-  /* background: */
-   /* linear-gradient(135deg, rgb(235, 255, 0), rgb(249, 4, 91)); */
-  /* linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 255, 255, 0.986));  */
   background-image:url("./images/bg4.png");
-
   background-size: cover; /* מכסה את כל העמוד */
   background-position: center; /* ממקם את התמונה במרכז */
   background-repeat: no-repeat; /* מונע חזרה של התמונה */
@@ -56,13 +52,6 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
