@@ -4,7 +4,8 @@ import { Dispatch } from "react";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_USERDATA = "GET_USERDATA";
-
+// const api="https://myalbum-api.onrender.com";
+const api="http://localhost:5028";
 interface UserRes {
   id: number;
   fullName: string;
@@ -37,7 +38,7 @@ export const registerUser =
   async (dispatch: Dispatch<AuthActionTypes>) => {
     try {
       const res = await axios.post(
-        "http://localhost:5028/api/auth/signup",
+        `${api}/api/auth/signup`,
         userData
       );
       dispatch({
@@ -67,7 +68,7 @@ export const login =
     console.log(userData);
     try {
       const res = await axios.post(
-        "http://localhost:5028/api/auth/login",
+        `${api}/api/auth/login`,
         userData
       );
       dispatch({

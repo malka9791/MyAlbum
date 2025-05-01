@@ -8,6 +8,7 @@ import AddAlbum from "./pages/addAlbum";
 import UpdateAlbum from "./pages/updateAlbum";
 import Home from "./pages/home";
 import UploadImage from "./pages/uploadImg";
+import ShowImages from "./pages/showImages";
 
 const MyRouter = createBrowserRouter([
   {
@@ -21,8 +22,8 @@ const MyRouter = createBrowserRouter([
       { path: "myAlbums", element: <MyAlbums /> },
       { path: "addAlbum", element: <AddAlbum /> },
       { path: "updateAlbum/:albumId", element: <UpdateAlbum /> },
-      { path: "uploadImg/:albumId", element: <UploadImage /> },
-      { path: "showImages/:albumId", element: <SharedImages /> },
+      { path: "uploadImg", element: <UploadImage albumId={undefined}/> },
+      { path: "showImages/:albumId", element: <ShowImages /> },
       //  {path:"songs", element:<Songs />, children:[{path:"uploadSong", element:<UploadSong/>}
       // ]},{path:'newSongs',element:<NewSongs/>}
     ],

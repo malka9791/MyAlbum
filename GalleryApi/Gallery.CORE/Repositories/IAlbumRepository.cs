@@ -10,6 +10,7 @@ namespace Gallery.CORE.Repositories
     public interface IAlbumRepository
     {
         IEnumerable<Album> GetAlbumOfUser(int UserId);
+        Task<Album> GetAlbum(int id);
 
     }
 }

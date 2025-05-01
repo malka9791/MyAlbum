@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   InputAdornment,
   InputLabel,
@@ -11,17 +10,16 @@ import {
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
-import { useParams } from "react-router";
 import { UserContext } from "../hook/user_context";
 type Tag = {
   id: number;
   name: string;
 };
-const UploadImage = () => {
+const UploadImage = ({ albumId }: { albumId: number | undefined }) => {
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
   const [imgName, setImgName] = useState("");
-  const { albumId } = useParams();
+  // const { albumId } = useParams();
   const [tags, setTags] = useState<Tag[] | null>();
   const [message, setErrorMessage] = useState<string>("");
 
@@ -41,6 +39,7 @@ const UploadImage = () => {
   //userId from useContext in storage
   const userContext = useContext(UserContext);
   const userId = userContext?.userId ?? null;
+  // const api = "https://myalbum-api.onrender.com/api";
   const api = "http://localhost:5028/api";
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,30 +82,29 @@ const UploadImage = () => {
       });
 
       try {
-        console.log( {
+        console.log({
           name: imgName,
           userId: userId,
           albumId: Number(albumId),
           tagId: tagIdTOSend,
           imgUrl: presignedUrl,
           imgType: file.type,
-        },);
-        
+        });
+        const url = `https://albumaws-testpnoren.s3.us-east-1.amazonaws.com/${file.name}`;
         const res = await axios.post(`${api}/image`, {
-            name: imgName,
-            userId: userId,
-            albumId: Number(albumId),
-            tagId: tagIdTOSend,
-            imgUrl: presignedUrl,
-            imgType: file.type          
-          },
-        );
+          name: imgName,
+          userId: userId,
+          albumId: Number(albumId),
+          tagId: tagIdTOSend,
+          imgUrl: url,
+          imgType: file.type,
+        });
 
         console.log(res.data);
       } catch (error) {
         console.error("error fetching image", error);
       }
-      alert(`הקובץ הועלה בהצלחה! ${presignedUrl}`);
+      alert(`הקובץ הועלה בהצלחה! `);
     } catch (error) {
       setErrorMessage("error in upload img");
     }
@@ -114,7 +112,7 @@ const UploadImage = () => {
 
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -127,7 +125,7 @@ const UploadImage = () => {
           width: 400,
           margin: "auto",
         }}
-      >
+      > */}
         <TextField
           label="Name"
           variant="outlined"
@@ -218,7 +216,7 @@ const UploadImage = () => {
             <div style={{ marginTop: 10 }}>התקדמות: {progress}%</div>
           </>
         )}
-      </Box>
+      {/* </Box> */}
     </>
   );
 };

@@ -22,7 +22,8 @@ namespace Gallery.SERVICE
         }
         public async Task<Album> GetByIdAsync(int id)
         {
-            return await Task.Run(() => _albumRepository.Albums.GetById(id));
+            return await _albumRepository.AlbumRepository.GetAlbum(id);
+
         }
         public async Task AddValueAsync(Album album)
         {

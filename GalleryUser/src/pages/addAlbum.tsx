@@ -19,10 +19,9 @@ const schema = yup.object().shape({
 const AddAlbum = () => {
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
-// console.log(UserId);
 
   // const [messege, SetMessege] = useState<string>("");
-  const api = "http://localhost:5028/api";
+  const api = "https://myalbum-api.onrender.com/api";
 
   const {
     register,
@@ -31,20 +30,20 @@ const AddAlbum = () => {
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = async (data: any) => {
     console.log(data);
-    
+
     const albumData = {
       UserId: UserId,
       Name: data.name,
       Description: data.description,
     };
     // console.log(albumData);
-    
+
     try {
       const res = await axios.post(`${api}/album`, albumData);
-      console.log(res); 
+      console.log(res);
       alert("add album success");
-    } catch (error:any) {
-      console.error("Error fetching albums:",error);
+    } catch (error: any) {
+      console.error("Error fetching albums:", error);
     }
   };
   return (

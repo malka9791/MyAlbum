@@ -5,11 +5,11 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallery.API", "GalleryApp\Gallery.API.csproj", "{97BF7261-3D24-4B59-9BDA-26D8A4080BFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallery.CORE", "Gallery.CORE\Gallery.CORE.csproj", "{46590E5E-7884-4F4B-B816-9B65E5585584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallery.CORE", "Gallery.CORE\Gallery.CORE.csproj", "{46590E5E-7884-4F4B-B816-9B65E5585584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallery.DATA", "Gallery.DATA\Gallery.DATA.csproj", "{9C9ECD68-6BDE-49E0-8104-B00687E3D5C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallery.DATA", "Gallery.DATA\Gallery.DATA.csproj", "{9C9ECD68-6BDE-49E0-8104-B00687E3D5C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallery.SERVICE", "Gallery.SERVICE\Gallery.SERVICE.csproj", "{B4ECD2E5-73AA-409A-8585-D51E01B083FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallery.SERVICE", "Gallery.SERVICE\Gallery.SERVICE.csproj", "{B4ECD2E5-73AA-409A-8585-D51E01B083FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

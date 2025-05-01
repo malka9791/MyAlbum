@@ -1,5 +1,6 @@
 ﻿using Gallery.CORE.models;
 using Gallery.CORE.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace Gallery.DATA.Repositories
         {
             return this._dbSet.Where(a => a.UserId == UserId).ToList();
         }
-      
+        public async Task<Album> GetAlbum(int id)
+        {
+            return await this._dbSet
+            .Include(a => a.Images)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.Id == id);
+        }
     }
 }

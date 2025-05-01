@@ -35,21 +35,24 @@ type Album = {
 // }
 
 const MyAlbums = () => {
+  //get userId from session by userContext
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
-  const api = "http://localhost:5028/api";
+  // const api = "https://myalbum-api.onrender.com/api";
+  const api="http://localhost:5028/api";
   const [albums, setAlbums] = useState<Album[]>([]); //list of albums
   const [openAdd, setopenAdd] = useState(false); //open add album dialog
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); //isLoding
 
   const nav = useNavigate();
   useEffect(() => {
     const getAlbums = async () => {
       try {
         const res = await axios.get(`${api}/album/user/${UserId}`);
-        if(res.status==200)
-        {setLoading(false)}
-        setAlbums(res.data)
+        if (res.status == 200) {
+          setLoading(false);
+        }
+        setAlbums(res.data);
       } catch (error) {
         console.error("Error fetching albums:", error);
       } finally {
@@ -60,14 +63,16 @@ const MyAlbums = () => {
       getAlbums();
     }
   }, [UserId, loading]);
-  // delete album
+  //data for delete album
   const [openDeleten, setOpenDelete] = useState(false);
   const [albumIdToDelete, setAlbumIdToDelete] = useState<number | null>(null);
 
+  //click to delete
   const handleDeleteClick = (id: number) => {
     setAlbumIdToDelete(id);
     setOpenDelete(true);
   };
+  //confirm delete func
   const handleConfirmDelete = async () => {
     try {
       await axios.delete(`${api}/album/${albumIdToDelete}`);
@@ -82,20 +87,16 @@ const MyAlbums = () => {
     <>
       {loading ? <LoadingSpinner /> : ""}
 
-      <Grid 
-      container 
-      sx={{ 
-        mt:8
-      }}
-
+      <Grid
+        container
+        sx={{
+          mt: 8,
+        }}
       >
         {albums.map((album) => (
           <Grid key={album.id}>
-            
             <Card
-              sx={{ maxWidth: 250, borderRadius: 2, boxShadow: 3, p: 1, 
-                m: 2
-              }}
+              sx={{ maxWidth: 250, borderRadius: 2, boxShadow: 3, p: 1, m: 2 }}
             >
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -140,31 +141,7 @@ const MyAlbums = () => {
               >
                 <EditIcon />
               </Button>
-              {/* <Modal open={openUpdate} onClose={() => setopenUpdate(false)}>
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: 400,
-                    bgcolor: "background.paper",
-                    boxShadow: 24,
-                    p: 3,
-                    borderRadius: 2,
-                  }}
-                >
-                  {<UpdateAlbum albumId={albumIdToUpdate} />}
-
-                  <Button
-                    onClick={() => setopenUpdate(false)}
-                    sx={{ mt: 2, color: "#e93345" }}
-                  >
-                    Close
-                  </Button>
-                </Box>
-              </Modal> */}
-              {/* delete album */}
+              {/* delete album button*/}
               <Button
                 onClick={() => {
                   handleDeleteClick(album.id);
@@ -190,6 +167,7 @@ const MyAlbums = () => {
               {/* show pictures button */}
               {!loading ? (
                 <Button
+                  onClick={() => nav(`/showImages/${album.id}`)}
                   variant="contained"
                   fullWidth
                   sx={{
@@ -199,7 +177,7 @@ const MyAlbums = () => {
                     mt: 3,
                     "&:hover": {
                       bgcolor: "#f1ede9",
-                      color:"black"
+                      color: "black",
                     },
                   }}
                   size="small"
@@ -254,7 +232,7 @@ const MyAlbums = () => {
             borderRadius: 2,
           }}
         >
-          {/* כאן מוצגת קומפוננטה אחרת */}
+          {/* add component here*/}
           <AddAlbum />
 
           <Button
@@ -265,6 +243,7 @@ const MyAlbums = () => {
           </Button>
         </Box>
       </Modal>
+      {/* modal to delete album */}
       <Modal open={openDeleten} onClose={() => setOpenDelete(false)}>
         <Box
           sx={{

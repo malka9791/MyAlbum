@@ -3,7 +3,6 @@ using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Models;
 using Gallery.CORE.Services;
-using Gallery.SERVICE;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

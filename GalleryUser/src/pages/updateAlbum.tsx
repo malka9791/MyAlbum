@@ -10,8 +10,8 @@ import {
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {  Person } from "@mui/icons-material";
-import {  useNavigate, useParams } from "react-router";
+import { Person } from "@mui/icons-material";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 type Album = {
   id: number;
@@ -21,15 +21,18 @@ type Album = {
   userId: number;
   images: any[];
 };
+//validation
 const schema = yup.object().shape({
   name: yup.string(),
   description: yup.string().max(15, "Description can be max 15 characters"),
 });
 const UpdateAlbum = () => {
+  //get albumId from params
   const { albumId } = useParams();
   const [album, setAlbum] = useState<Album | null>(null);
-  const api = "http://localhost:5028/api";
-  const nav=useNavigate();
+  const api = "https://myalbum-api.onrender.com/api";
+  const nav = useNavigate();
+  //when there is albumId getalbum to Update
   useEffect(() => {
     if (albumId) {
       const getAlbum = async () => {
@@ -140,7 +143,6 @@ const UpdateAlbum = () => {
             },
           }}
         />
-
 
         <Stack
           direction="row"

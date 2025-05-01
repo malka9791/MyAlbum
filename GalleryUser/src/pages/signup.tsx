@@ -51,13 +51,15 @@ const SignUp = () => {
     },
     mode: "onBlur",
   });
-
+  //submit function
   const onSubmit = async (data: FormValues) => {
     console.log(data);
+    //get function from authAction
     const res = await dispatch(registerUser(data));
     console.log(res?.payload?.token);
+    //if Ok pass to home page
     nav("/");
-
+    //else print messege
     if (!res?.payload?.token) {
       setErrorMessage(res.errorRes);
     }
