@@ -21,7 +21,7 @@ namespace Gallery.CORE
 
             CreateMap<Image,ImagePostDto>().ReverseMap();
             CreateMap<Image, ImageDto>().ReverseMap();
-            //CreateMap<Image, Image>().ReverseMap();
+            CreateMap<Image, ImageUpdateDto>().ReverseMap();
 
             CreateMap<Album,AlbumPostDto>().ReverseMap();
             CreateMap<Album, AlbumUpdateDto>().ReverseMap();

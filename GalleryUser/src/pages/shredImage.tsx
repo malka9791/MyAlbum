@@ -1,7 +1,10 @@
+import LoadingSpinner from "./loading";
+
 const SharedImages = () => {
   return (
     <>
-      <>sharedAlbums</>
+      <>העמוד בבניה...</>
+      <LoadingSpinner />
     </>
   );
 };

@@ -12,10 +12,15 @@ namespace Gallery.DATA.Repositories
     public class AlbumRepository:Repository<Album>,IAlbumRepository
     {
         public AlbumRepository(DataContext context):base(context) { }
-        public  IEnumerable<Album> GetAlbumOfUser(int UserId)
+        public IEnumerable<Album> GetAlbumOfUser(int UserId)
         {
-            return this._dbSet.Where(a => a.UserId == UserId).ToList();
+            return this._dbSet
+                .Include(a => a.Images)
+                .Where(a => a.UserId == UserId)
+                .AsNoTracking()
+                .ToList();
         }
+
         public async Task<Album> GetAlbum(int id)
         {
             return await this._dbSet

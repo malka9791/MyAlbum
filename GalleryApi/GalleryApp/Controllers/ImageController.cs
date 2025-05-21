@@ -51,17 +51,18 @@ namespace Gallery.API.Controllers
             await _imageService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id,[FromBody] ImagePostDto image)
+        public async Task<ActionResult> Put(int id,[FromBody] string newName)
         {
             var existingImage = await _imageService.GetByIdAsync(id);
 
             if (existingImage != null)
             {
                 // אם התג קיים, עדכון פשוט
-                existingImage.ImgType = image.ImgType;
-              //  existingImage.AlbumId = image.AlbumId;
-                existingImage.ImgUrl = image.ImgUrl;
-                existingImage.User.Id = image.UserId;
+                existingImage.ImgType = existingImage.ImgType;
+                existingImage.AlbumId = existingImage.AlbumId;
+                existingImage.ImgUrl = existingImage.ImgUrl;
+                existingImage.User.Id = existingImage.UserId;
+                existingImage.Name= newName;
                 existingImage.UpdateAt= DateTime.UtcNow;
                 await _imageService.UpdateValueAsync(existingImage);  
                 return Ok(existingImage);

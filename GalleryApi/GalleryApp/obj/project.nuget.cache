@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W2BV1ta8b7F3q2/ODNInS1PqdfG2jivn2veNzjxchg3FbWwn1wafPg/bgHjhcwDnCrywohT69vs5vqdOD5UPrQ==",
+  "dgSpecHash": "NhFlKA4c3OC/S9f4NtjqplpQNfdyab/r1GQtotzU4fuMbZykUzmH73pfpID9x4V5qd8r90WQ0G7k9CR/Fs1xGg==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\GalleryApp\\Gallery.API.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\7.0.0\\microsoft.extensions.fileproviders.physical.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\7.0.0\\microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.http\\7.0.0\\microsoft.extensions.http.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",

@@ -36,6 +36,38 @@ namespace Gallery.API.Controllers
             string url = _s3Client.GetPreSignedURL(request);
             return Ok(new { url });
         }
-        
+        [HttpDelete("by-url/{*fileUrl}")]
+        public async Task<IActionResult> DeleteFileByUrl([FromRoute] string fileUrl)
+
+        {
+            if (string.IsNullOrWhiteSpace(fileUrl))
+                return BadRequest("fileUrl is required");
+
+            try
+            {
+                // חילוץ ה-Key מה-URL
+                var uri = new Uri(fileUrl);
+                string key = uri.AbsolutePath.TrimStart('/');
+
+                var request = new DeleteObjectRequest
+                {
+                    BucketName = _BucketName,
+                    Key = key
+                };
+
+                var response = await _s3Client.DeleteObjectAsync(request);
+
+                return Ok(new { message = "File deleted successfully", key });
+            }
+            catch (AmazonS3Exception ex)
+            {
+                return StatusCode((int)ex.StatusCode, new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
     }
 }

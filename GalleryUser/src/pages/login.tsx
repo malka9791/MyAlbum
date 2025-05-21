@@ -55,9 +55,7 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Header />
-      <br />
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box
         sx={{
           padding: 3,
@@ -205,7 +203,7 @@ const Login = () => {
           </Link>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 export default Login;

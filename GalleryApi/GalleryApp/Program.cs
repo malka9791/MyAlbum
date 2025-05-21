@@ -19,7 +19,11 @@ var builder = WebApplication.CreateBuilder(args);
 //aws
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();
-
+builder.Services.AddHttpClient<IReplicateService, ReplicateService>();
+builder.Services.AddHttpClient<IHuggingFaceService, HuggingFaceService>(client =>
+{
+    client.Timeout = TimeSpan.FromMinutes(5);
+}); 
 
 //builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -80,6 +84,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<ImageRepository, ImageRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+//builder.Services.AddScoped<IHuggingFaceService, HuggingFaceService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 //builder.Services.AddDbContext<DataContext>();

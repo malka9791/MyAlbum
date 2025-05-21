@@ -7,15 +7,14 @@ import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
 import ShareIcon from "@mui/icons-material/Share";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../hook/user_context";
 import { Button } from "@mui/material";
 
 const Header = () => {
   const { name, isLogin } = useContext(UserContext);
-
- 
+ const nav=useNavigate();
   return (
     <>
       <AppBar
@@ -29,7 +28,7 @@ const Header = () => {
           <Toolbar disableGutters>
             <img
               onClick={() => {
-                // nav("/home");
+                nav("/");
               }}
               src={Logo}
               alt="Logo"
