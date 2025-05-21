@@ -12,7 +12,6 @@ import { Visibility, VisibilityOff, Lock, Email } from "@mui/icons-material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import LoginIcon from "@mui/icons-material/Login";
-import Header from "../components/header";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../hook/authAction";
