@@ -7,7 +7,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
 import ShareIcon from "@mui/icons-material/Share";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../hook/user_context";
 import { Button } from "@mui/material";
