@@ -9,6 +9,8 @@ namespace Gallery.CORE.DTOs
     public class ImageUpdateDto
     {
         public string Name { get; set; }
+        public string Description { get; set; }
+
         public DateTime? UpdateAt { get; set; }
 
 

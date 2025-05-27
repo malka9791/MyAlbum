@@ -1,0 +1,78 @@
+header {
+    background: linear-gradient(135deg, #ff025f, #ff6a00);
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  nav ul li a:hover {
+    background-color: white;
+    color: #ff025f;
+    border-radius: 5px;
+  }
+  header {
+    background-color: #ff025f;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav li {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  mat-icon {
+    font-size: 24px;
+  }
+  .date {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff025f; /* הצבע של הרקע */
+    color: white;
+    padding: 10px 10px;
+    border-radius: 8px; /* פינות מעוגלות */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* צל */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000; /* לוודא שהריבוע יהיה מעל כל דבר אחר */
+  }
+  

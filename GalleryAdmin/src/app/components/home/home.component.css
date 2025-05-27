@@ -1,0 +1,54 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    direction: rtl;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .login-btn {
+    background-color: #e93345;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dashboard-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .card {
+    flex: 1;
+    background-color: #f7f7f7;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .dashboard-users table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dashboard-users th, .dashboard-users td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .dashboard-users th {
+    background-color: #e93345;
+    color: white;
+  }
+  

@@ -19,7 +19,7 @@ namespace Gallery.CORE.models
         {
             CreatedAt =LastUpdatedAt= DateTime.UtcNow;
         }
-        public string Role { get; set; }
+        public string? Role { get; set; }
         //Relationships
         public List<Image> Images { get; set; }
         public List<Album> Albums { get; set; }

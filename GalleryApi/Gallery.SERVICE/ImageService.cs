@@ -6,7 +6,7 @@ using Gallery.CORE.Services;
 
 namespace Gallery.SERVICE
 {
-    public class ImageService:IImageService
+    public class ImageService : IImageService
     {
         private readonly IRepositoryManager _imageRepository;
         public ImageService(IRepositoryManager imageRepository)
@@ -40,6 +40,11 @@ namespace Gallery.SERVICE
         public async Task<IEnumerable<Image>> GetImagesByAlbumIdAsync(int albumId)
         {
            return await Task.Run(()=> _imageRepository.ImageRepository.GetImagesByAlbumId(albumId));
+
+        }
+        public async Task<IEnumerable<Image>> GetImagesByUserIdAsync(int userId)
+        {
+            return await Task.Run(() => _imageRepository.ImageRepository.GetImagesByUserId(userId));
 
         }
 

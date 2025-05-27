@@ -1,6 +1,7 @@
 ﻿using Gallery.CORE.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,21 @@ namespace Gallery.CORE.models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string? Description { get; set; }
+        // זה מה שנשמר בפועל במסד (שדה מסוג string)
+        public string? Emotions { get; set; }
+
+        // זה שדה שנוח לעבוד איתו בקוד, אבל לא נשמר במסד
+        [NotMapped]
+        public List<string> EmotionsList
+        {
+            get => string.IsNullOrEmpty(Emotions)
+                ? new List<string>()
+                : Emotions.Split(',').ToList();
+
+            set => Emotions = string.Join(",", value);
+        }
+
         public int UserId { get; set; }
         public string ImgUrl { get; set; }
         public string ImgType { get; set; }

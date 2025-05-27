@@ -109,7 +109,7 @@ const ShowImages = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
-  const api = "http://localhost:5028/api";
+  const api = import.meta.env.VITE_API_URL_LOCAL;
 
   useEffect(() => {
     const getAlbum = async () => {
@@ -343,7 +343,7 @@ const ShowImages = () => {
                     sx={{
                       p: 0.5,
                       borderRadius: "12px",
-                      bgcolor: "white",
+                      // bgcolor: "white",
                       boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                     }}
                   >
@@ -442,7 +442,7 @@ const ShowImages = () => {
                 <Box
                   sx={{
                     // width: "100%",
-                    bgcolor: "white",
+                    // bgcolor: "white",
                     borderRadius: "16px",
                     boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
                     overflow: "hidden",
@@ -942,7 +942,7 @@ const ShowImages = () => {
           Upload New Image
         </DialogTitle>
         <DialogContent sx={{ mt: 2, p: 3 }}>
-          <UploadImage albumId={Number(albumId)} />
+          <UploadImage albumId={Number(albumId)} imgUrl={undefined} />
         </DialogContent>
         <DialogActions sx={{ p: 3 }}>
           <Button

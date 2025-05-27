@@ -35,7 +35,7 @@ body {
   margin: 0 0;
   display: flex;
   place-items: center;
-  min-width: 100vw;
+  /* min-width: 100vw; */
   min-height: 100vh;
   /* overflow-x:; */
 }
@@ -49,11 +49,5 @@ h1 {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

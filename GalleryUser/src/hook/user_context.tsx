@@ -4,7 +4,7 @@ type UserContextType = {
   name: string | null;
   userId: number | null;
   token: string | null;
-  isLogin: string | null;
+  // isLogin: string | null;
   getUserData: () => void;
 };
 
@@ -12,7 +12,7 @@ export const UserContext = createContext<UserContextType>(
 { name: "?",
   userId: null,
   token: "",
-  isLogin: null,
+  // isLogin: null,
   getUserData: () => {},
 }
 );
@@ -29,22 +29,22 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(
     sessionStorage.getItem("token") || ""
   );
-  const [isLogin, setIsLogin] = useState<string | null>(
-    sessionStorage.getItem("isLogin") || null
-  );
+  // const [isLogin, setIsLogin] = useState<string | null>(
+  //   sessionStorage.getItem("isLogin") || null
+  // );
 
   const getUserData = () => {
     const storedName = sessionStorage.getItem("name") || "?";
     const storedUserId = sessionStorage.getItem("userId");
     const parsedUserId = storedUserId ? Number(storedUserId) : null;
     const storedToken = sessionStorage.getItem("token") || "";
-    const storeIsLogin = sessionStorage.getItem("isLogin") || null;
+    // const storeIsLogin = sessionStorage.getItem("isLogin") || null;
 
-    setIsLogin(storeIsLogin);
+    // setIsLogin(storeIsLogin);
     setName(storedName);
     setUserId(parsedUserId);
     setToken(storedToken);
-    console.log("in UserContext", name, isLogin);
+    console.log("in UserContext", name, token);
   };
   const updateSessionData = () => {
     console.log("in update");
@@ -62,7 +62,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []); // רק כשהקומפוננטה נטענת
 
   return (
-    <UserContext.Provider value={{ name, userId, token, isLogin, getUserData }}>
+    <UserContext.Provider value={{ name, userId, token, getUserData }}>
       {children}
     </UserContext.Provider>
   );

@@ -62,7 +62,8 @@ const MyAlbums = () => {
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
   // const api = "https://myalbum-api.onrender.com/api";
-  const api = "http://localhost:5028/api";
+  const api = import.meta.env.VITE_API_URL_LOCAL;
+  
   const [albums, setAlbums] = useState<Album[]>([]);
   const [openAdd, setOpenAdd] = useState(false);
   const [loading, setLoading] = useState(true);

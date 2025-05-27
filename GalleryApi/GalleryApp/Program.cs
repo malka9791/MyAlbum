@@ -19,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 //aws
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();
-builder.Services.AddHttpClient<IReplicateService, ReplicateService>();
+builder.Services.AddHttpClient<IImageEditService, ImageEditService>();
 builder.Services.AddHttpClient<IHuggingFaceService, HuggingFaceService>(client =>
 {
     client.Timeout = TimeSpan.FromMinutes(5);

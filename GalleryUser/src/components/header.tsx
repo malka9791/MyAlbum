@@ -6,15 +6,15 @@ import Logo from "../images/Logo.png";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
-import ShareIcon from "@mui/icons-material/Share";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { Link, useNavigate } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../hook/user_context";
 import { Button } from "@mui/material";
 
 const Header = () => {
-  const { name, isLogin } = useContext(UserContext);
- const nav=useNavigate();
+  const { name, token } = useContext(UserContext);
+  const nav = useNavigate();
   return (
     <>
       <AppBar
@@ -90,11 +90,9 @@ const Header = () => {
 
               {/* Share Album Button */}
 
-              {isLogin != "true" ? (
-                <>{isLogin}</>
-              ) : (
+              {token && token !== "undefined" && token.trim() !== "" ? (
                 <>
-                  <Box sx={{ my: 2, px: 2 }}>
+                  {/*ahared <Box sx={{ my: 2, px: 2 }}>
                     <Button
                       component={Link}
                       to="/sharedImages"
@@ -115,7 +113,7 @@ const Header = () => {
                       <ShareIcon sx={{ color: "#e93345" }} />
                       Shared Images
                     </Button>
-                  </Box>
+                  </Box> */}
 
                   {/* Albums Button */}
                   <Box sx={{ my: 2, px: 2 }}>
@@ -140,7 +138,41 @@ const Header = () => {
                       My Albums
                     </Button>
                   </Box>
+
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Button
+                      component={Link}
+                      to="/ai"
+                      startIcon={<AutoAwesomeIcon sx={{ color: "#fff" }} />}
+                      sx={{
+                        background:
+                          "linear-gradient(135deg, #e93345, #ff6b6b, #fcb045)",
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "10px 24px",
+                        borderRadius: "50px",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "1px",
+                        boxShadow: "0 0 15px rgba(233, 51, 69, 0.4)",
+                        transition: "all 0.4s ease",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                          boxShadow: "0 0 25px rgba(233, 51, 69, 0.6)",
+                          background:
+                            "linear-gradient(135deg, #ff6b6b, #fcb045, #e93345)",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      Smart AI
+                    </Button>
+                  </Box>
                 </>
+              ) : (
+                <></>
               )}
             </Box>
 
@@ -151,7 +183,6 @@ const Header = () => {
                 fontFamily: "cursive",
                 fontSize: "25px",
                 borderRadius: "50%",
-                backgroundColor: "#f1ede9",
                 width: "45px",
                 height: "45px",
                 display: "flex",

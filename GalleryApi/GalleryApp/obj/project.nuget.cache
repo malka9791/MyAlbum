@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NhFlKA4c3OC/S9f4NtjqplpQNfdyab/r1GQtotzU4fuMbZykUzmH73pfpID9x4V5qd8r90WQ0G7k9CR/Fs1xGg==",
+  "dgSpecHash": "4Mu6iOl4NFR3fOLV9Gh+PAoEJboOxJVVRrSXpSyQw/aEBi941v7jfgD0PS+Eb11i22UMmdzf3xCwtwB4NT+lNg==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Album\\GalleryApi\\GalleryApp\\Gallery.API.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.core\\4.0.0-preview.11\\awssdk.core.4.0.0-preview.11.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.extensions.netcore.setup\\4.0.0-preview.11\\awssdk.extensions.netcore.setup.4.0.0-preview.11.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.s3\\4.0.0-preview.11\\awssdk.s3.4.0.0-preview.11.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\cloudinarydotnet\\1.27.5\\cloudinarydotnet.1.27.5.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\dotnetenv\\3.1.1\\dotnetenv.3.1.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.20\\microsoft.aspnetcore.authentication.jwtbearer.7.0.20.nupkg.sha512",
@@ -52,6 +53,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\npgsql\\7.0.7\\npgsql.7.0.7.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.18\\npgsql.entityframeworkcore.postgresql.7.0.18.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",

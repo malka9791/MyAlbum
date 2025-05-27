@@ -1,0 +1,105 @@
+/* כותרת הכניסה */
+.wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa; /* רקע בהיר */
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* הצללה עדינה */
+    width: 400px; /* רוחב הטופס */
+    /* max-width: 100%; */
+}
+.login-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #ff025f; /* צבע תואם לנושא קורסים */
+    margin-bottom: 50px; /* רווח למטה בין הכותרת לטופס */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  }
+  
+  /* מיקום הטופס במרכז העמוד */
+  .login-form {
+   
+    height: 100%; /* גובה מלא של המסך */
+    width: 100%;
+  }
+  
+  /* קונטיינר של הטופס */
+  .form-container {
+    /* background-color: #fafafa; רקע בהיר */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* הצללה עדינה */
+    /* width: 400px;  */
+     max-width: 100%;  
+  }
+  
+  /* עיצוב שדות הטופס */
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+  
+  /* כפתור הכניסה */
+  .submit-btn {
+    width: 100%;
+    background-color: #ff025f; /* צבע מתאים למיתוג של קורסים */
+    color: white;
+    font-size: 1rem;
+    padding: 12px 0;
+    border-radius: 4px;
+    /* transition: background-color 0.3s ease; */
+    border: none;
+  }
+  
+  .submit-btn:hover {
+    background-color: #e6004c; /* שינוי צבע בהובר (גוון כהה יותר) */
+  }
+  
+  /* כפתור הסתרת הסיסמה */
+  button.mat-icon-button {
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* צבע האיקון */
+  mat-icon {
+    color: #39ffe8;
+  }
+  
+  /* עיצוב הודעות שגיאה */
+  mat-error {
+    color: #ff025f; /* צבע אדום לשגיאות */
+  }
+  .is_new{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:100%;
+    color: #ff025f;
+    justify-content: center;
+    
+  }
+  #button_is_new{
+    width: 30%;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 0;
+    border-radius: 4px;
+    background-color: #e6004c;
+    border:none;
+  }
+  

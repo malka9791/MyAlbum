@@ -44,6 +44,13 @@ namespace Gallery.API.Controllers
             var listDto = _mapper.Map<IEnumerable<ImageDto>>(list);
             return Ok(listDto);
         }
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult> GetImagesByUserId(int userId)
+        {
+            var list = await _imageService.GetImagesByUserIdAsync(userId);
+            var listDto = _mapper.Map<IEnumerable<ImageDto>>(list);
+            return Ok(listDto);
+        }
         [HttpPost]
         public async Task Post([FromBody] ImagePostDto image)
         {
@@ -51,7 +58,7 @@ namespace Gallery.API.Controllers
             await _imageService.AddValueAsync(dto);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id,[FromBody] string newName)
+        public async Task<ActionResult> Put(int id,[FromBody] ImageUpdateDto image)
         {
             var existingImage = await _imageService.GetByIdAsync(id);
 
@@ -62,7 +69,8 @@ namespace Gallery.API.Controllers
                 existingImage.AlbumId = existingImage.AlbumId;
                 existingImage.ImgUrl = existingImage.ImgUrl;
                 existingImage.User.Id = existingImage.UserId;
-                existingImage.Name= newName;
+                existingImage.Name= image.Name;
+                existingImage.Description= image.Description;
                 existingImage.UpdateAt= DateTime.UtcNow;
                 await _imageService.UpdateValueAsync(existingImage);  
                 return Ok(existingImage);

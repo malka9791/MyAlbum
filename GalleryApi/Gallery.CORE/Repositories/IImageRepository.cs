@@ -10,5 +10,7 @@ namespace Gallery.CORE.Repositories
     public interface IImageRepository
     {
        IEnumerable<Image> GetImagesByAlbumId(int  albumId);
+        IEnumerable<Image> GetImagesByUserId(int userId);
+
     }
 }

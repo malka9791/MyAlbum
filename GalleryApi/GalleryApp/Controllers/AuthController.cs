@@ -41,7 +41,8 @@ namespace Gallery.API.Controllers
                 return Unauthorized("Invalid password");
             }
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token,User=user });
+            var resUser = _mapper.Map<UserDto>(user);
+            return Ok(new { Token = token,User=resUser });
         }
         [HttpPost("signup")]
         public async Task<IActionResult> SignUpAsync([FromBody] UserPostDto userModel)
@@ -65,7 +66,7 @@ namespace Gallery.API.Controllers
             {
                // new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Role, user.Role??"user"),
                 new Claim(ClaimTypes.Name, $"{user.FullName}")
             };
 

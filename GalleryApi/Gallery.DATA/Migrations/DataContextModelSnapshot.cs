@@ -94,6 +94,12 @@ namespace Gallery.DATA.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Emotions")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("ImgType")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -172,7 +178,6 @@ namespace Gallery.DATA.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

@@ -127,3 +127,5 @@ C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\AWSSDK.S3.dl
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\DotNetEnv.dll
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\Sprache.dll
 C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\AWSSDK.Extensions.NETCore.Setup.dll
+C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\CloudinaryDotNet.dll
+C:\Users\user1\Desktop\Album\GalleryApi\GalleryApp\bin\Debug\net7.0\Newtonsoft.Json.dll

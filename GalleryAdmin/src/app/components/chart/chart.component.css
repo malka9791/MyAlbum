@@ -1,0 +1,10 @@
+.chart-container {
+    display: flex;
+    justify-content: center; /* מרכוז אופקי */
+    align-items: center; /* מרכוז אנכי */
+    flex-direction: column; /* סידור עמודי */
+    width: 100%; /* רוחב מלא */
+    height: 100%; /* גובה מלא */
+    padding: 20px; /* שוליים */
+    box-sizing: border-box;
+}

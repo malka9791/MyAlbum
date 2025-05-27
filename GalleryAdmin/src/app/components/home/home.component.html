@@ -1,0 +1,35 @@
+<!-- home.component.html -->
+<div class="dashboard-container">
+    <header class="dashboard-header">
+      <h1>מערכת ניהול אלבומי תמונות</h1>
+      <button class="login-btn">כניסה</button>
+    </header>
+  
+    <section class="dashboard-stats">
+      
+      <div class="card">
+        <h3>תמונות ומשתמשים  חדשות</h3>
+    <app-chart></app-chart>
+      </div>
+    </section>
+  
+    <section class="dashboard-users">
+      <h2>רשימת משתמשים</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>שם</th>
+            <th>אימייל</th>
+            <th>תאריך הרשמה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.registered | date:'dd/MM/yyyy' }}</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </section>
+  </div>

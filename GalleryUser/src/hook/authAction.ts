@@ -10,10 +10,7 @@ interface UserRes {
   id: number;
   fullName: string;
   email: string;
-  password: string;
   role: string;
-  createdAt: Date;
-  updateAd: Date;
 }
 
 interface LoginSuccessAction {
@@ -33,7 +30,7 @@ export const registerUser =
     fullName: string;
     email: string;
     password: string;
-    role: string;
+    // role: string;
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     try {
@@ -75,8 +72,7 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },
       });
-      console.log("in login act", res.data);
-      sessionStorage.setItem("isLogin", "true");
+      // sessionStorage.setItem("isLogin", "true");
       sessionStorage.setItem("token", res.data.token);
       sessionStorage.setItem("name", res.data.user.fullName);
       sessionStorage.setItem("userId", res.data.user.id);
