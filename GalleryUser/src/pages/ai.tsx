@@ -31,16 +31,18 @@ import { UserContext } from "../hook/user_context";
 import UploadImage from "./uploadImg";
 import { AlbumSelect } from "./albumSelect";
 
-// Enhanced color palette
-const GRADIENT_PRIMARY = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-const GRADIENT_SECONDARY = "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
-const GRADIENT_ACCENT = "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)";
-const TEXT_PRIMARY = "#2c3e50";
-const TEXT_SECONDARY = "#7f8c8d";
-const SUCCESS_COLOR = "#27ae60";
+const GRADIENT_PRIMARY = "linear-gradient(135deg, #e52d27 0%,rgb(246, 176, 179) 100%)"; // אדום כהה
+const GRADIENT_SECONDARY = "linear-gradient(135deg,rgb(255, 0, 132) 0%, #f5576c 100%)"; // אדום ורדרד
+const GRADIENT_ACCENT = "linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%)"; // כתום-אדמדם
+
+const TEXT_PRIMARY = "#8b0000"; // אדום כהה (DarkRed)
+const TEXT_SECONDARY = "#b22222"; // FireBrick
+
+const SUCCESS_COLOR = "#d63031"; // אדום חי (כמו הצלחה דרמטית)
+
 
 // Enhanced Styled Card with glassmorphism effect
-const StyledCard = styled(Card)(({  }) => ({
+const StyledCard = styled(Card)(({}) => ({
   background: "rgba(255, 255, 255, 0.9)",
   backdropFilter: "blur(20px)",
   border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -67,9 +69,8 @@ const StyledCard = styled(Card)(({  }) => ({
 
 // Enhanced Media with overlay effects
 
-
 // Gradient Button with modern styling
-const GradientButton = styled(Button)(({  }) => ({
+const GradientButton = styled(Button)(({}) => ({
   background: GRADIENT_PRIMARY,
   color: "white",
   fontWeight: 600,
@@ -92,7 +93,7 @@ const GradientButton = styled(Button)(({  }) => ({
 }));
 
 // Secondary action button
-const SecondaryButton = styled(Button)(({  }) => ({
+const SecondaryButton = styled(Button)(({}) => ({
   background: "rgba(255, 255, 255, 0.9)",
   color: TEXT_PRIMARY,
   fontWeight: 500,
@@ -110,7 +111,7 @@ const SecondaryButton = styled(Button)(({  }) => ({
 }));
 
 // Enhanced TextField
-const StyledTextField = styled(TextField)(({  }) => ({
+const StyledTextField = styled(TextField)(({}) => ({
   "& .MuiOutlinedInput-root": {
     borderRadius: 12,
     background: "rgba(255, 255, 255, 0.8)",
@@ -137,7 +138,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
 }));
 
 // Enhanced Dialog
-const StyledDialog = styled(Dialog)(({  }) => ({
+const StyledDialog = styled(Dialog)(({}) => ({
   "& .MuiDialog-paper": {
     borderRadius: 20,
     background: "rgba(255, 255, 255, 0.95)",
@@ -191,6 +192,7 @@ const ImageAIPage = () => {
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [imageToCopy, setImageToCopy] = useState<string | null>(null);
   const [newAlbumId, setNewAlbumId] = useState<number | null>(null);
+  const [suggestion, setSuggestion] = useState<string | null>();
 
   const api = import.meta.env.VITE_API_URL_LOCAL;
   const { userId } = useContext(UserContext);
@@ -213,7 +215,8 @@ const ImageAIPage = () => {
         description: imgs[i].description,
       });
       console.log(res.data);
-
+      setSuggestion(res.data.suggestion);
+      setDialogIndex(i);
       imgs[i].decoratedUrl = res.data.decoratedUrl;
       imgs[i].loading = false;
       setImages(imgs);
@@ -258,9 +261,9 @@ const ImageAIPage = () => {
             fontSize: { xs: "2rem", md: "3rem" },
           }}
         >
-          ניתוח AI מתקדם
+          Advanced AI Analysis
         </Typography>
-
+  
         <Typography
           variant="h5"
           sx={{
@@ -270,12 +273,12 @@ const ImageAIPage = () => {
             fontSize: { xs: "1.1rem", md: "1.5rem" },
           }}
         >
-          ינתח לך את תיאור התמונה ויוסיף אלמנטים מתקדמים AI
+          Analyze your image description and add smart AI-based elements
         </Typography>
-
+  
         <Chip
           icon={<AutoAwesome />}
-          label="מופעל על ידי בינה מלאכותית"
+          label="Powered by Artificial Intelligence"
           sx={{
             background: GRADIENT_ACCENT,
             color: "white",
@@ -285,7 +288,7 @@ const ImageAIPage = () => {
           }}
         />
       </Box>
-
+  
       {/* Images Grid */}
       <Grid container spacing={4} sx={{ px: { xs: 2, md: 4 } }}>
         {images.length > 0 ? (
@@ -300,11 +303,11 @@ const ImageAIPage = () => {
                     alt={img.name}
                     sx={{ objectFit: "cover" }}
                   />
-
+  
                   {img.decoratedUrl && (
                     <Chip
                       icon={<AutoAwesome />}
-                      label="מעובד ב-AI"
+                      label="AI Enhanced"
                       size="small"
                       sx={{
                         position: "absolute",
@@ -316,7 +319,7 @@ const ImageAIPage = () => {
                       }}
                     />
                   )}
-
+  
                   {img.loading && (
                     <LoadingOverlay>
                       <Box sx={{ textAlign: "center" }}>
@@ -328,17 +331,17 @@ const ImageAIPage = () => {
                           }}
                         />
                         <Typography variant="body2" color="textSecondary">
-                          מעבד עם AI...
+                          Processing with AI...
                         </Typography>
                       </Box>
                     </LoadingOverlay>
                   )}
                 </Box>
-
+  
                 <CardContent sx={{ p: 3 }}>
                   <StyledTextField
                     fullWidth
-                    label="תיאור לתמונה"
+                    label="Image Description"
                     variant="outlined"
                     size="medium"
                     multiline
@@ -351,7 +354,7 @@ const ImageAIPage = () => {
                     }}
                     sx={{ mb: 3 }}
                   />
-
+  
                   <Box sx={{ display: "flex", gap: 1 }}>
                     <GradientButton
                       fullWidth
@@ -362,10 +365,10 @@ const ImageAIPage = () => {
                       {img.loading ? (
                         <CircularProgress size={20} color="inherit" />
                       ) : (
-                        "ניתוח AI"
+                        "AI Analyze"
                       )}
                     </GradientButton>
-
+  
                     {img.decoratedUrl && (
                       <IconButton
                         onClick={() => setDialogIndex(i)}
@@ -386,7 +389,6 @@ const ImageAIPage = () => {
             </Grid>
           ))
         ) : (
-          // מצב ריק - אין תמונות
           <Grid item xs={12}>
             <Box
               sx={{
@@ -412,30 +414,28 @@ const ImageAIPage = () => {
                 component="h2"
                 sx={{ mb: 2, color: "text.secondary" }}
               >
-                אין תמונות להצגה
+                No images to display
               </Typography>
               <Typography
                 variant="body1"
                 sx={{ mb: 3, color: "text.secondary", maxWidth: 400 }}
               >
-                העלה תמונות כדי להתחיל לעבוד עם ניתוח AI ועיבוד חכם של התמונות
-                שלך
+                Upload images to start working with AI analysis and smart enhancements
               </Typography>
               <GradientButton
                 variant="contained"
                 startIcon={<CloudUpload />}
                 onClick={() => {
-                  // כאן תוכל להוסיף פונקציה לפתיחת דיאלוג העלאת קבצים
                   document.getElementById("file-input")?.click();
                 }}
               >
-                העלה תמונות
+                Upload Images
               </GradientButton>
             </Box>
           </Grid>
         )}
       </Grid>
-
+  
       {/* Enhanced Result Dialog */}
       {dialogIndex !== null && images[dialogIndex]?.decoratedUrl && (
         <StyledDialog
@@ -463,8 +463,15 @@ const ImageAIPage = () => {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "#3f51b5", fontWeight: 700 }}
+              >
+                GPT Suggestion:
+              </Typography>
+              <Typography variant="body2">{suggestion}</Typography>
               <AutoAwesome />
-              תמונה מעוצבת
+              Enhanced Image
             </Box>
             <IconButton
               onClick={() => setDialogIndex(null)}
@@ -473,12 +480,12 @@ const ImageAIPage = () => {
               <Close />
             </IconButton>
           </DialogTitle>
-
+  
           <DialogContent sx={{ p: 0, position: "relative" }}>
             <Box
               component="img"
               src={images[dialogIndex].decoratedUrl}
-              alt="תמונה מעוצבת"
+              alt="Enhanced Image"
               sx={{
                 width: "100%",
                 display: "block",
@@ -486,7 +493,7 @@ const ImageAIPage = () => {
                 objectFit: "contain",
               }}
             />
-
+  
             <Box sx={{ p: 3, background: "rgba(255, 255, 255, 0.9)" }}>
               <Typography
                 variant="h6"
@@ -496,14 +503,14 @@ const ImageAIPage = () => {
                   fontWeight: 600,
                 }}
               >
-                מה ברצונך לעשות עם התמונה הזו?
+                What would you like to do with this image?
               </Typography>
               <Typography variant="body2" sx={{ color: TEXT_SECONDARY }}>
-                בחר באפשרות הרצויה לך להמשך
+                Choose your preferred option to continue
               </Typography>
             </Box>
           </DialogContent>
-
+  
           <DialogActions
             sx={{ p: 3, gap: 2, background: "rgba(248, 249, 250, 0.8)" }}
           >
@@ -511,16 +518,16 @@ const ImageAIPage = () => {
               onClick={() => handleChoice(dialogIndex, "copy")}
               startIcon={<ContentCopy />}
             >
-              צור עותק חדש
+              Create New Copy
             </GradientButton>
             <SecondaryButton onClick={() => setDialogIndex(null)}>
-              ביטול
+              Cancel
             </SecondaryButton>
           </DialogActions>
         </StyledDialog>
       )}
-
-      {/* Enhanced Upload Dialog */}
+  
+      {/* Upload Dialog */}
       {showUploadDialog && (
         <StyledDialog
           open
@@ -540,9 +547,9 @@ const ImageAIPage = () => {
             }}
           >
             <CloudUpload />
-            העלאת עותק חדש
+            Upload New Copy
           </DialogTitle>
-
+  
           <DialogContent sx={{ p: 3 }}>
             <Box sx={{ mb: 3 }}>
               <AlbumSelect
@@ -550,22 +557,23 @@ const ImageAIPage = () => {
                 setSelectedAlbumId={setNewAlbumId}
               />
             </Box>
-
+  
             <UploadImage
               albumId={newAlbumId ?? undefined}
               imgUrl={imageToCopy ?? undefined}
             />
           </DialogContent>
-
+  
           <DialogActions sx={{ p: 3, background: "rgba(248, 249, 250, 0.8)" }}>
             <SecondaryButton onClick={() => setShowUploadDialog(false)}>
-              סגור
+              Close
             </SecondaryButton>
           </DialogActions>
         </StyledDialog>
       )}
     </Box>
   );
+  
 };
 
 export default ImageAIPage;

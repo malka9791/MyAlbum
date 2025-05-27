@@ -190,7 +190,7 @@ const SignUp = () => {
                 margin: "normal",
                 mt: 3,
                 "&:hover": {
-                  bgcolor: "#f1ede9",
+                  bgcolor: "rgb(255, 110, 110)",
                 },
               }}
               size="large"

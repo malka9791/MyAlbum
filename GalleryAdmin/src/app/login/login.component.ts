@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password')?.value,
       });
     } catch (err: any) {
-      this.messege = 'failed, try again or you are not admin';
+      console.error(err);
+      
+      this.messege = 'failed, try again';
     }
   }
   loginForm: FormGroup<Login | any> = new FormGroup({});
@@ -52,10 +54,8 @@ export class LoginComponent implements OnInit {
     });
   }
   hide: boolean = true;
-  clickEvent(event:MouseEvent)
-  {
-    this.hide=!this.hide;
+  clickEvent(event: MouseEvent) {
+    this.hide = !this.hide;
     event.stopPropagation();
   }
-
 }

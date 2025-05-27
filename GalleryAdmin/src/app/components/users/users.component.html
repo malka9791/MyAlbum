@@ -1,1 +1,40 @@
-<p>users works!</p>
+<div class="container">
+  @if(this.list.length==0) {
+  <h1>there isn't lessons in this course😑</h1>
+  } @for (item of this.list; track item.id) {
+  <div class="course-details">
+    <div><strong>Id:</strong> {{ item.id }}</div>
+    <div><strong>Email:</strong> {{ item.email }}</div>
+    <div><strong>Name:</strong> {{ item.fullName }}</div>
+    <div><strong>Role:</strong> {{ item.role }}</div>
+    <div><strong>CreatedAt:</strong> {{ item.createdAt }}</div>
+    <div><strong>UpdatedAt:</strong> {{ item.updateAt }}</div>
+  </div>
+  <div class="edit-course">
+    @if(canChange()) {
+
+    <button class="edit-btn" appHoverShadow (click)="edit(item.id)">
+      Edit
+    </button>
+    <button class="edit-btn" appHoverShadow (click)="Delete(item.id)">
+      Delete
+    </button>
+    <button class="edit-btn" appHoverShadow (click)="addLesson(item.id)">
+      addLesson
+    </button>
+    }
+    <button class="edit-btn" appHoverShadow (click)="showLessons(item.id)">
+      showLessons
+    </button>
+  </div>
+
+  @if(currentIdForEdit==item.id) {
+
+  <!-- <app-edit-course
+      [currentCourse]="item"
+      (newCourse)="save($event)"
+    ></app-edit-course> -->
+  } @if(currentIdForEdit==item.id) {
+  <div>{{ messege }}</div>
+  } }
+</div>

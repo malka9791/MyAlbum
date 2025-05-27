@@ -64,7 +64,7 @@ const UploadImage = ({
     let finalImgUrl = imgUrl;
 
     if (!imgUrl && file) {
-      //when upload from computer
+      // when uploading from computer
       try {
         console.log(file.name, file.type);
         const response = await axios.get(`${api}/s3/presigned-url`, {
@@ -86,48 +86,48 @@ const UploadImage = ({
 
         finalImgUrl = `https://albumaws-testpnoren.s3.us-east-1.amazonaws.com/${file.name}`;
       } catch (error) {
-        setErrorMessage("error in upload img");
+        setErrorMessage("Error uploading image");
         return;
       }
-    }else if (imgUrl && !file) {
-        // מקרה חדש: יש imgUrl (מ־Cloudinary) ואין קובץ מקומי
-        try {
-          const filename = `cloudinary_${Date.now()}.jpg`;
-      
-          // הורדת התמונה מה-URL
-          const imageResponse = await axios.get(imgUrl, {
-            responseType: "blob",
-          });
-      
-          const blobFile = new File([imageResponse.data], filename, {
-            type: imageResponse.data.type,
-          });
-      
-          // בקשת כתובת להעלאה ל-S3
-          const response = await axios.get(`${api}/s3/presigned-url`, {
-            params: { fileName: filename, fileType: blobFile.type },
-          });
-      
-          const presignedUrl = response.data.url;
-      
-          // העלאה ל-S3
-          await axios.put(presignedUrl, blobFile, {
-            headers: {
-              "Content-Type": blobFile.type,
-            },
-            onUploadProgress: (progressEvent) => {
-              const percent = Math.round(
-                (progressEvent.loaded * 100) / (progressEvent.total || 1)
-              );
-              setProgress(percent);
-            },
-          });
-      
-          finalImgUrl = `https://albumaws-testpnoren.s3.us-east-1.amazonaws.com/${filename}`;
-        } catch (error) {
-          setErrorMessage("שגיאה בהעלאת תמונה מ-Cloudinary ל-S3");
-          return;
-        }
+    } else if (imgUrl && !file) {
+      // new case: there's imgUrl (from Cloudinary) and no local file
+      try {
+        const filename = `cloudinary_${Date.now()}.jpg`;
+
+        // download the image from the URL
+        const imageResponse = await axios.get(imgUrl, {
+          responseType: "blob",
+        });
+
+        const blobFile = new File([imageResponse.data], filename, {
+          type: imageResponse.data.type,
+        });
+
+        // request S3 upload URL
+        const response = await axios.get(`${api}/s3/presigned-url`, {
+          params: { fileName: filename, fileType: blobFile.type },
+        });
+
+        const presignedUrl = response.data.url;
+
+        // upload to S3
+        await axios.put(presignedUrl, blobFile, {
+          headers: {
+            "Content-Type": blobFile.type,
+          },
+          onUploadProgress: (progressEvent) => {
+            const percent = Math.round(
+              (progressEvent.loaded * 100) / (progressEvent.total || 1)
+            );
+            setProgress(percent);
+          },
+        });
+
+        finalImgUrl = `https://albumaws-testpnoren.s3.us-east-1.amazonaws.com/${filename}`;
+      } catch (error) {
+        setErrorMessage("Error uploading image from Cloudinary to S3");
+        return;
+      }
     }
 
     try {
@@ -135,41 +135,27 @@ const UploadImage = ({
         name: imgName,
         userId: userId,
         albumId: Number(albumId),
-        description:imgDescription||"",
+        description: imgDescription || "",
         tagId: tagIdTOSend,
         imgUrl: finalImgUrl,
         imgType: file?.type ?? "image/jpeg",
       });
 
       console.log(res.data);
-      alert(`הקובץ הועלה בהצלחה!`);
+      alert(`File uploaded successfully!`);
     } catch (error) {
-      console.error("error fetching image", error);
+      console.error("Error fetching image", error);
     }
   };
   return (
     <>
-      {/* <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 2,
-          backgroundColor: "#fff",
-          borderRadius: 2,
-          boxShadow: 4,
-          width: 400,
-          margin: "auto",
-        }}
-      > */}
       <TextField
         label="Name"
         variant="outlined"
         fullWidth
         value={imgName}
         onChange={({ target }) => setImgName(target.value)}
-        helperText={imgName == "" ? "name is reduired" : ""}
+        helperText={imgName == "" ? "name is required" : ""}
         margin="normal"
         InputLabelProps={{ style: { color: "#e93345" } }}
         InputProps={{
@@ -190,7 +176,7 @@ const UploadImage = ({
         }}
       />
       <TextField
-        label="Description(Optional)"
+        label="Description (Optional)"
         variant="outlined"
         fullWidth
         value={imgDescription}
@@ -267,7 +253,7 @@ const UploadImage = ({
           },
         }}
       >
-        העלה קובץ
+        Upload File
       </Button>
       {progress > 0 && (
         <>
@@ -276,10 +262,9 @@ const UploadImage = ({
             value={progress}
             sx={{ width: "100%", marginTop: 2 }}
           />
-          <div style={{ marginTop: 10 }}>התקדמות: {progress}%</div>
+          <div style={{ marginTop: 10 }}>Progress: {progress}%</div>
         </>
       )}
-      {/* </Box> */}
     </>
   );
 };

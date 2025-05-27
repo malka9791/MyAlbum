@@ -1,0 +1,82 @@
+/* .course-details div {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+  
+  .course-details strong {
+    color: #333;
+  }
+  
+  .edit-btn {
+    padding: 8px 15px;
+    background-color: #ff025f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #ff025f;
+  }
+  
+  .edit-course {
+    /* margin:  15px 3px ; */
+/* border-radius: 8px; */
+/* } */
+/* עיצוב אזור פרטי הקורס */
+.course-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .course-details div {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .course-details strong {
+    color: #ff025f;
+    font-weight: bold;
+  }
+  
+  /* עיצוב כפתור עריכה */
+  .edit-course {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .edit-btn {
+    background-color: #ff025f;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e4004f;
+  }
+  
+  .edit-btn:focus {
+    outline: none;
+  }
+  .container {
+    /* overflow-x: scroll; */
+    overflow: hidden;
+  }
+  

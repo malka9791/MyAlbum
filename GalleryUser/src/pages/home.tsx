@@ -60,41 +60,42 @@ export default function MyAlbumHomepage() {
   const features = [
     {
       icon: <Cloud sx={{ fontSize: 40, color: "#2196f3" }} />,
-      title: "אחסון בענן בטוח",
-      description: "כל התמונות שלך מאוחסנות בבטחה בענן עם גיבוי אוטומטי",
+      title: "Secure Cloud Storage",
+      description: "Your photos are safely stored in the cloud with automatic backup",
       bgColor: "#e3f2fd",
     },
     {
       icon: <Palette sx={{ fontSize: 40, color: "#9c27b0" }} />,
-      title: "עיצוב אלבומים AI",
-      description: "תן תיאור והAI יצור לך אלבום מעוצב עם אלמנטים מותאמים",
+      title: "AI Album Design",
+      description: "Give a description and let AI generate a beautifully designed album",
       bgColor: "#f3e5f5",
     },
     {
       icon: <Share sx={{ fontSize: 40, color: "#4caf50" }} />,
-      title: "שיתוף אלבומים",
-      description: "שתף אלבומים עם משפחה וחברים בקליק אחד (בקרוב)",
+      title: "Album Sharing",
+      description: "Easily share albums with family and friends (coming soon)",
       bgColor: "#e8f5e8",
     },
     {
       icon: <Security sx={{ fontSize: 40, color: "#ff9800" }} />,
-      title: "פרטיות מלאה",
-      description: "שליטה מלאה על מי רואה מה, עם הגנה מתקדמת על הפרטיות",
+      title: "Full Privacy",
+      description: "Complete control over who sees what, with advanced privacy protection",
       bgColor: "#fff3e0",
     },
     {
       icon: <Speed sx={{ fontSize: 40, color: "#f44336" }} />,
-      title: "מהירות ברק",
-      description: "העלאה מהירה וגלישה חלקה בכל האלבומים שלך",
+      title: "Lightning Fast",
+      description: "Fast uploads and smooth browsing through all your albums",
       bgColor: "#ffebee",
     },
     {
       icon: <Camera sx={{ fontSize: 40, color: "#607d8b" }} />,
-      title: "ניהול קל",
-      description: "ממשק פשוט ואינטואיטיבי לניהול כל האלבומים והתמונות שלך",
+      title: "Easy Management",
+      description: "A simple and intuitive interface to manage your albums and photos",
       bgColor: "#eceff1",
     },
   ];
+  
 
 
 
@@ -119,7 +120,7 @@ export default function MyAlbumHomepage() {
                 <Box sx={{ textAlign: { xs: "center", md: "right" } }}>
                   <Chip
                     icon={<Palette />}
-                    label="חדש: עיצוב אלבומים עם AI"
+                    label="New: Album design with AI"
                     sx={{
                       mb: 3,
                       bgcolor: "rgba(255,255,255,0.2)",
@@ -152,8 +153,8 @@ export default function MyAlbumHomepage() {
                     variant="h5"
                     sx={{ mb: 4, opacity: 0.95, lineHeight: 1.6 }}
                   >
-                    שמור את הרגעים היפים שלך בענן עם עיצוב אלבומים חכם באמצעות
-                    בינה מלאכותית
+                    Save your beautiful moments in the cloud with smart album
+                    design using AI
                   </Typography>
                   <Box
                     sx={{
@@ -174,7 +175,7 @@ export default function MyAlbumHomepage() {
                         px: 4,
                       }}
                     >
-                      ?{" "}
+                      ?
                     </Button>
                     <Button
                       variant="outlined"
@@ -194,7 +195,7 @@ export default function MyAlbumHomepage() {
                         px: 4,
                       }}
                     >
-                      התחבר לחשבון
+                      Log in to your account
                     </Button>
                   </Box>
                   <Box
@@ -209,16 +210,16 @@ export default function MyAlbumHomepage() {
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Check sx={{ fontSize: 20 }} />
                       <Typography variant="body2">
-                        ללא תשלום לרגל פתיחת האתר{" "}
+                        Free during website launch
                       </Typography>
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Check sx={{ fontSize: 20 }} />
-                      <Typography variant="body2">האתר מאובטח </Typography>
+                      <Typography variant="body2">Secure website</Typography>
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Check sx={{ fontSize: 20 }} />
-                      <Typography variant="body2">הגדרה ב-30 שניות</Typography>
+                      <Typography variant="body2">Setup in 30 seconds</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -268,7 +269,7 @@ export default function MyAlbumHomepage() {
                         }}
                       />
                     </Box>
-                    <Chip label="AI מעצב" color="primary" size="small" />
+                    <Chip label="AI Designer" color="primary" size="small" />
                   </Box>
                   <Paper sx={{ p: 2, mb: 3, bgcolor: "grey.50" }}>
                     <Typography
@@ -276,10 +277,10 @@ export default function MyAlbumHomepage() {
                       color="text.secondary"
                       sx={{ mb: 1 }}
                     >
-                      תיאור לAI:
+                      Description for AI:
                     </Typography>
                     <Typography variant="body1" fontWeight="medium">
-                      " תמונה של ילד משחק "
+                      " Picture of a child playing "
                     </Typography>
                   </Paper>
                   <Grid container spacing={1}>
@@ -305,7 +306,7 @@ export default function MyAlbumHomepage() {
             </Grid>
           </Container>
         </Box>
-
+  
         {/* Features Section */}
         <Container maxWidth="lg" sx={{ py: 10 }}>
           <Box sx={{ textAlign: "center", mb: 8 }}>
@@ -313,18 +314,18 @@ export default function MyAlbumHomepage() {
               variant="h2"
               sx={{ mb: 2, fontSize: { xs: "2rem", md: "3rem" } }}
             >
-              פיצ'רים שתמצאו רק אצלינו
+              Features you’ll find only here
             </Typography>
             <Typography
               variant="h6"
               color="text.secondary"
               sx={{ maxWidth: 600, mx: "auto" }}
             >
-              MYALBUM מביא לך טכנולוגיה מתקדמת שהופכת את ניהול התמונות לחוויה
-              מהנה ופשוטה
+              MYALBUM brings you advanced technology that makes photo management
+              fun and simple
             </Typography>
           </Box>
-
+  
           <Grid container spacing={4}>
             {features.map((feature, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
@@ -371,7 +372,7 @@ export default function MyAlbumHomepage() {
             ))}
           </Grid>
         </Container>
-
+  
         {/* How it Works */}
         <Box sx={{ bgcolor: "grey.50", py: 10 }}>
           <Container maxWidth="lg">
@@ -380,13 +381,13 @@ export default function MyAlbumHomepage() {
                 variant="h2"
                 sx={{ mb: 2, fontSize: { xs: "2rem", md: "3rem" } }}
               >
-                איך זה עובד?
+                How does it work?
               </Typography>
               <Typography variant="h6" color="text.secondary">
-                שלושה שלבים פשוטים לאלבומים מושלמים
+                Three simple steps to perfect albums
               </Typography>
             </Box>
-
+  
             <Grid container spacing={6}>
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
@@ -416,15 +417,15 @@ export default function MyAlbumHomepage() {
                     />
                   </Box>
                   <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
-                    העלה תמונות
+                    Upload photos
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    העלה את התמונות שלך בקלות מהמחשב . התמונות נשמרות בענן בבטחה
-                    מלאה.
+                    Easily upload your photos from the computer. Your photos are
+                    safely stored in the cloud.
                   </Typography>
                 </Box>
               </Grid>
-
+  
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <Box sx={{ position: "relative", mb: 4 }}>
@@ -453,15 +454,15 @@ export default function MyAlbumHomepage() {
                     />
                   </Box>
                   <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
-                    תן תיאור לAI
+                    Give AI a description
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    כתב תיאור קצר של התמונה שהעלית - "חתונה", "טיול משפחתי" או
-                    כל רעיון אחר.
+                    Write a short description for the uploaded photo – "Wedding",
+                    "Family Trip", or any other idea.
                   </Typography>
                 </Box>
               </Grid>
-
+  
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <Box sx={{ position: "relative", mb: 4 }}>
@@ -490,74 +491,18 @@ export default function MyAlbumHomepage() {
                     />
                   </Box>
                   <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
-                    קבל אלבום מושלם
+                    Get the perfect album
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    הAI יוצר לך תמונה מעוצבת עם אלמנט מותאם, פריסה יפה וכל
-                    הפרטים הקטנים.
+                    The AI will create a designed photo with a custom element,
+                    beautiful layout, and all the small details.
                   </Typography>
                 </Box>
               </Grid>
             </Grid>
           </Container>
         </Box>
-
-        {/* Testimonials */}
-        {/* <Container maxWidth="lg" sx={{ py: 10 }}>
-          <Box sx={{ textAlign: "center", mb: 8 }}>
-            <Typography
-              variant="h2"
-              sx={{ mb: 2, fontSize: { xs: "2rem", md: "3rem" } }}
-            >
-              מה אומרים עלינו
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              אלפי משתמשים כבר שומרים את הרגעים שלהם איתנו
-            </Typography>
-          </Box>
-
-          <Grid container spacing={4}>
-            {testimonials.map((testimonial, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    transition: "box-shadow 0.3s",
-                    "&:hover": { boxShadow: 6 },
-                  }}
-                >
-                  <CardContent sx={{ p: 4 }}>
-                    <Rating
-                      value={testimonial.rating}
-                      readOnly
-                      sx={{ mb: 2 }}
-                    />
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 3, lineHeight: 1.7, fontStyle: "italic" }}
-                    >
-                      "{testimonial.content}"
-                    </Typography>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                      <Avatar sx={{ bgcolor: "primary.main" }}>
-                        {testimonial.avatar}
-                      </Avatar>
-                      <Box>
-                        <Typography variant="subtitle1" fontWeight="medium">
-                          {testimonial.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {testimonial.role}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container> */}
-
+  
         {/* CTA Section */}
         <Box
           sx={{
@@ -572,10 +517,10 @@ export default function MyAlbumHomepage() {
                 variant="h2"
                 sx={{ mb: 3, fontSize: { xs: "2rem", md: "3rem" } }}
               >
-                מוכן להתחיל לשמור את הרגעים שלך?
+                Ready to start saving your moments?
               </Typography>
               <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-                הצטרף לאלפי משתמשים שכבר יוצרים אלבומים מדהימים עם MYALBUM
+                Join thousands of users already creating amazing albums with MYALBUM
               </Typography>
               <Box
                 sx={{
@@ -603,7 +548,7 @@ export default function MyAlbumHomepage() {
                     px: 4,
                   }}
                 >
-                  הרשם בחינם עכשיו
+                  Sign up for free now
                 </Button>
                 <Button
                   variant="outlined"
@@ -620,11 +565,11 @@ export default function MyAlbumHomepage() {
                     px: 4,
                   }}
                 >
-                  התחבר לחשבון?
+                  Already have an account?
                 </Button>
               </Box>
               <Typography variant="body2" sx={{ mt: 3, opacity: 0.8 }}>
-                ללא תשלום • אבטחת תמונות
+                Free • Photo Security
               </Typography>
             </Box>
           </Container>
@@ -632,4 +577,5 @@ export default function MyAlbumHomepage() {
       </Box>
     </ThemeProvider>
   );
+  
 }

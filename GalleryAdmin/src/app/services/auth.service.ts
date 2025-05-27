@@ -17,8 +17,10 @@ export class AuthService {
   async Login(login: Login) {
     try {
       const res = await firstValueFrom(
-        this.http.post<LoginRes>(`${this.api}/login`, login)
+        this.http.post<LoginRes>(`${this.api}/auth/login`, login)
       );
+      console.log(res);
+      
       if (res.token) {
         const role = res.role;
         if (role == 'admin') sessionStorage.setItem('isLogin', 'true');
@@ -52,6 +54,17 @@ export class AuthService {
       headers,
     });
   }
+  updateUser(id: number, user:User): Observable<any> {
+    const headers = new HttpHeaders()
+      // .set('Authorization', `Bearer ${this.token}`)
+      .set('Content-Type', 'application/json');
+    console.log(headers);
+
+    return this.http.put(`${this.api}/user/${id}`, user, {
+      headers,
+    });
+  }
+
 
   async getImages(): Promise<resImage[]> {
     try {
