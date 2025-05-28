@@ -148,7 +148,7 @@ const ShowImages = () => {
 
   // View mode handlers
   const handleViewModeChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newMode: ViewMode | null
   ) => {
     if (newMode !== null) {
