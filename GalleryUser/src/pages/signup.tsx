@@ -36,6 +36,8 @@ const schema = Yup.object().shape({
 const SignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [message, setErrorMessage] = useState<string>("");
+  const [progress, setProgress] = useState(false);
+
   const nav = useNavigate();
   const {
     register,
@@ -55,13 +57,21 @@ const SignUp = () => {
   const onSubmit = async (data: FormValues) => {
     console.log(data);
     //get function from authAction
-    const res = await dispatch(registerUser(data));
-    console.log(res?.payload?.token);
-    //if Ok pass to home page
-    nav("/");
-    //else print messege
-    if (!res?.payload?.token) {
-      setErrorMessage(res.errorRes);
+    try {
+      setProgress(true);
+
+      const res = await dispatch(registerUser(data));
+      //if Ok pass to home page
+      nav("/");
+      //else print messege
+      if (!res?.payload?.token) {
+        setErrorMessage(res.errorRes);
+      }
+    } catch (err) {
+      setProgress(true);
+      setErrorMessage("failed");
+    } finally {
+      setProgress(false);
     }
   };
 
@@ -195,8 +205,9 @@ const SignUp = () => {
               }}
               size="large"
               endIcon={<Send />}
+              disabled={progress}
             >
-              Sign Up
+              {progress ? "SignUp..." : "SignUp"}
             </Button>
             {message && <p style={{ color: "red" }}>{message}</p>}
           </form>

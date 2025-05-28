@@ -4,8 +4,7 @@ import { Dispatch } from "react";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_USERDATA = "GET_USERDATA";
-// const api="https://myalbum-api.onrender.com";
-const api="http://localhost:5028";
+const api = import.meta.env.REACT_APP_API_URL;
 interface UserRes {
   id: number;
   fullName: string;
@@ -34,10 +33,7 @@ export const registerUser =
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     try {
-      const res = await axios.post(
-        `${api}/api/auth/signup`,
-        userData
-      );
+      const res = await axios.post(`${api}/api/auth/signup`, userData);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },
@@ -64,10 +60,7 @@ export const login =
   async (dispatch: Dispatch<AuthActionTypes>) => {
     console.log(userData);
     try {
-      const res = await axios.post(
-        `${api}/api/auth/login`,
-        userData
-      );
+      const res = await axios.post(`${api}/api/auth/login`, userData);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },
@@ -93,3 +86,15 @@ export const login =
       return { errorRes: resError, token: null };
     }
   };
+  export const logout = () => (dispatch: Dispatch<AuthActionTypes>) => {
+    // מנקה את ה־sessionStorage
+    sessionStorage.clear();
+    window.dispatchEvent(new CustomEvent("sessionUpdated"));
+  
+    // שולח action ל־reducer לאפס את ה־user
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: { user: "", token: null },
+    });
+  };
+  

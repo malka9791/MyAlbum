@@ -11,7 +11,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  //  [Authorize]
+    [Authorize]
 
     public class UserController : ControllerBase
     {
@@ -25,6 +25,7 @@ namespace Gallery.API.Controllers
         }
 
         // GET: ImagesController
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {

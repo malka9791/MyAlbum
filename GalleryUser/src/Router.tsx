@@ -9,6 +9,7 @@ import UploadImage from "./pages/uploadImg";
 import ShowImages from "./pages/showImages";
 import ImageAIPage from "./pages/ai";
 import Home from "./pages/home";
+import ErrorPage from "./components/error";
 
 const MyRouter = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const MyRouter = createBrowserRouter([
       },
       { path: "showImages/:albumId", element: <ShowImages /> },
       { path: "ai", element: <ImageAIPage /> },
+      {path:"err",element:<ErrorPage/>}
     ],
   },
 ]);

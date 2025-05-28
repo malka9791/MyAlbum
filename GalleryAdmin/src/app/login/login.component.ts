@@ -30,16 +30,21 @@ import { Login } from '../models/login';
 })
 export class LoginComponent implements OnInit {
   messege = '';
-  constructor(private AuthService: AuthService) {}
+  constructor(private AuthService: AuthService, private route: Router) {}
   async PostData() {
     try {
-      await this.AuthService.Login({
+      const res = await this.AuthService.Login({
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       });
+      console.log(res);
+        if(res)
+        {
+        console.log(res);      
+        this.route.navigate(['/']);
+        }
     } catch (err: any) {
       console.error(err);
-      
       this.messege = 'failed, try again';
     }
   }

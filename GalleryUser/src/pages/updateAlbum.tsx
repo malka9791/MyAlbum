@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -13,14 +13,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Person } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-type Album = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: Date;
-  userId: number;
-  images: any[];
-};
+import { UserContext } from "../hook/user_context";
+import { Album } from "../models/album";
+
 //validation
 const schema = yup.object().shape({
   name: yup.string(),
@@ -30,7 +25,8 @@ const UpdateAlbum = () => {
   //get albumId from params
   const { albumId } = useParams();
   const [album, setAlbum] = useState<Album | null>(null);
-  const api = "https://myalbum-api.onrender.com/api";
+  const api = import.meta.env.REACT_APP_API_URL;
+  const { token } = useContext(UserContext);
   const nav = useNavigate();
   //when there is albumId getalbum to Update
   useEffect(() => {
@@ -39,7 +35,11 @@ const UpdateAlbum = () => {
         console.log("here");
 
         try {
-          const res = await axios.get(`${api}/album/${albumId}`);
+          const res = await axios.get(`${api}/album/${albumId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           setAlbum(res.data);
           console.log(res.data);
         } catch (error) {
@@ -62,7 +62,11 @@ const UpdateAlbum = () => {
       description: data.description ? data.description : "",
     };
     try {
-      const res = await axios.put(`${api}/album/${albumId}`, sendData);
+      const res = await axios.put(`${api}/album/${albumId}`, sendData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(res);
       nav("/myAlbums");
     } catch (error: any) {

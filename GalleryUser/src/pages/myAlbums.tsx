@@ -34,25 +34,11 @@ import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import AddAlbum from "./addAlbum";
 import { UserContext } from "../hook/user_context";
-import LoadingSpinner from "./loading";
+import LoadingSpinner from "../components/loading";
+import { Album } from "../models/album";
 
-type Album = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  userId: number;
-  images: Image[];
-};
-type Image = {
-  id: number;
-  name: string;
-  imgUrl: string;
-  imgType: string;
-  createdAt: Date;
-  tag: any;
-};
+
+
 
 const MyAlbums = () => {
   // const theme = useTheme();
@@ -61,9 +47,9 @@ const MyAlbums = () => {
 
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
-  // const api = "https://myalbum-api.onrender.com/api";
-  const api = import.meta.env.VITE_API_URL_LOCAL;
-  
+  const { token } = useContext(UserContext);
+  const api = import.meta.env.REACT_APP_API_URL;
+
   const [albums, setAlbums] = useState<Album[]>([]);
   const [openAdd, setOpenAdd] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -76,7 +62,12 @@ const MyAlbums = () => {
   useEffect(() => {
     const getAlbums = async () => {
       try {
-        const res = await axios.get(`${api}/album/user/${UserId}`);
+        const res = await axios.get(`${api}/album/user/${UserId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (res.status === 200) {
           setAlbums(res.data);
         }
@@ -149,7 +140,7 @@ const MyAlbums = () => {
     >
       <Box
         sx={{
-          mt:3.5,
+          mt: 3.5,
           width: "100%",
           maxWidth: "100%",
           boxSizing: "border-box",
@@ -159,82 +150,85 @@ const MyAlbums = () => {
         {loading && <LoadingSpinner />}
 
         {!loading && (
-            <> <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", sm: "center" },
-            // mb: { xs: 4, sm: 5 },
-            width: "100%",
-            gap: 2,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Avatar
+          <>
+            {" "}
+            <Box
               sx={{
-                bgcolor: "#e93345",
-                // width: { xs: 48, sm: 56 },
-                // height: { xs: 48, sm: 56 },
-                // mr: 2,
-                boxShadow: "0 4px 12px rgba(233, 51, 69, 0.2)",
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "flex-start", sm: "center" },
+                // mb: { xs: 4, sm: 5 },
+                width: "100%",
+                gap: 2,
               }}
             >
-              <CollectionsRoundedIcon sx={{ fontSize: { xs: 28, sm: 32 } }} />
-            </Avatar>
-            <Box>
-              <Typography
-                variant="h4"
-                component="h1"
-                sx={{
-                  fontWeight: 800,
-                  color: "#1a1a2e",
-                  fontSize: { xs: "1.75rem", sm: "2.25rem", md: "2.5rem" },
-                  letterSpacing: "-0.5px",
-                }}
-              >
-                My Albums
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: "#666",
-                  // mt: 0,
-                  fontSize: { xs: "0.875rem", sm: "1rem" },
-                }}
-              >
-                {albums.length} {albums.length === 1 ? "album" : "albums"} in
-                your collection
-              </Typography>
-            </Box>
-          </Box>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "#e93345",
+                    // width: { xs: 48, sm: 56 },
+                    // height: { xs: 48, sm: 56 },
+                    // mr: 2,
+                    boxShadow: "0 4px 12px rgba(233, 51, 69, 0.2)",
+                  }}
+                >
+                  <CollectionsRoundedIcon
+                    sx={{ fontSize: { xs: 28, sm: 32 } }}
+                  />
+                </Avatar>
+                <Box>
+                  <Typography
+                    variant="h4"
+                    component="h1"
+                    sx={{
+                      fontWeight: 800,
+                      color: "#1a1a2e",
+                      fontSize: { xs: "1.75rem", sm: "2.25rem", md: "2.5rem" },
+                      letterSpacing: "-0.5px",
+                    }}
+                  >
+                    My Albums
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#666",
+                      // mt: 0,
+                      fontSize: { xs: "0.875rem", sm: "1rem" },
+                    }}
+                  >
+                    {albums.length} {albums.length === 1 ? "album" : "albums"}{" "}
+                    in your collection
+                  </Typography>
+                </Box>
+              </Box>
 
-          
-            <Button
-              onClick={() => setOpenAdd(true)}
-              variant="contained"
-              startIcon={<AddIcon />}
-              sx={{
-                background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-                color: "#fff",
-                fontSize: { xs: "14px", sm: "16px" },
-                textTransform: "none",
-                padding: { xs: "10px 16px", sm: "12px 24px" },
-                borderRadius: "12px",
-                boxShadow: "0 4px 12px rgba(233, 51, 69, 0.3)",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  boxShadow: "0 6px 16px rgba(233, 51, 69, 0.4)",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              Create New Album
-            </Button>
-          </Box>
-            </>
-            )}
-        
+              <Button
+                onClick={() => setOpenAdd(true)}
+                variant="contained"
+                startIcon={<AddIcon />}
+                sx={{
+                  background:
+                    "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
+                  color: "#fff",
+                  fontSize: { xs: "14px", sm: "16px" },
+                  textTransform: "none",
+                  padding: { xs: "10px 16px", sm: "12px 24px" },
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 12px rgba(233, 51, 69, 0.3)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    boxShadow: "0 6px 16px rgba(233, 51, 69, 0.4)",
+                    transform: "translateY(-2px)",
+                  },
+                }}
+              >
+                Create New Album
+              </Button>
+            </Box>
+          </>
+        )}
 
         <Grid
           container
@@ -249,8 +243,7 @@ const MyAlbums = () => {
             // const [color1, color2] = getPlaceholderColors(index)
             return (
               <Grid
-              container
-
+                container
                 item
                 xs={12}
                 sm={6}
@@ -595,8 +588,8 @@ const MyAlbums = () => {
       <Dialog
         open={openAdd}
         onClose={() => setOpenAdd(false)}
-        maxWidth="sm"
-        fullWidth
+        // maxWidth="sm"
+        // fullWidth
         PaperProps={{
           sx: {
             borderRadius: "20px",
@@ -605,17 +598,6 @@ const MyAlbums = () => {
           },
         }}
       >
-        <DialogTitle
-          sx={{
-            background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-            color: "white",
-            py: 2.5,
-            px: 3,
-            fontWeight: 700,
-          }}
-        >
-          Create New Album
-        </DialogTitle>
         <DialogContent sx={{ mt: 2, p: 3 }}>
           <AddAlbum />
         </DialogContent>

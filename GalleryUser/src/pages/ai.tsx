@@ -29,17 +29,18 @@ import {
 import axios from "axios";
 import { UserContext } from "../hook/user_context";
 import UploadImage from "./uploadImg";
-import { AlbumSelect } from "./albumSelect";
+import { Image } from "../models/image";
 
-const GRADIENT_PRIMARY = "linear-gradient(135deg, #e52d27 0%,rgb(246, 176, 179) 100%)"; // אדום כהה
-const GRADIENT_SECONDARY = "linear-gradient(135deg,rgb(255, 0, 132) 0%, #f5576c 100%)"; // אדום ורדרד
+const GRADIENT_PRIMARY =
+  "linear-gradient(135deg, #e52d27 0%,rgb(246, 176, 179) 100%)"; // אדום כהה
+const GRADIENT_SECONDARY =
+  "linear-gradient(135deg,rgb(255, 0, 132) 0%, #f5576c 100%)"; // אדום ורדרד
 const GRADIENT_ACCENT = "linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%)"; // כתום-אדמדם
 
 const TEXT_PRIMARY = "#8b0000"; // אדום כהה (DarkRed)
 const TEXT_SECONDARY = "#b22222"; // FireBrick
 
 const SUCCESS_COLOR = "#d63031"; // אדום חי (כמו הצלחה דרמטית)
-
 
 // Enhanced Styled Card with glassmorphism effect
 const StyledCard = styled(Card)(({}) => ({
@@ -164,17 +165,6 @@ const LoadingOverlay = styled(Box)({
   zIndex: 2,
 });
 
-type Image = {
-  id: number;
-  name: string;
-  description: string;
-  emotions: string;
-  imgUrl: string;
-  imgType: string;
-  createdAt: Date;
-  tag: any;
-};
-
 type ImageItem = Image & {
   loading?: boolean;
   decoratedUrl?: string;
@@ -191,16 +181,20 @@ const ImageAIPage = () => {
   const [dialogIndex, setDialogIndex] = useState<number | null>(null);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [imageToCopy, setImageToCopy] = useState<string | null>(null);
-  const [newAlbumId, setNewAlbumId] = useState<number | null>(null);
   const [suggestion, setSuggestion] = useState<string | null>();
 
-  const api = import.meta.env.VITE_API_URL_LOCAL;
-  const { userId } = useContext(UserContext);
-
+  const api = import.meta.env.REACT_APP_API_URL;
+  const { token } = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const userId = userContext?.userId ?? null;
   useEffect(() => {
     if (!userId) return;
     axios
-      .get<Image[]>(`${api}/image/user/${userId}`)
+      .get<Image[]>(`${api}/image/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setImages(res.data))
       .catch(console.error);
   }, [userId]);
@@ -210,10 +204,18 @@ const ImageAIPage = () => {
     imgs[i].loading = true;
     setImages(imgs);
     try {
-      const res = await axios.post<resAnalizeAi>(`${api}/images/decorate`, {
-        imageUrl: imgs[i].imgUrl,
-        description: imgs[i].description,
-      });
+      const res = await axios.post<resAnalizeAi>(
+        `${api}/images/decorate`,
+        {
+          imageUrl: imgs[i].imgUrl,
+          description: imgs[i].description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res.data);
       setSuggestion(res.data.suggestion);
       setDialogIndex(i);
@@ -247,48 +249,50 @@ const ImageAIPage = () => {
       }}
     >
       {/* Hero Section */}
-      <Box sx={{ textAlign: "center", mb: 6, px: 2 }}>
-        <Typography
-          variant="h2"
-          component="h1"
-          sx={{
-            fontWeight: 800,
-            background: GRADIENT_PRIMARY,
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            mt: 7,
-            fontSize: { xs: "2rem", md: "3rem" },
-          }}
-        >
-          Advanced AI Analysis
-        </Typography>
-  
-        <Typography
-          variant="h5"
-          sx={{
-            color: TEXT_SECONDARY,
-            mb: 3,
-            fontWeight: 400,
-            fontSize: { xs: "1.1rem", md: "1.5rem" },
-          }}
-        >
-          Analyze your image description and add smart AI-based elements
-        </Typography>
-  
-        <Chip
-          icon={<AutoAwesome />}
-          label="Powered by Artificial Intelligence"
-          sx={{
-            background: GRADIENT_ACCENT,
-            color: "white",
-            fontWeight: 600,
-            px: 2,
-            py: 1,
-          }}
-        />
-      </Box>
-  
+      {images.length > 0 && (
+        <Box sx={{ textAlign: "center", mb: 6, px: 2 }}>
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{
+              fontWeight: 800,
+              background: GRADIENT_PRIMARY,
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              mt: 7,
+              fontSize: { xs: "2rem", md: "3rem" },
+            }}
+          >
+            Advanced AI Analysis
+          </Typography>
+
+          <Typography
+            variant="h5"
+            sx={{
+              color: TEXT_SECONDARY,
+              mb: 3,
+              fontWeight: 400,
+              fontSize: { xs: "1.1rem", md: "1.5rem" },
+            }}
+          >
+            Analyze your image description and add smart AI-based elements
+          </Typography>
+
+          <Chip
+            icon={<AutoAwesome />}
+            label="Powered by Artificial Intelligence"
+            sx={{
+              background: GRADIENT_ACCENT,
+              color: "white",
+              fontWeight: 600,
+              px: 2,
+              py: 1,
+            }}
+          />
+        </Box>
+      )}
+
       {/* Images Grid */}
       <Grid container spacing={4} sx={{ px: { xs: 2, md: 4 } }}>
         {images.length > 0 ? (
@@ -303,7 +307,7 @@ const ImageAIPage = () => {
                     alt={img.name}
                     sx={{ objectFit: "cover" }}
                   />
-  
+
                   {img.decoratedUrl && (
                     <Chip
                       icon={<AutoAwesome />}
@@ -319,7 +323,7 @@ const ImageAIPage = () => {
                       }}
                     />
                   )}
-  
+
                   {img.loading && (
                     <LoadingOverlay>
                       <Box sx={{ textAlign: "center" }}>
@@ -337,7 +341,7 @@ const ImageAIPage = () => {
                     </LoadingOverlay>
                   )}
                 </Box>
-  
+
                 <CardContent sx={{ p: 3 }}>
                   <StyledTextField
                     fullWidth
@@ -354,7 +358,7 @@ const ImageAIPage = () => {
                     }}
                     sx={{ mb: 3 }}
                   />
-  
+
                   <Box sx={{ display: "flex", gap: 1 }}>
                     <GradientButton
                       fullWidth
@@ -368,7 +372,7 @@ const ImageAIPage = () => {
                         "AI Analyze"
                       )}
                     </GradientButton>
-  
+
                     {img.decoratedUrl && (
                       <IconButton
                         onClick={() => setDialogIndex(i)}
@@ -420,13 +424,14 @@ const ImageAIPage = () => {
                 variant="body1"
                 sx={{ mb: 3, color: "text.secondary", maxWidth: 400 }}
               >
-                Upload images to start working with AI analysis and smart enhancements
+                Upload images to start working with AI analysis and smart
+                enhancements
               </Typography>
               <GradientButton
                 variant="contained"
                 startIcon={<CloudUpload />}
                 onClick={() => {
-                  document.getElementById("file-input")?.click();
+                  setShowUploadDialog(true);
                 }}
               >
                 Upload Images
@@ -435,7 +440,7 @@ const ImageAIPage = () => {
           </Grid>
         )}
       </Grid>
-  
+
       {/* Enhanced Result Dialog */}
       {dialogIndex !== null && images[dialogIndex]?.decoratedUrl && (
         <StyledDialog
@@ -480,7 +485,7 @@ const ImageAIPage = () => {
               <Close />
             </IconButton>
           </DialogTitle>
-  
+
           <DialogContent sx={{ p: 0, position: "relative" }}>
             <Box
               component="img"
@@ -493,7 +498,7 @@ const ImageAIPage = () => {
                 objectFit: "contain",
               }}
             />
-  
+
             <Box sx={{ p: 3, background: "rgba(255, 255, 255, 0.9)" }}>
               <Typography
                 variant="h6"
@@ -510,7 +515,7 @@ const ImageAIPage = () => {
               </Typography>
             </Box>
           </DialogContent>
-  
+
           <DialogActions
             sx={{ p: 3, gap: 2, background: "rgba(248, 249, 250, 0.8)" }}
           >
@@ -526,54 +531,33 @@ const ImageAIPage = () => {
           </DialogActions>
         </StyledDialog>
       )}
-  
+
       {/* Upload Dialog */}
       {showUploadDialog && (
         <StyledDialog
           open
           onClose={() => setShowUploadDialog(false)}
-          maxWidth="sm"
+          // maxWidth="sm"
           fullWidth
-          TransitionComponent={Fade}
+          // TransitionComponent={Fade}
         >
-          <DialogTitle
-            sx={{
-              background: GRADIENT_ACCENT,
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              fontWeight: 600,
-            }}
+          <DialogContent 
           >
-            <CloudUpload />
-            Upload New Copy
-          </DialogTitle>
-  
-          <DialogContent sx={{ p: 3 }}>
-            <Box sx={{ mb: 3 }}>
-              <AlbumSelect
-                selectedAlbumId={newAlbumId}
-                setSelectedAlbumId={setNewAlbumId}
-              />
-            </Box>
-  
             <UploadImage
-              albumId={newAlbumId ?? undefined}
               imgUrl={imageToCopy ?? undefined}
+              albumId={undefined}
             />
           </DialogContent>
-  
-          <DialogActions sx={{ p: 3, background: "rgba(248, 249, 250, 0.8)" }}>
+
+          {/* <DialogActions sx={{ p: 3, background: "rgba(248, 249, 250, 0.8)" }}>
             <SecondaryButton onClick={() => setShowUploadDialog(false)}>
               Close
             </SecondaryButton>
-          </DialogActions>
+          </DialogActions> */}
         </StyledDialog>
       )}
     </Box>
   );
-  
 };
 
 export default ImageAIPage;

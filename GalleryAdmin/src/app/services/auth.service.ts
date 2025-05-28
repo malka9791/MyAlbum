@@ -14,64 +14,75 @@ import { resImage } from '../models/resImage';
 export class AuthService {
   private api = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  async Login(login: Login) {
+  getToken(): string | null {
+    return sessionStorage.getItem('token');
+  }
+  getHeaders():HttpHeaders {
+    return new HttpHeaders()
+    .set('Authorization', `Bearer ${this.getToken()}`)
+    .set('Content-Type', 'application/json');
+  
+  }
+
+  async Login(login: Login):Promise<boolean> {
     try {
       const res = await firstValueFrom(
         this.http.post<LoginRes>(`${this.api}/auth/login`, login)
       );
-      console.log(res);
+      console.log(res.user.role);
       
       if (res.token) {
-        const role = res.role;
-        if (role == 'admin') sessionStorage.setItem('isLogin', 'true');
+        const role = res.user.role;
+        if (role == 'admin') {
+          sessionStorage.setItem('token', res.token);
+          return true;
+        }
+        else {return false}
       }
+      else{return false}
     } catch (err: any) {
       throw 'error in login';
+      // return false;
     }
   }
   async getUsers(): Promise<User[]> {
+    
+    const headers = this.getHeaders();  
     try {
       const res = await firstValueFrom(
-        this.http.get<User[]>(`${this.api}/user`)
-        
-      );
-      console.log(res);
-      console.log(this.api);
-      
-      
-      if (res) return res;
-      else return [];
+        this.http.get<User[]>(`${this.api}/user`, {
+        headers
+        })
+      );  
+      return res || [];
     } catch (err) {
-      throw 'Error in fetching userDate,try again';
+      console.error(err);
+      throw 'Error in fetching userDate, try again';
     }
   }
+  
   deleteUser(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      // Authorization: `Bearer ${this.token}`,
-    });
-
     return this.http.delete<User>(`${this.api}/api/user/${id}`, {
-      headers,
+    headers: this.getHeaders()
     });
   }
-  updateUser(id: number, user:User): Observable<any> {
-    const headers = new HttpHeaders()
-      // .set('Authorization', `Bearer ${this.token}`)
-      .set('Content-Type', 'application/json');
-    console.log(headers);
-
+  updateUser(id: number, user: User): Observable<any> {
     return this.http.put(`${this.api}/user/${id}`, user, {
-      headers,
+      headers: this.getHeaders()
     });
   }
-
 
   async getImages(): Promise<resImage[]> {
-    try {
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${this.getToken()}`)
+    .set('Content-Type', 'application/json');
+  
+        try {
       const res = await firstValueFrom(
-        this.http.get<resImage[]>(`${this.api}/image`)
-        
-      );      
+        this.http.get<resImage[]>(`${this.api}/image`, {
+          headers
+        })
+      );
       if (res) return res;
       else return [];
     } catch (err) {

@@ -1,5 +1,6 @@
 ﻿using Gallery.CORE.Models;
 using Gallery.CORE.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace Gallery.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ImagesController : ControllerBase
     {
         private readonly IImageEditService _imageEditService;

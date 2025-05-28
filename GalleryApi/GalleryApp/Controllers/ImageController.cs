@@ -2,6 +2,7 @@
 using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,8 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class ImageController : ControllerBase
     {
         private readonly IImageService _imageService;
@@ -19,8 +22,7 @@ namespace Gallery.API.Controllers
             _imageService = imageService;
             _mapper = mapper;
         }
-
-        // GET: ImagesController
+        [Authorize(Roles="admin")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {

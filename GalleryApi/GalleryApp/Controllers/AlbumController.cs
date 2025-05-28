@@ -3,6 +3,7 @@ using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Services;
 using Gallery.SERVICE;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AlbumController : ControllerBase
     {
         private readonly IAlbumService _albumService;

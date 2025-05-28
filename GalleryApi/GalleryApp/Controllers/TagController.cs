@@ -2,6 +2,7 @@
 using Gallery.CORE.DTOs;
 using Gallery.CORE.models;
 using Gallery.CORE.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Gallery.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TagController : ControllerBase
     {
         private readonly ITagService _tagService;
@@ -36,12 +38,14 @@ namespace Gallery.API.Controllers
             var tagDto = _mapper.Map<TagDto>(tag);
             return Ok(tagDto);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task Post([FromBody] TagPostDto tag)
         {
             var dto = _mapper.Map<Tag>(tag);
             await _tagService.AddValueAsync(dto);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] TagPostDto tag)
         {

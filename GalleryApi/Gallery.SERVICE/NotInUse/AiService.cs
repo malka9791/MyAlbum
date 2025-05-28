@@ -1,7 +1,7 @@
 ﻿using Gallery.CORE.Models;
-using Gallery.CORE.Services;
 using System.Text.Json;
 using System.Text;
+using Gallery.CORE.Services;
 
 public class AiService : IAiService
 {

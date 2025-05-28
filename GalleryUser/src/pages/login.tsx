@@ -30,9 +30,10 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  // const { SetName, SetUserId } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [message, setErrorMessage] = useState<string>("");
+  const [progress, setProgress] = useState(false);
+
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   const {
@@ -41,15 +42,20 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = async (data: any) => {
-    console.log("in submit ", data);
-    const res = await dispatch(login(data));
-    if (res.token) {
-      console.log(res?.payload?.token);
-      nav("/");
-    }
-    if (!res.token) {
-      console.log(res.errorRes);
-      setErrorMessage(res.errorRes);
+    try {
+      setProgress(true);
+      const res = await dispatch(login(data));
+      if (res.token) {
+        nav("/");
+      }
+      if (!res.token) {
+        setErrorMessage(res.errorRes);
+      }
+    } catch (err) {
+      setProgress(false);
+      setErrorMessage("failed");
+    } finally {
+      setProgress(false);
     }
   };
 
@@ -174,8 +180,9 @@ const Login = () => {
               }}
               size="large"
               endIcon={<LoginIcon />}
+              disabled={progress}
             >
-              Login
+              {progress ? "Login..." : "Login"}
             </Button>
           </Stack>
         </form>

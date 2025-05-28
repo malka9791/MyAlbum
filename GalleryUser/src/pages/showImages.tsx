@@ -1,8 +1,8 @@
-"use client";
-
 import type React from "react";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 import {
@@ -39,29 +39,11 @@ import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import ZoomInRoundedIcon from "@mui/icons-material/ZoomInRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ViewCarouselRoundedIcon from "@mui/icons-material/ViewCarouselRounded";
-import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
-import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import UploadImage from "./uploadImg";
-import LoadingSpinner from "./loading";
-
-type Album = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  userId: number;
-  images: Image[];
-};
-
-type Image = {
-  id: number;
-  name: string;
-  imgUrl: string;
-  imgType: string;
-  createdAt: Date;
-  tag: any;
-};
+import LoadingSpinner from "../components/loading";
+import { UserContext } from "../hook/user_context";
+import type { Image } from "../models/image";
+import type { Album } from "../models/album";
 
 type UpdateImageData = {
   id: number;
@@ -109,13 +91,45 @@ const ShowImages = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
-  const api = import.meta.env.VITE_API_URL_LOCAL;
+  // Add a new state for search query after the other state declarations (around line 70)
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const api = import.meta.env.REACT_APP_API_URL;
+  const { token } = useContext(UserContext);
+
+  // Add a function to filter images based on search query after the getTags function (around line 95)
+  const filteredImages = images.filter((image) => {
+    if (!searchQuery.trim()) return true;
+
+    const query = searchQuery.toLowerCase();
+
+    // Search by image name
+    if (image.name.toLowerCase().includes(query)) return true;
+
+    // Search by image description (if available)
+    if (image.description && image.description.toLowerCase().includes(query))
+      return true;
+
+    // Search by single tag
+    if (image.tag && image.tag.name.toLowerCase().includes(query)) return true;
+
+    return false;
+  });
 
   useEffect(() => {
     const getAlbum = async () => {
       try {
         setLoading(true);
-        const albumResponse = await axios.get<Album>(`${api}/album/${albumId}`);
+        const albumResponse = await axios.get<Album>(
+          `${api}/album/${albumId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(albumResponse.data.images);
+
         setAlbum(albumResponse.data);
         setImages(albumResponse.data?.images || []);
       } catch (error) {
@@ -210,11 +224,21 @@ const ShowImages = () => {
 
   const handleConfirmUpdate = async () => {
     if (!imageToUpdate) return;
+    console.log(imageToUpdate);
 
     try {
-      await axios.put(`${api}/image/${imageToUpdate.id}`, {
-        name: newImageName,
-      });
+      await axios.put(
+        `${api}/image/${imageToUpdate.id}`,
+        {
+          name: newImageName,
+          description: imageToDelete?.description || "",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("suc");
 
       setImages((prevImages) =>
@@ -244,8 +268,12 @@ const ShowImages = () => {
     return 3;
   };
 
-  // Get current image for gallery view
-  const currentImage = images.length > 0 ? images[currentImageIndex] : null;
+  // Replace the currentImage assignment in the gallery view to use filteredImages (around line 380)
+  // Change this line:
+  // const currentImage = images.length > 0 ? images[currentImageIndex] : null;
+  // To:
+  const currentImage =
+    filteredImages.length > 0 ? filteredImages[currentImageIndex] : null;
 
   return (
     <Box
@@ -337,6 +365,40 @@ const ShowImages = () => {
                   flexWrap: "wrap",
                 }}
               >
+                {images.length > 0 && (
+                  // Add a search input field in the UI after the view mode toggle buttons (around line 350)
+                  // Find the Box that contains the ToggleButtonGroup and add this before the Upload Image button
+                  <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 0.5,
+                        borderRadius: "12px",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                        display: "flex",
+                        alignItems: "center",
+                        width: { xs: "100%", sm: "250px" },
+                      }}
+                    >
+                      <Box
+                        component="input"
+                        type="text"
+                        placeholder="Search by tag, name..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        sx={{
+                          border: "none",
+                          outline: "none",
+                          width: "100%",
+                          padding: "8px 12px",
+                          borderRadius: "12px",
+                          fontSize: "14px",
+                        }}
+                      />
+                    </Paper>
+                  </Box>
+                )}
+
                 {images.length > 0 && (
                   <Paper
                     elevation={0}
@@ -458,7 +520,8 @@ const ShowImages = () => {
                       rowHeight={240}
                       sx={{ width: "100%", m: 0 }}
                     >
-                      {images.map((image) => (
+                      {/* Replace the images.map in the grid view with filteredImages.map (around line 400) */}
+                      {filteredImages.map((image) => (
                         <ImageListItem
                           key={image.id}
                           sx={{
@@ -550,10 +613,49 @@ const ShowImages = () => {
                             </Box>
                           )}
                           <ImageListItemBar
-                            title={image.name}
-                            subtitle={new Date(
-                              image.createdAt
-                            ).toLocaleDateString()}
+                            title={`${image.name}-${image.description}`}
+                            // Add tags display to the ImageListItemBar in grid view (around line 450)
+                            // After the subtitle line in ImageListItemBar:
+                            subtitle={
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: 0.5,
+                                }}
+                              >
+                                <Typography variant="caption"></Typography>
+                                <Typography variant="caption">
+                                  {new Date(
+                                    image.createdAt
+                                  ).toLocaleDateString()}
+                                </Typography>
+
+                                {image.tag && (
+                                  // <Box
+                                  //   sx={{
+                                  //     display: "flex",
+                                  //     flexWrap: "wrap",
+                                  //     gap: 0.5,
+                                  //     mt: 0.5,
+                                  //   }}
+                                  // >
+                                  <Box
+                                    sx={{
+                                      bgcolor: "rgba(255,255,255,0.2)",
+                                      px: 1,
+                                      py: 0.25,
+                                      borderRadius: 1,
+                                      fontSize: "10px",
+                                      display: "inline-block",
+                                    }}
+                                  >
+                                    {image.tag.name}
+                                  </Box>
+                                  // </Box>
+                                )}
+                              </Box>
+                            }
                             sx={{
                               borderRadius: "0 0 12px 12px",
                               background:
@@ -719,8 +821,11 @@ const ShowImages = () => {
                             }}
                           >
                             <Box>
-                              <Typography variant="h6" fontWeight={600}>
+                              <Typography variant="h5" fontWeight={600}>
                                 {currentImage.name}
+                              </Typography>
+                              <Typography variant="h6" fontWeight={200}>
+                                {currentImage.description}
                               </Typography>
                               <Typography
                                 variant="body2"
@@ -731,6 +836,31 @@ const ShowImages = () => {
                                   currentImage.createdAt
                                 ).toLocaleDateString()}
                               </Typography>
+                              {/* Add tags display to the gallery view (around line 530) */}
+                              {currentImage.tag && (
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                    gap: 1,
+                                    mt: 1,
+                                  }}
+                                >
+                                  <Box
+                                    sx={{
+                                      bgcolor: alpha("#e93345", 0.1),
+                                      color: "#e93345",
+                                      px: 1.5,
+                                      py: 0.5,
+                                      borderRadius: 2,
+                                      fontSize: "12px",
+                                      fontWeight: 500,
+                                    }}
+                                  >
+                                    {currentImage.tag.name}
+                                  </Box>
+                                </Box>
+                              )}
                             </Box>
                             <Box sx={{ display: "flex", gap: 1 }}>
                               <Button
@@ -775,7 +905,8 @@ const ShowImages = () => {
                               gap: 0.5,
                             }}
                           >
-                            {images.map((_, index) => (
+                            {/* Update the pagination indicator to use filteredImages (around line 580) */}
+                            {filteredImages.map((_, index) => (
                               <Box
                                 key={index}
                                 sx={{
@@ -833,6 +964,8 @@ const ShowImages = () => {
                       sx={{ fontSize: 60, color: "white" }}
                     />
                   </Box>
+                  {/* Update the "No Images" message to reflect search results (around line 600) */}
+                  {/* Replace the Typography that says "No Images in This Album" with: */}
                   <Typography
                     variant="h4"
                     gutterBottom
@@ -840,38 +973,40 @@ const ShowImages = () => {
                     color="#1a1a2e"
                     sx={{ mb: 2, letterSpacing: "-0.5px" }}
                   >
-                    No Images in This Album
+                    {searchQuery
+                      ? "No Images Match Your Search"
+                      : "No Images in This Album"}
                   </Typography>
+                  {/* Update the message below it: */}
                   <Typography
                     variant="body1"
                     color="text.secondary"
                     sx={{ mb: 4, maxWidth: "500px", mx: "auto" }}
                   >
-                    Start uploading photos to this album to showcase your
-                    memories. It's easy to get started!
+                    {searchQuery
+                      ? "Try adjusting your search terms or clear the search to see all images."
+                      : "Start uploading photos to this album to showcase your memories. It's easy to get started!"}
                   </Typography>
-                  <Button
-                    onClick={() => setOpenUpload(true)}
-                    variant="contained"
-                    startIcon={<AddPhotoAlternateIcon />}
-                    sx={{
-                      background:
-                        "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-                      color: "#fff",
-                      fontSize: "16px",
-                      textTransform: "none",
-                      padding: "14px 32px",
-                      borderRadius: "12px",
-                      boxShadow: "0 6px 16px rgba(233, 51, 69, 0.3)",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        boxShadow: "0 8px 20px rgba(233, 51, 69, 0.4)",
-                        transform: "translateY(-3px)",
-                      },
-                    }}
-                  >
-                    Upload Your First Photo
-                  </Button>
+                  {/* Add a clear search button if there's a search query: */}
+                  {searchQuery && (
+                    <Button
+                      onClick={() => setSearchQuery("")}
+                      variant="outlined"
+                      sx={{
+                        color: "#666",
+                        borderColor: "#ddd",
+                        borderRadius: "12px",
+                        textTransform: "none",
+                        mb: 2,
+                        "&:hover": {
+                          borderColor: "#bbb",
+                          backgroundColor: "rgba(0,0,0,0.03)",
+                        },
+                      }}
+                    >
+                      Clear Search
+                    </Button>
+                  )}
                 </Box>
               </Fade>
             )}
@@ -1219,6 +1354,30 @@ const ShowImages = () => {
                 Uploaded on{" "}
                 {new Date(previewImage.createdAt).toLocaleDateString()}
               </Typography>
+              {/* Add tags to the image preview dialog (around line 900) */}
+              {previewImage.tag && (
+                <Box
+                  sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1.5 }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "rgba(255,255,255,0.7)", mr: 1 }}
+                  >
+                    Tag:
+                  </Typography>
+                  <Box
+                    sx={{
+                      bgcolor: "rgba(255,255,255,0.15)",
+                      px: 1.5,
+                      py: 0.5,
+                      borderRadius: 2,
+                      fontSize: "12px",
+                    }}
+                  >
+                    {previewImage.tag.name}
+                  </Box>
+                </Box>
+              )}
               <Box
                 sx={{
                   display: "flex",

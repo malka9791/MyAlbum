@@ -1,9 +1,9 @@
-/* .course-details div {
+/* .User-details div {
     margin-bottom: 8px;
     font-size: 16px;
   }
   
-  .course-details strong {
+  .User-details strong {
     color: #333;
   }
   
@@ -21,12 +21,12 @@
     background-color: #ff025f;
   }
   
-  .edit-course {
+  .edit-User {
     /* margin:  15px 3px ; */
 /* border-radius: 8px; */
 /* } */
 /* עיצוב אזור פרטי הקורס */
-.course-details {
+.User-details {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -39,19 +39,19 @@
     max-width: 600px;
   }
   
-  .course-details div {
+  .User-details div {
     font-size: 16px;
     color: #333;
     line-height: 1.5;
   }
   
-  .course-details strong {
+  .User-details strong {
     color: #ff025f;
     font-weight: bold;
   }
   
   /* עיצוב כפתור עריכה */
-  .edit-course {
+  .edit-User {
     margin-top: 20px;
     text-align: center;
   }

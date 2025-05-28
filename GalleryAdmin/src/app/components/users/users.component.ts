@@ -16,13 +16,13 @@ export class UsersComponent {
   currentIdForEdit!: number;
 
   ngOnInit(): void {
-    this.AuthService.getUsers().then((courses) => {
-      this.list = courses;
+    this.AuthService.getUsers().then((Users) => {
+      this.list = Users;
     });
   }
   edit(id: number) {
     this.currentIdForEdit = id;
-    // this.route.navigate([`/courses/:${Course.id}`])
+    // this.route.navigate([`/Users/:${User.id}`])
     this.messege = '';
   }
   Delete(id: number): void {

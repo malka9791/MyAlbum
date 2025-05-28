@@ -1,4 +1,10 @@
-import { CircularProgress, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../hook/user_context";
@@ -8,7 +14,7 @@ type Album = {
   name: string;
 };
 
-const api = "http://localhost:5028/api"; // או כל כתובת שלך
+const api = import.meta.env.REACT_APP_API_URL;
 
 export const AlbumSelect = ({
   selectedAlbumId,
@@ -18,50 +24,87 @@ export const AlbumSelect = ({
   setSelectedAlbumId: (id: number) => void;
 }) => {
   const [albums, setAlbums] = useState<Album[]>([]);
-  const [loading, setLoading] = useState(true);
-    const {userId}=useContext(UserContext);
+  const { token, userId } = useContext(UserContext);
+
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const res = await axios.get(`${api}/album/user/${userId}`);
+        const res = await axios.get(`${api}/album/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setAlbums(res.data);
       } catch (err) {
         console.error("Failed to fetch albums", err);
-      } finally {
-        setLoading(false);
       }
     };
 
-    fetchAlbums();
-  }, []);
+    if (userId) {
+      fetchAlbums();
+    }
+  }, [userId, token]);
+
+  const handleChange = (event: SelectChangeEvent<number>) => {
+    setSelectedAlbumId(Number(event.target.value));
+  };
 
   return (
-    <>
-      <InputLabel sx={{ mt: 2, mb: 1, color: "rgb(249, 4, 91)" }}>
-        בחר אלבום
+    <FormControl fullWidth>
+      <InputLabel
+        id="album-label"
+        sx={{
+          color: "#e93345",
+          fontWeight: 500,
+          "&.Mui-focused": {
+            color: "#e93345",
+          },
+        }}
+      >
+        Album
       </InputLabel>
-      {loading ? (
-        <CircularProgress color="secondary" />
-      ) : (
-        <Select
-          fullWidth
-          value={selectedAlbumId ?? ""}
-          onChange={(e) => setSelectedAlbumId(Number(e.target.value))}
-          sx={{
-            mb: 2,
-            color: "black",
+      <Select
+        labelId="album-label"
+        id="album-select"
+        value={selectedAlbumId ?? ""}
+        label="Album"
+        onChange={handleChange}
+        sx={{
+          mb: 1,
+          borderRadius: "12px",
+          backgroundColor: "#fafafa",
+          color: "black",
+          fontSize: "15px",
+          transition: "all 0.3s ease",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#ddd",
+          },
+          "&:hover": {
+            backgroundColor: "#f5f5f5",
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: "#e93345",
+              borderWidth: "2px",
             },
-          }}
-        >
-          {albums.map((album) => (
+          },
+          "&.Mui-focused": {
+            backgroundColor: "white",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#e93345 !important",
+              borderWidth: "2px",
+            },
+          },
+        }}
+      >
+        {albums.length > 0 ? (
+          albums.map((album) => (
             <MenuItem key={album.id} value={album.id}>
               {album.name}
             </MenuItem>
-          ))}
-        </Select>
-      )}
-    </>
+          ))
+        ) : (
+          <MenuItem disabled>אין אלבומים זמינים</MenuItem>
+        )}
+      </Select>
+    </FormControl>
   );
 };

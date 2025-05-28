@@ -7,10 +7,14 @@ const LoadingSpinner = () => (
       justifyContent: "center",
       alignItems: "center",
       color: "#e93345",
+
     }}
   >
-    <CircularProgress disableShrink sx={{ color: "#e93345" }} />
-    <h2>Loading...</h2>
+<CircularProgress
+  disableShrink
+  size={80} // ברירת מחדל היא 40
+  sx={{ color: "#e93345" }}
+/>
   </Box>
 );
 

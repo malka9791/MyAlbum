@@ -7,13 +7,18 @@ import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PhotoAlbumIcon from "@mui/icons-material/PhotoAlbum";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../hook/user_context";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../hook/authStore";
+import { logout } from "../hook/authAction";
 
 const Header = () => {
   const { name, token } = useContext(UserContext);
+  const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   return (
     <>
@@ -41,52 +46,6 @@ const Header = () => {
             />
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {/* Login Button */}
-              <Box sx={{ my: 2, px: 2 }}>
-                <Button
-                  component={Link}
-                  to="/login"
-                  sx={{
-                    color: "#e93345",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: "4px",
-                    transition: "background-color 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "#f1ede9",
-                      color: "#e93345",
-                    },
-                  }}
-                >
-                  <LoginIcon sx={{ color: "#e93345" }} />
-                  Login
-                </Button>
-              </Box>
-
-              {/* Sign Up Button */}
-              <Box sx={{ my: 2, px: 2 }}>
-                <Button
-                  component={Link}
-                  to="/signup"
-                  sx={{
-                    color: "#e93345",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: "4px",
-                    transition: "background-color 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "#f1ede9",
-                      color: "#e93345",
-                    },
-                  }}
-                >
-                  <PersonAddIcon sx={{ color: "#e93345", mr: 1 }} />
-                  Sign Up
-                </Button>{" "}
-              </Box>
 
               {/* Share Album Button */}
 
@@ -116,6 +75,27 @@ const Header = () => {
                   </Box> */}
 
                   {/* Albums Button */}
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Button
+                      onClick={()=>dispatch(logout())}
+                      sx={{
+                        color: "#e93345",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        transition: "background-color 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: "#f1ede9",
+                          color: "#e93345",
+                        },
+                      }}
+                    >
+                      <LogoutIcon sx={{ color: "#e93345" }} />
+                      LogOut
+                    </Button>
+                  </Box>
                   <Box sx={{ my: 2, px: 2 }}>
                     <Button
                       to="/myAlbums"
@@ -172,7 +152,54 @@ const Header = () => {
                   </Box>
                 </>
               ) : (
-                <></>
+                <>
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Button
+                      component={Link}
+                      to="/login"
+                      sx={{
+                        color: "#e93345",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        transition: "background-color 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: "#f1ede9",
+                          color: "#e93345",
+                        },
+                      }}
+                    >
+                      <LoginIcon sx={{ color: "#e93345" }} />
+                      Login
+                    </Button>
+                  </Box>
+
+                  {/* Sign Up Button */}
+                  <Box sx={{ my: 2, px: 2 }}>
+                    <Button
+                      component={Link}
+                      to="/signup"
+                      sx={{
+                        color: "#e93345",
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        transition: "background-color 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: "#f1ede9",
+                          color: "#e93345",
+                        },
+                      }}
+                    >
+                      <PersonAddIcon sx={{ color: "#e93345", mr: 1 }} />
+                      Sign Up
+                    </Button>{" "}
+                  </Box>
+                </>
               )}
             </Box>
 

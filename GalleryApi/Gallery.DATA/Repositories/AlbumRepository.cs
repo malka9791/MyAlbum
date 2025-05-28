@@ -24,9 +24,11 @@ namespace Gallery.DATA.Repositories
         public async Task<Album> GetAlbum(int id)
         {
             return await this._dbSet
-            .Include(a => a.Images)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(a => a.Id == id);
+                .Include(a => a.Images)
+                    .ThenInclude(i => i.Tag) // ← זה מוסיף את ה-Tag של כל תמונה
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
+
     }
 }
