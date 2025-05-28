@@ -48,7 +48,7 @@ const MyAlbums = () => {
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
   const { token } = useContext(UserContext);
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
 
   const [albums, setAlbums] = useState<Album[]>([]);
   const [openAdd, setOpenAdd] = useState(false);
@@ -71,8 +71,6 @@ const MyAlbums = () => {
         if (res.status === 200) {
           setAlbums(res.data);
         }
-        console.log(res.data.images?.length);
-        console.log("al", albums);
       } catch (error) {
         console.error("Error fetching albums:", error);
       } finally {

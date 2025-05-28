@@ -24,7 +24,7 @@ const schema = yup.object().shape({
 const AddAlbum = () => {
   const userContext = useContext(UserContext);
   const UserId = userContext?.userId ?? null;
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
   const { token } = useContext(UserContext);
   
   // State for success alert
@@ -45,14 +45,12 @@ const AddAlbum = () => {
       name: data.name,
       description: data.description,
     };
-    console.log(albumData);
     try {
-      const res = await axios.post(`${api}/album`, albumData, {
+       await axios.post(`${api}/album`, albumData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log(res);
       setShowSuccess(true);
       reset(); // Clear form after success
       

@@ -4,7 +4,7 @@ import { Dispatch } from "react";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_USERDATA = "GET_USERDATA";
-const api = import.meta.env.REACT_APP_API_URL;
+const api = import.meta.env.VITE_API_URL;
 interface UserRes {
   id: number;
   fullName: string;
@@ -38,7 +38,6 @@ export const registerUser =
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },
       });
-      console.log(res.data.token);
       sessionStorage.setItem("isLogin", "true");
       sessionStorage.setItem("token", res.data.token);
       sessionStorage.setItem("name", res.data.user.fullName);
@@ -58,7 +57,6 @@ export const registerUser =
 export const login =
   (userData: { email: string; password: string }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
-    console.log(userData);
     try {
       const res = await axios.post(`${api}/api/auth/login`, userData);
       dispatch({

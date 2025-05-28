@@ -94,7 +94,7 @@ const ShowImages = () => {
   // Add a new state for search query after the other state declarations (around line 70)
   const [searchQuery, setSearchQuery] = useState("");
 
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
   const { token } = useContext(UserContext);
 
   // Add a function to filter images based on search query after the getTags function (around line 95)
@@ -128,8 +128,6 @@ const ShowImages = () => {
             },
           }
         );
-        console.log(albumResponse.data.images);
-
         setAlbum(albumResponse.data);
         setImages(albumResponse.data?.images || []);
       } catch (error) {
@@ -155,8 +153,6 @@ const ShowImages = () => {
   ) => {
     if (newMode !== null) {
       setViewMode(newMode);
-      console.log(event);
-
       // Reset to first image when switching to gallery view
       if (newMode === "gallery") {
         setCurrentImageIndex(0);
@@ -224,8 +220,6 @@ const ShowImages = () => {
 
   const handleConfirmUpdate = async () => {
     if (!imageToUpdate) return;
-    console.log(imageToUpdate);
-
     try {
       await axios.put(
         `${api}/image/${imageToUpdate.id}`,
@@ -239,8 +233,6 @@ const ShowImages = () => {
           },
         }
       );
-      console.log("suc");
-
       setImages((prevImages) =>
         prevImages.map((img) =>
           img.id === imageToUpdate.id ? { ...img, name: newImageName } : img

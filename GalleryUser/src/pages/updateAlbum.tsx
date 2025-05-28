@@ -25,15 +25,13 @@ const UpdateAlbum = () => {
   //get albumId from params
   const { albumId } = useParams();
   const [album, setAlbum] = useState<Album | null>(null);
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
   const { token } = useContext(UserContext);
   const nav = useNavigate();
   //when there is albumId getalbum to Update
   useEffect(() => {
     if (albumId) {
       const getAlbum = async () => {
-        console.log("here");
-
         try {
           const res = await axios.get(`${api}/album/${albumId}`, {
             headers: {
@@ -41,7 +39,6 @@ const UpdateAlbum = () => {
             },
           });
           setAlbum(res.data);
-          console.log(res.data);
         } catch (error) {
           console.error("error fetching album", error);
         }
@@ -62,12 +59,11 @@ const UpdateAlbum = () => {
       description: data.description ? data.description : "",
     };
     try {
-      const res = await axios.put(`${api}/album/${albumId}`, sendData, {
+      await axios.put(`${api}/album/${albumId}`, sendData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res);
       nav("/myAlbums");
     } catch (error: any) {
       console.error("Error fetching albums:", error);

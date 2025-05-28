@@ -183,7 +183,7 @@ const ImageAIPage = () => {
   const [imageToCopy, setImageToCopy] = useState<string | null>(null);
   const [suggestion, setSuggestion] = useState<string | null>();
 
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
   const { token } = useContext(UserContext);
   const userContext = useContext(UserContext);
   const userId = userContext?.userId ?? null;
@@ -216,7 +216,6 @@ const ImageAIPage = () => {
           },
         }
       );
-      console.log(res.data);
       setSuggestion(res.data.suggestion);
       setDialogIndex(i);
       imgs[i].decoratedUrl = res.data.decoratedUrl;

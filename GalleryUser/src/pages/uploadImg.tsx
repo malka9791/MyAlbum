@@ -34,7 +34,7 @@ const UploadImage = ({
   const userContext = useContext(UserContext);
   const userId = userContext?.userId ?? null;
   const { token } = useContext(UserContext);
-  const api = import.meta.env.REACT_APP_API_URL;
+  const api = import.meta.env.VITE_API_URL;
 
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
@@ -57,7 +57,6 @@ const UploadImage = ({
           },
         });
         setTags(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("error fetching album", error);
       }
@@ -94,7 +93,6 @@ const UploadImage = ({
     if (!imgUrl && file) {
       // when uploading from computer
       try {
-        console.log(file.name, file.type);
         const response = await axios.get(`${api}/s3/presigned-url`, {
           params: {
             fileName: file.name,
@@ -165,7 +163,7 @@ const UploadImage = ({
     }
 
     try {
-      const res = await axios.post(
+      await axios.post(
         `${api}/image`,
         {
           name: imgName,
@@ -182,8 +180,6 @@ const UploadImage = ({
           },
         }
       );
-
-      console.log(res.data);
       setShowSuccess(true);
       handleReset(); // Clear form after success
     } catch (error) {
@@ -208,372 +204,386 @@ const UploadImage = ({
           border: "1px solid rgba(233, 51, 69, 0.08)",
         }}
       > */}
-        {/* Header */}
-        <Box sx={{ textAlign: "center", mb: 4 }}>
-          <Box
-            sx={{
-              width: 70,
-              height: 70,
-              borderRadius: "50%",
-              background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              mx: "auto",
-              mb: 2,
-              boxShadow: "0 8px 20px rgba(233, 51, 69, 0.25)",
-            }}
-          >
-            <AddAPhotoOutlinedIcon sx={{ fontSize: 35, color: "white" }} />
-          </Box>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 700,
-              color: "#1a1a2e",
-              mb: 1,
-              letterSpacing: "-0.3px",
-            }}
-          >
-            Upload Image
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              fontSize: "14px",
-            }}
-          >
-            Add your beautiful image to the album
-          </Typography>
+      {/* Header */}
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <Box
+          sx={{
+            width: 70,
+            height: 70,
+            borderRadius: "50%",
+            background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mx: "auto",
+            mb: 2,
+            boxShadow: "0 8px 20px rgba(233, 51, 69, 0.25)",
+          }}
+        >
+          <AddAPhotoOutlinedIcon sx={{ fontSize: 35, color: "white" }} />
         </Box>
-  
-        {/* Form Fields */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-          <TextField
-            label="Name"
-            variant="outlined"
-            fullWidth
-            value={imgName}
-            onChange={({ target }) => setImgName(target.value)}
-            helperText={imgName == "" ? "name is required" : ""}
-            margin="normal"
-            InputLabelProps={{ 
-              style: { 
-                color: "#e93345",
-                fontWeight: 500,
-              } 
-            }}
-            InputProps={{
-              style: { 
-                color: "black",
-                fontSize: "15px",
-              },
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AddAPhotoOutlinedIcon sx={{ color: "#e93345" }} />
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-                backgroundColor: "#fafafa",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "#f5f5f5",
-                  "& fieldset": { 
-                    borderColor: "#e93345",
-                    borderWidth: "2px",
-                  },
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            color: "#1a1a2e",
+            mb: 1,
+            letterSpacing: "-0.3px",
+          }}
+        >
+          Upload Image
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "#666",
+            fontSize: "14px",
+          }}
+        >
+          Add your beautiful image to the album
+        </Typography>
+      </Box>
+
+      {/* Form Fields */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        <TextField
+          label="Name"
+          variant="outlined"
+          fullWidth
+          value={imgName}
+          onChange={({ target }) => setImgName(target.value)}
+          helperText={imgName == "" ? "name is required" : ""}
+          margin="normal"
+          InputLabelProps={{
+            style: {
+              color: "#e93345",
+              fontWeight: 500,
+            },
+          }}
+          InputProps={{
+            style: {
+              color: "black",
+              fontSize: "15px",
+            },
+            startAdornment: (
+              <InputAdornment position="start">
+                <AddAPhotoOutlinedIcon sx={{ color: "#e93345" }} />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "12px",
+              backgroundColor: "#fafafa",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+                "& fieldset": {
+                  borderColor: "#e93345",
+                  borderWidth: "2px",
                 },
-                "&.Mui-focused": {
-                  backgroundColor: "white",
-                  "& fieldset": {
-                    borderColor: "#e93345 !important",
-                    borderWidth: "2px",
-                  },
+              },
+              "&.Mui-focused": {
+                backgroundColor: "white",
+                "& fieldset": {
+                  borderColor: "#e93345 !important",
+                  borderWidth: "2px",
                 },
               },
-              "& .MuiFormHelperText-root": {
-                fontSize: "13px",
-                marginLeft: 0,
-                marginTop: "6px",
+            },
+            "& .MuiFormHelperText-root": {
+              fontSize: "13px",
+              marginLeft: 0,
+              marginTop: "6px",
+            },
+          }}
+        />
+
+        <TextField
+          label="Description (Optional)"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={3}
+          value={imgDescription}
+          onChange={({ target }) => setImgDescription(target.value)}
+          margin="normal"
+          InputLabelProps={{
+            style: {
+              color: "#e93345",
+              fontWeight: 500,
+            },
+          }}
+          InputProps={{
+            style: {
+              color: "black",
+              fontSize: "15px",
+            },
+            startAdornment: (
+              <InputAdornment
+                position="start"
+                sx={{ alignSelf: "flex-start", mt: 1 }}
+              >
+                <Description sx={{ color: "#e93345" }} />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "12px",
+              backgroundColor: "#fafafa",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+                "& fieldset": {
+                  borderColor: "#e93345",
+                  borderWidth: "2px",
+                },
               },
-            }}
+              "&.Mui-focused": {
+                backgroundColor: "white",
+                "& fieldset": {
+                  borderColor: "#e93345 !important",
+                  borderWidth: "2px",
+                },
+              },
+            },
+          }}
+        />
+        {!albumId && (
+          <AlbumSelect
+            selectedAlbumId={selectedAlbumId}
+            setSelectedAlbumId={setSelectedAlbumId}
           />
-      
-          <TextField
-            label="Description (Optional)"
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={3}
-            value={imgDescription}
-            onChange={({ target }) => setImgDescription(target.value)}
-            margin="normal"
-            InputLabelProps={{ 
-              style: { 
-                color: "#e93345",
-                fontWeight: 500,
-              } 
-            }}
-            InputProps={{
-              style: { 
-                color: "black",
-                fontSize: "15px",
-              },
-              startAdornment: (
-                <InputAdornment position="start" sx={{ alignSelf: "flex-start", mt: 1 }}>
-                  <Description sx={{ color: "#e93345" }} />
-                </InputAdornment>
-              ),
-            }}
+        )}
+        <FormControl fullWidth>
+          <InputLabel
+            id="tag-label"
             sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-                backgroundColor: "#fafafa",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "#f5f5f5",
-                  "& fieldset": { 
-                    borderColor: "#e93345",
-                    borderWidth: "2px",
-                  },
-                },
-                "&.Mui-focused": {
-                  backgroundColor: "white",
-                  "& fieldset": {
-                    borderColor: "#e93345 !important",
-                    borderWidth: "2px",
-                  },
-                },
+              color: "#e93345",
+              fontWeight: 500,
+              "&.Mui-focused": {
+                color: "#e93345",
               },
             }}
-          />
-          {!albumId&&<AlbumSelect
-        selectedAlbumId={selectedAlbumId}
-        setSelectedAlbumId={setSelectedAlbumId}
-      />}
-          <FormControl fullWidth>
-            <InputLabel 
-              id="tag-label" 
-              sx={{ 
-                color: "#e93345",
-                fontWeight: 500,
-                "&.Mui-focused": {
-                  color: "#e93345",
-                },
-              }}
-            >
-              Tag
-            </InputLabel>
-            <Select
-              fullWidth
-              labelId="tag-label"
-              label="Tag"
-              id="demo-simple-select-helper"
-              onChange={(e) => setTagIdToSend(Number(e.target.value) || null)}
-              sx={{
-                mb: 1,
-                borderRadius: "12px",
-                backgroundColor: "#fafafa",
-                color: "black",
-                fontSize: "15px",
-                transition: "all 0.3s ease",
+          >
+            Tag
+          </InputLabel>
+          <Select
+            fullWidth
+            labelId="tag-label"
+            label="Tag"
+            id="demo-simple-select-helper"
+            onChange={(e) => setTagIdToSend(Number(e.target.value) || null)}
+            sx={{
+              mb: 1,
+              borderRadius: "12px",
+              backgroundColor: "#fafafa",
+              color: "black",
+              fontSize: "15px",
+              transition: "all 0.3s ease",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#ddd",
+              },
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
                 "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ddd",
+                  borderColor: "#e93345",
+                  borderWidth: "2px",
                 },
-                "&:hover": {
-                  backgroundColor: "#f5f5f5",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#e93345",
-                    borderWidth: "2px",
-                  },
+              },
+              "&.Mui-focused": {
+                backgroundColor: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#e93345 !important",
+                  borderWidth: "2px",
                 },
-                "&.Mui-focused": {
-                  backgroundColor: "white",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#e93345 !important",
-                    borderWidth: "2px",
-                  },
-                },
-              }}
-            >
-              {tags ? (
-                tags.map((tag) => (
-                  <MenuItem 
-                    key={tag.id} 
-                    value={tag.id}
-                    sx={{
-                      py: 1.5,
-                      "&:hover": {
-                        backgroundColor: "rgba(233, 51, 69, 0.08)",
-                      },
-                      "&.Mui-selected": {
-                        backgroundColor: "rgba(233, 51, 69, 0.12)",
-                        "&:hover": {
-                          backgroundColor: "rgba(233, 51, 69, 0.16)",
-                        },
-                      },
-                    }}
-                  >
-                    <Chip
-                      label={tag.name}
-                      size="small"
-                      sx={{
-                        backgroundColor: "rgba(233, 51, 69, 0.1)",
-                        color: "#e93345",
-                        fontWeight: 500,
-                      }}
-                    />
-                  </MenuItem>
-                ))
-              ) : (
-                <MenuItem disabled>No tags available</MenuItem>
-              )}
-            </Select>
-          </FormControl>
-  
-          {!imgUrl && (
-            <Box>
-              <input
-                accept="image/*"
-                style={{ display: "none" }}
-                id="file-upload-button"
-                type="file"
-                onChange={handleFileChange}
-              />
-              <label htmlFor="file-upload-button">
-                <Paper
-                  elevation={0}
+              },
+            }}
+          >
+            {tags ? (
+              tags.map((tag) => (
+                <MenuItem
+                  key={tag.id}
+                  value={tag.id}
                   sx={{
-                    p: 3,
-                    borderRadius: "12px",
-                    border: "2px dashed #e93345",
-                    backgroundColor: "rgba(233, 51, 69, 0.02)",
-                    cursor: "pointer",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
+                    py: 1.5,
                     "&:hover": {
-                      backgroundColor: "rgba(233, 51, 69, 0.05)",
-                      borderColor: "#d62b3c",
-                      transform: "translateY(-1px)",
-                      boxShadow: "0 6px 15px rgba(233, 51, 69, 0.12)",
+                      backgroundColor: "rgba(233, 51, 69, 0.08)",
+                    },
+                    "&.Mui-selected": {
+                      backgroundColor: "rgba(233, 51, 69, 0.12)",
+                      "&:hover": {
+                        backgroundColor: "rgba(233, 51, 69, 0.16)",
+                      },
                     },
                   }}
                 >
-                  <CloudUpload
+                  <Chip
+                    label={tag.name}
+                    size="small"
                     sx={{
-                      fontSize: 40,
+                      backgroundColor: "rgba(233, 51, 69, 0.1)",
                       color: "#e93345",
-                      mb: 1,
+                      fontWeight: 500,
                     }}
                   />
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      color: "#e93345",
-                      fontWeight: 600,
-                      mb: 0.5,
-                    }}
-                  >
-                    Choose Image File
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#666",
-                      fontSize: "13px",
-                    }}
-                  >
-                    Click to select an image
-                  </Typography>
-                </Paper>
-              </label>
-            </Box>
-          )}
-  
-          {errorMessage && (
-            <Fade in={Boolean(errorMessage)}>
-              <Alert
-                severity="error"
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem disabled>No tags available</MenuItem>
+            )}
+          </Select>
+        </FormControl>
+
+        {!imgUrl && (
+          <Box>
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="file-upload-button"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="file-upload-button">
+              <Paper
+                elevation={0}
                 sx={{
-                  borderRadius: "10px",
-                  backgroundColor: "rgba(244, 67, 54, 0.08)",
-                  border: "1px solid rgba(244, 67, 54, 0.2)",
-                  "& .MuiAlert-message": {
-                    fontWeight: 500,
-                    fontSize: "14px",
+                  p: 3,
+                  borderRadius: "12px",
+                  border: "2px dashed #e93345",
+                  backgroundColor: "rgba(233, 51, 69, 0.02)",
+                  cursor: "pointer",
+                  textAlign: "center",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "rgba(233, 51, 69, 0.05)",
+                    borderColor: "#d62b3c",
+                    transform: "translateY(-1px)",
+                    boxShadow: "0 6px 15px rgba(233, 51, 69, 0.12)",
                   },
                 }}
               >
-                {errorMessage}
-              </Alert>
-            </Fade>
-          )}
-  
-          <Button
-            onClick={handleUpload}
-            variant="contained"
-            fullWidth
-            size="large"
-            startIcon={<CloudUpload />}
-            sx={{
-              py: 1.8,
-              borderRadius: "12px",
-              background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-              fontSize: "15px",
-              fontWeight: 600,
-              textTransform: "none",
-              boxShadow: "0 6px 18px rgba(233, 51, 69, 0.25)",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                background: "linear-gradient(45deg, #d62b3c 30%, #e55a5a 90%)",
-                boxShadow: "0 8px 22px rgba(233, 51, 69, 0.35)",
-                transform: "translateY(-1px)",
-              },
-              "&:disabled": {
-                background: "#ccc",
-                boxShadow: "none",
-                transform: "none",
-              },
-            }}
-            disabled={progress > 0 && progress < 100}
-          >
-            {progress > 0 && progress < 100 ? "Uploading..." : "Upload File"}
-          </Button>
-  
-          {progress > 0 && (
-            <Fade in={progress > 0}>
-              <Box>
-                <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-                  <Typography variant="body2" sx={{ color: "#666", fontWeight: 500, fontSize: "13px" }}>
-                    Upload Progress
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "#e93345", fontWeight: 600, fontSize: "13px" }}>
-                    {progress}%
-                  </Typography>
-                </Box>
-                <LinearProgress
-                  variant="determinate"
-                  value={progress}
+                <CloudUpload
                   sx={{
-                    height: 6,
-                    borderRadius: 3,
-                    backgroundColor: "rgba(233, 51, 69, 0.1)",
-                    "& .MuiLinearProgress-bar": {
-                      borderRadius: 3,
-                      background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
-                    },
+                    fontSize: 40,
+                    color: "#e93345",
+                    mb: 1,
                   }}
                 />
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#e93345",
+                    fontWeight: 600,
+                    mb: 0.5,
+                  }}
+                >
+                  Choose Image File
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#666",
+                    fontSize: "13px",
+                  }}
+                >
+                  Click to select an image
+                </Typography>
+              </Paper>
+            </label>
+          </Box>
+        )}
+
+        {errorMessage && (
+          <Fade in={Boolean(errorMessage)}>
+            <Alert
+              severity="error"
+              sx={{
+                borderRadius: "10px",
+                backgroundColor: "rgba(244, 67, 54, 0.08)",
+                border: "1px solid rgba(244, 67, 54, 0.2)",
+                "& .MuiAlert-message": {
+                  fontWeight: 500,
+                  fontSize: "14px",
+                },
+              }}
+            >
+              {errorMessage}
+            </Alert>
+          </Fade>
+        )}
+
+        <Button
+          onClick={handleUpload}
+          variant="contained"
+          fullWidth
+          size="large"
+          startIcon={<CloudUpload />}
+          sx={{
+            py: 1.8,
+            borderRadius: "12px",
+            background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
+            fontSize: "15px",
+            fontWeight: 600,
+            textTransform: "none",
+            boxShadow: "0 6px 18px rgba(233, 51, 69, 0.25)",
+            transition: "all 0.3s ease",
+            "&:hover": {
+              background: "linear-gradient(45deg, #d62b3c 30%, #e55a5a 90%)",
+              boxShadow: "0 8px 22px rgba(233, 51, 69, 0.35)",
+              transform: "translateY(-1px)",
+            },
+            "&:disabled": {
+              background: "#ccc",
+              boxShadow: "none",
+              transform: "none",
+            },
+          }}
+          disabled={progress > 0 && progress < 100}
+        >
+          {progress > 0 && progress < 100 ? "Uploading..." : "Upload File"}
+        </Button>
+
+        {progress > 0 && (
+          <Fade in={progress > 0}>
+            <Box>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#666", fontWeight: 500, fontSize: "13px" }}
+                >
+                  Upload Progress
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#e93345", fontWeight: 600, fontSize: "13px" }}
+                >
+                  {progress}%
+                </Typography>
               </Box>
-            </Fade>
-          )}
-        </Box>
+              <LinearProgress
+                variant="determinate"
+                value={progress}
+                sx={{
+                  height: 6,
+                  borderRadius: 3,
+                  backgroundColor: "rgba(233, 51, 69, 0.1)",
+                  "& .MuiLinearProgress-bar": {
+                    borderRadius: 3,
+                    background:
+                      "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
+                  },
+                }}
+              />
+            </Box>
+          </Fade>
+        )}
+      </Box>
       {/* </Paper> */}
-  
+
       {/* Success Alert */}
       <Snackbar
         open={showSuccess}
@@ -604,7 +614,7 @@ const UploadImage = ({
           Image uploaded successfully! 🎉
         </Alert>
       </Snackbar>
-  
+
       {/* Error Alert */}
       <Snackbar
         open={showError}
