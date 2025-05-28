@@ -33,7 +33,7 @@ export const registerUser =
   }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     try {
-      const res = await axios.post(`${api}/api/auth/signup`, userData);
+      const res = await axios.post(`${api}/auth/signup`, userData);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },
@@ -58,7 +58,7 @@ export const login =
   (userData: { email: string; password: string }) =>
   async (dispatch: Dispatch<AuthActionTypes>) => {
     try {
-      const res = await axios.post(`${api}/api/auth/login`, userData);
+      const res = await axios.post(`${api}/auth/login`, userData);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: res.data.user, token: res.data.token },

@@ -8,14 +8,13 @@ type UserContextType = {
   getUserData: () => void;
 };
 
-export const UserContext = createContext<UserContextType>(
-{ name: "?",
+export const UserContext = createContext<UserContextType>({
+  name: "?",
   userId: null,
   token: "",
   // isLogin: null,
   getUserData: () => {},
-}
-);
+});
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [name, setName] = useState<string | null>(
@@ -44,16 +43,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setName(storedName);
     setUserId(parsedUserId);
     setToken(storedToken);
-    console.log("in UserContext", name, token);
   };
   const updateSessionData = () => {
-    console.log("in update");
-    
-    getUserData(); 
- // עדכון נתונים
+    getUserData();
+    // עדכון נתונים
   };
   useEffect(() => {
-
     window.addEventListener("sessionUpdated", updateSessionData);
 
     return () => {
