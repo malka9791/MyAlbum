@@ -55,7 +55,7 @@
         [disabled]="!loginForm.valid"
         (click)="PostData()"
       >
-        Login
+        {{ this.loading ? "Login..." : "login" }}
       </button>
       <p>{{ messege }}</p>
     </div>

@@ -30,9 +30,11 @@ import { Login } from '../../models/login';
 })
 export class LoginComponent implements OnInit {
   messege = '';
+  loading=false;
   constructor(private AuthService: AuthService, private route: Router) {}
   async PostData() {
     try {
+      this.loading=true;
       const res = await this.AuthService.Login({
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
