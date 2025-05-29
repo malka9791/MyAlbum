@@ -1,4 +1,4 @@
-.edit-user-form {
+.add-user-form {
   max-width: 600px;
   margin: 40px auto;
   padding: 0 20px;
@@ -210,7 +210,7 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .edit-user-form {
+  .add-user-form {
     margin: 20px auto;
     padding: 0 15px;
   }
@@ -278,7 +278,7 @@
   }
 }
 
-.edit-user-form {
+.add-user-form {
   animation: slideInDown 0.6s ease-out;
 }
 

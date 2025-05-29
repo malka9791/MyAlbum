@@ -1,54 +1,56 @@
 <mat-dialog-content class="dialog-content">
   <h2 class="form-header">Add User</h2>
-  
-  <div class="form-container">
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Full Name</mat-label>
-      <input matInput #fullName placeholder="Full name" />
-      <mat-icon matPrefix>person</mat-icon>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Email</mat-label>
-      <input matInput #email type="email" placeholder="Email" />
-      <mat-icon matPrefix>email</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Role</mat-label>
-      <input matInput #role type="role" placeholder="role" />
-      <mat-icon matPrefix>role</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        [type]="hidePassword ? 'password' : 'text'"
-        #password
-        placeholder="Password"
-      />
-      <mat-icon matPrefix>lock</mat-icon>
-      <mat-icon
-        matSuffix
-        (click)="hidePassword = !hidePassword"
-        class="toggle-password"
-      >
-        {{ hidePassword ? "visibility" : "visibility_off" }}
-      </mat-icon>
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Full Name</mat-label>
+    <input matInput #fullName placeholder="Full name" />
+    <mat-icon matPrefix>person</mat-icon>
+  </mat-form-field>
 
-    <div class="form-actions">
-      <button
-        mat-flat-button
-        color="primary"
-        class="save-btn"
-        (click)="AddUser(fullName.value, email.value, password.value,role.value)"
-      >
-        <mat-icon>person_add</mat-icon>
-        Add User
-      </button>
-    </div>
-    @if(messege) {
-    <p style="text-align: center; ">{{ messege }}</p>
-    }
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Email</mat-label>
+    <input matInput #email type="email" placeholder="Email" />
+    <mat-icon matPrefix>email</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="role" name="role">
+      <mat-option value="Admin">Admin</mat-option>
+      <mat-option value="User">User</mat-option>
+      <mat-option value="Manager">Manager</mat-option>
+    </mat-select>
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hidePassword ? 'password' : 'text'"
+      #password
+      placeholder="Password"
+    />
+    <mat-icon matPrefix>lock</mat-icon>
+    <mat-icon
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+      class="toggle-password"
+    >
+      {{ hidePassword ? "visibility" : "visibility_off" }}
+    </mat-icon>
+  </mat-form-field>
+
+  <div class="form-actions">
+    <button
+      mat-flat-button
+      color="primary"
+      class="save-btn"
+      (click)="AddUser(fullName.value, email.value, password.value, role.value)"
+    >
+      <mat-icon>person_add</mat-icon>
+      Add User
+    </button>
   </div>
+  @if(messege) {
+  <p style="text-align: center">{{ messege }}</p>
+  }
 </mat-dialog-content>
