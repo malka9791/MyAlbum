@@ -1,34 +1,63 @@
 <div class="container">
-  @if(this.list.length==0) {
-  <h1>there isn't Users</h1>
-  } @for (item of this.list; track item.id) {
-  <div class="User-details">
-    <div><strong>Id:</strong> {{ item.id }}</div>
-    <div><strong>Email:</strong> {{ item.email }}</div>
-    <div><strong>Name:</strong> {{ item.fullName }}</div>
-    <div><strong>Role:</strong> {{ item.role }}</div>
-    <div><strong>CreatedAt:</strong> {{ item.createdAt }}</div>
-    <div><strong>UpdatedAt:</strong> {{ item.updateAt }}</div>
-  </div>
-  <div class="edit-User">
-    @if(canChange()) {
-
-    <button class="edit-btn" appHoverShadow (click)="edit(item.id)">
-      Edit
-    </button>
-    <button class="edit-btn" appHoverShadow (click)="Delete(item.id)">
-      Delete
-    </button>
-    }
-  </div>
-
-  @if(currentIdForEdit==item.id) {
-
-  <!-- <app-edit-User
-      [currentUser]="item"
-      (newUser)="save($event)"
-    ></app-edit-User> -->
-  } @if(currentIdForEdit==item.id) {
-  <div>{{ messege }}</div>
-  } }
+  @if(this.list.length == 0) {
+    <div class="no-users">
+      <mat-icon class="no-users-icon">person_off</mat-icon>
+      <h1>There isn't Users</h1>
+      
+    </div>
+  }
+  <div class="container">
+    <div class="header">
+      <h2>User Management</h2>
+      <button class="add-btn" (click)="openAddDialog()" *ngIf="canChange()">
+        <mat-icon>add</mat-icon>
+        Add User
+      </button>
+    </div>
+  @if(this.list.length > 0) {
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+          <th>Password</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of this.list; track item.id) {
+          <tr>
+            <td>
+              <mat-icon class="user-avatar">person</mat-icon>
+              {{ item.fullName }}
+            </td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.role }}</td>
+            <td>{{ item.createdAt |date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ item.lastUpdatedAt |date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{ item.password }}</td>
+            <td>
+              @if(canChange()) {
+                <button class="edit-btn" appHoverShadow (click)="edit(item.id, item)">
+                  <mat-icon>edit</mat-icon>
+                  Edit
+                </button>
+                <button class="delete-btn" appHoverShadow (click)="openDeleteDialog(item.id)">
+                  <mat-icon>delete</mat-icon>
+                  Delete
+                </button>
+                
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  
 </div>

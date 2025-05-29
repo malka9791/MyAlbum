@@ -14,8 +14,8 @@ import axios from 'axios';
 // import { AuthService } from '../../services/auth.service';
 import { log } from 'console';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { Login } from '../models/login';
+import { AuthService } from '../../services/auth/auth.service';
+import { Login } from '../../models/login';
 @Component({
   selector: 'app-login',
   imports: [
@@ -37,12 +37,9 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       });
-      console.log(res);
-        if(res)
-        {
-        console.log(res);      
+      if (res) {
         this.route.navigate(['/']);
-        }
+      }
     } catch (err: any) {
       console.error(err);
       this.messege = 'failed, try again';

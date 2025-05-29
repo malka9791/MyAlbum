@@ -16,8 +16,10 @@ namespace Gallery.CORE
         public MappingProfile()
         {
             CreateMap<User,UserPostDto>().ReverseMap();
-          //  CreateMap<User, UserUpdateDto>().ReverseMap();
+            CreateMap<User, UserDtoSystem>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserUpdateDtoSystem>().ReverseMap();
+
 
             CreateMap<Image,ImagePostDto>().ReverseMap();
             CreateMap<Image, ImageDto>().ReverseMap();

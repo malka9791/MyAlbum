@@ -1,0 +1,317 @@
+.edit-user-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #e93345 0%, #c41e3a 100%);
+  border-radius: 20px 20px 0 0;
+  color: white;
+  box-shadow: 0 10px 30px rgba(233, 51, 69, 0.3);
+}
+
+.form-icon {
+  font-size: 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e93345, #c41e3a);
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.form-field:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom Material Form Field Styling */
+::ng-deep .form-field .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .form-field .mat-mdc-text-field-wrapper {
+  background: rgba(233, 51, 69, 0.02);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .form-field .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper {
+  background: rgba(233, 51, 69, 0.05);
+  box-shadow: 0 4px 12px rgba(233, 51, 69, 0.1);
+}
+
+::ng-deep .form-field .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  background: rgba(233, 51, 69, 0.08);
+  box-shadow: 0 6px 20px rgba(233, 51, 69, 0.15);
+}
+
+::ng-deep .form-field .mat-mdc-form-field-outline {
+  color: #e93345;
+}
+
+::ng-deep .form-field .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  color: #e93345;
+  border-width: 2px;
+}
+
+::ng-deep .form-field .mat-mdc-floating-label {
+  color: #e93345 !important;
+  font-weight: 500;
+}
+
+::ng-deep .form-field .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #e93345 !important;
+}
+
+/* Prefix Icons Styling */
+::ng-deep .form-field .mat-mdc-form-field-icon-prefix {
+  color: #e93345;
+  margin-right: 12px;
+}
+
+::ng-deep .form-field .mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-prefix {
+  color: #c41e3a;
+}
+
+/* Input Styling */
+::ng-deep .form-field .mat-mdc-input-element {
+  color: #2c3e50;
+  font-size: 16px;
+  padding: 16px 0;
+}
+
+::ng-deep .form-field .mat-mdc-input-element::placeholder {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+/* Select Styling */
+::ng-deep .form-field .mat-mdc-select {
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+::ng-deep .form-field .mat-mdc-select-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+::ng-deep .form-field .mat-mdc-select-arrow {
+  color: #e93345;
+}
+
+/* Password Toggle */
+.toggle-password {
+  cursor: pointer;
+  color: #e93345 !important;
+  transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+  color: #c41e3a !important;
+  transform: scale(1.1);
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.save-btn,
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 160px;
+  justify-content: center;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #e93345, #c41e3a) !important;
+  color: white !important;
+  box-shadow: 0 6px 20px rgba(233, 51, 69, 0.3);
+}
+
+.save-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(233, 51, 69, 0.4);
+}
+
+.cancel-btn {
+  color: #e93345 !important;
+  border-color: #e93345 !important;
+  background: transparent !important;
+}
+
+.cancel-btn:hover {
+  background: rgba(233, 51, 69, 0.1) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 51, 69, 0.2);
+}
+
+.save-btn mat-icon,
+.cancel-btn mat-icon {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-user-form {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .form-header {
+    padding: 20px;
+    margin-bottom: 0;
+  }
+
+  .form-header h2 {
+    font-size: 24px;
+  }
+
+  .form-icon {
+    font-size: 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .form-container {
+    padding: 25px;
+  }
+
+  .form-field {
+    margin-bottom: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .form-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+}
+
+/* Animation for form appearance */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.edit-user-form {
+  animation: slideInDown 0.6s ease-out;
+}
+
+/* Focus animations */
+::ng-deep .form-field .mat-mdc-form-field.mat-focused {
+  animation: focusPulse 0.3s ease-out;
+}
+
+@keyframes focusPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Success state animation */
+.save-btn:active {
+  animation: saveClick 0.2s ease-out;
+}
+
+@keyframes saveClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

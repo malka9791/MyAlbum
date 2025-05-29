@@ -1,80 +1,113 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
+import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/user';
+import { UserPost } from '../../models/userPost';
+import { EditUserComponent } from '../edit-user/edit-user.component';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, MatIconModule, MatDialogModule, DatePipe],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  constructor(private AuthService: AuthService, private route: Router) {}
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
+
   list: User[] = [];
-  messege!: string;
-  currentIdForEdit!: number;
+  message = '';
+  currentIdForEdit: number | null = null;
 
   ngOnInit(): void {
-    this.AuthService.getUsers().then((Users) => {
-      this.list = Users;
+    this.userService.getUsers().then((users) => {
+      this.list = users;
     });
   }
-  edit(id: number) {
+
+  edit(id: number, item: UserPost): void {
     this.currentIdForEdit = id;
-    // this.route.navigate([`/Users/:${User.id}`])
-    this.messege = '';
+    this.message = '';
+
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      data: { currentUser: item },
+    });
+
+    dialogRef.afterClosed().subscribe((result: UserPost | undefined) => {
+      if (result) {
+        this.save(result);
+      }
+    });
   }
-  Delete(id: number): void {
-    this.AuthService.deleteUser(id).subscribe({
-      next: (response) => {
-        console.log('success delete');
+
+  delete(id: number): void {
+    this.userService.deleteUser(id).subscribe({
+      next: () => {
+        alert('User deleted successfully.');
         this.list = this.list.filter((user) => user.id !== id);
       },
       error: (err) => {
         if (err.status === 403) {
-          debugger;
-          console.log('you cannt delete');
+          console.log('You do not have permission to delete this user.');
         } else {
-          console.error('שגיאה בעדכון הקורס:', err);
+          console.error('Error deleting user:', err);
         }
       },
     });
   }
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddUserComponent, {});
+  }
+  openDeleteDialog(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        id: id,
+      },
+    });
 
-  save(e: any) {
-    this.AuthService.updateUser(e.id, e).subscribe({
-      next: (response) => {
-        console.log('Success:', response);
-        this.AuthService.getUsers().then((users) => {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.delete(id);
+      }
+    });
+  }
+
+  save(userPost: UserPost): void {
+    if (!userPost.id) {
+      this.message = 'Missing user ID.';
+      return;
+    }
+
+    this.userService.editUser(userPost.id, userPost).subscribe({
+      next: () => {
+        this.userService.getUsers().then((users) => {
           this.list = users;
         });
-
-        this.currentIdForEdit = -1;
+        this.currentIdForEdit = null;
       },
       error: (err) => {
         if (err.status === 403) {
-          this.messege = 'אין לך הרשאה לעדכן את הקורס.';
+          this.message = 'You cannot change user details.';
         } else {
-          (this.messege = 'שגיאה בעדכון הקורס:'), err;
+          this.message = 'Error editing user: ' + err.message;
         }
       },
     });
   }
-  canChange = () => {
-    let role =
+
+  canChange(): boolean {
+    const role =
       typeof window !== 'undefined' && typeof sessionStorage !== 'undefined'
         ? sessionStorage.getItem('role')
         : null;
-    if (role == 'student') return false;
-    return true;
-  };
-  showLessons = (id: number) => {
-    this.route.navigate([`lesson/`,id]);
-  };
-  addLesson(id: number): void {
-    this.route.navigate([`addlesson/`,id]);
+    return role !== 'user';
   }
-
 }
-

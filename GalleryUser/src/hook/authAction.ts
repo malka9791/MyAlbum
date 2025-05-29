@@ -88,7 +88,6 @@ export const login =
     // מנקה את ה־sessionStorage
     sessionStorage.clear();
     window.dispatchEvent(new CustomEvent("sessionUpdated"));
-  
     // שולח action ל־reducer לאפס את ה־user
     dispatch({
       type: LOGIN_FAIL,

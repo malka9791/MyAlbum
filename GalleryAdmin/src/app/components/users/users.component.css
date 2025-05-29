@@ -1,82 +1,101 @@
-/* .User-details div {
-    margin-bottom: 8px;
-    font-size: 16px;
-  }
-  
-  .User-details strong {
-    color: #333;
-  }
-  
-  .edit-btn {
-    padding: 8px 15px;
-    background-color: #ff025f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 5px;
-  }
-  
-  .edit-btn:hover {
-    background-color: #ff025f;
-  }
-  
-  .edit-User {
-    /* margin:  15px 3px ; */
-/* border-radius: 8px; */
-/* } */
-/* עיצוב אזור פרטי הקורס */
-.User-details {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-  }
-  
-  .User-details div {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-  }
-  
-  .User-details strong {
-    color: #ff025f;
-    font-weight: bold;
-  }
-  
-  /* עיצוב כפתור עריכה */
-  .edit-User {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .edit-btn {
-    background-color: #ff025f;
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 5px;
-  }
-  
-  .edit-btn:hover {
-    background-color: #e4004f;
-  }
-  
-  .edit-btn:focus {
-    outline: none;
-  }
-  .container {
-    /* overflow-x: scroll; */
-    overflow: hidden;
-  }
-  
+
+.user-table {
+  /* width: 100%; */
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 15px auto;
+  box-shadow: 0 4px 12px rgba(255, 105, 135, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 1rem; */
+}
+
+.add-btn {
+  background-color: #f63f5d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.user-table th,
+.user-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ffdce0;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.user-table th {
+  background-color: #fcb6c9;
+  color: #333;
+  font-weight: 600;
+}
+
+.user-table tr:hover {
+  background-color: #ffe3eb;
+}
+
+.user-avatar {
+  vertical-align: middle;
+  margin-right: 8px;
+  color: #fcb6c9;
+  font-size: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-btn {
+  background-color: #fbb6c1;
+  color: #333;
+}
+
+.edit-btn:hover {
+  background-color: #f794a4;
+}
+
+.delete-btn {
+  background-color: #f67280;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e4505d;
+}
+
+.no-users {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+}

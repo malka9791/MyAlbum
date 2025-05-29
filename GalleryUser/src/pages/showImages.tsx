@@ -270,10 +270,7 @@ const ShowImages = () => {
   return (
     <Box
       sx={{
-        // mt:5,
         width: "100%",
-        // maxWidth: "100%",
-        // margin: 0,
         padding: 0,
         // boxSizing: "border-box",
         // bgcolor: "#f8f9fa",
@@ -956,8 +953,6 @@ const ShowImages = () => {
                       sx={{ fontSize: 60, color: "white" }}
                     />
                   </Box>
-                  {/* Update the "No Images" message to reflect search results (around line 600) */}
-                  {/* Replace the Typography that says "No Images in This Album" with: */}
                   <Typography
                     variant="h4"
                     gutterBottom
@@ -965,47 +960,96 @@ const ShowImages = () => {
                     color="#1a1a2e"
                     sx={{ mb: 2, letterSpacing: "-0.5px" }}
                   >
-                    {searchQuery
-                      ? "No Images Match Your Search"
-                      : "No Images in This Album"}
+                    "No Images in This Album"
                   </Typography>
-                  {/* Update the message below it: */}
                   <Typography
                     variant="body1"
                     color="text.secondary"
                     sx={{ mb: 4, maxWidth: "500px", mx: "auto" }}
                   >
-                    {searchQuery
-                      ? "Try adjusting your search terms or clear the search to see all images."
-                      : "Start uploading photos to this album to showcase your memories. It's easy to get started!"}
+                    "Start uploading photos to this album to showcase your
+                    memories. It's easy to get started!"
                   </Typography>
-                  {/* Add a clear search button if there's a search query: */}
-                  {searchQuery && (
-                    <Button
-                      onClick={() => setSearchQuery("")}
-                      variant="outlined"
-                      sx={{
-                        color: "#666",
-                        borderColor: "#ddd",
-                        borderRadius: "12px",
-                        textTransform: "none",
-                        mb: 2,
-                        "&:hover": {
-                          borderColor: "#bbb",
-                          backgroundColor: "rgba(0,0,0,0.03)",
-                        },
-                      }}
-                    >
-                      Clear Search
-                    </Button>
-                  )}
                 </Box>
               </Fade>
             )}
           </>
         )}
       </Box>
-
+      {searchQuery && filteredImages.length === 0 && !loading ? (
+        <Fade in={true} timeout={500}>
+          <Box
+            sx={{
+              textAlign: "center",
+              py: 8,
+              px: 4,
+              bgcolor: "white",
+              borderRadius: "24px",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+              maxWidth: "700px",
+              mx: "auto",
+              mt: 2,
+            }}
+          >
+            <Box
+              sx={{
+                width: "120px",
+                height: "120px",
+                borderRadius: "60px",
+                background: "linear-gradient(45deg, #e93345 30%, #ff6b6b 90%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mx: "auto",
+                mb: 4,
+                boxShadow: "0 10px 20px rgba(233, 51, 69, 0.3)",
+              }}
+            >
+              <AddPhotoAlternateIcon sx={{ fontSize: 60, color: "white" }} />
+            </Box>
+            {/* Update the "No Images" message to reflect search results (around line 600) */}
+            {/* Replace the Typography that says "No Images in This Album" with: */}
+            <Typography
+              variant="h4"
+              gutterBottom
+              fontWeight={700}
+              color="#1a1a2e"
+              sx={{ mb: 2, letterSpacing: "-0.5px" }}
+            >
+              "No Images Match Your Search"
+            </Typography>
+            {/* Update the message below it: */}
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mb: 4, maxWidth: "500px", mx: "auto" }}
+            >
+              ? "Try adjusting your search terms or clear the search to see all
+              images."
+            </Typography>
+            {/* Add a clear search button if there's a search query: */}
+            <Button
+              onClick={() => setSearchQuery("")}
+              variant="outlined"
+              sx={{
+                color: "#666",
+                borderColor: "#ddd",
+                borderRadius: "12px",
+                textTransform: "none",
+                mb: 2,
+                "&:hover": {
+                  borderColor: "#bbb",
+                  backgroundColor: "rgba(0,0,0,0.03)",
+                },
+              }}
+            >
+              Clear Search
+            </Button>
+          </Box>
+        </Fade>
+      ) : (
+        <></>
+      )}
       {/* Image Options Menu */}
       <Menu
         anchorEl={anchorEl}

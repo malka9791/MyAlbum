@@ -1,0 +1,39 @@
+<mat-dialog-content class="dialog-content">
+  <h2>Edit User</h2>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Full Name</mat-label>
+    <input matInput [(ngModel)]="currentUser.fullName" placeholder="Full name" />
+    <mat-icon matPrefix>person</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="currentUser.email" type="email" placeholder="Email" />
+    <mat-icon matPrefix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="currentUser.password" placeholder="Password" />
+    <mat-icon matPrefix>lock</mat-icon>
+    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+      {{ hidePassword ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="currentUser.role">
+      <mat-option value="Admin">Admin</mat-option>
+      <mat-option value="User">User</mat-option>
+      <mat-option value="Manager">Manager</mat-option>
+    </mat-select>
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="saveData()">Save</button>
+</mat-dialog-actions>

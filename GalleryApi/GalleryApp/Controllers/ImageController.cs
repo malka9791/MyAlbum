@@ -59,6 +59,7 @@ namespace Gallery.API.Controllers
             var dto=_mapper.Map<Image>(image);
             await _imageService.AddValueAsync(dto);
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id,[FromBody] ImageUpdateDto image)
         {

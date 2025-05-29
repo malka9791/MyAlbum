@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
+  Container,
   InputAdornment,
   Stack,
   TextField,
@@ -70,100 +71,196 @@ const UpdateAlbum = () => {
     }
   };
   return (
-    <>
+    // <Box
+    //   sx={{
+    //     minHeight: "100vh",
+    //     backgroundColor: "#f3f3f3",
+    //     paddingTop: 6,
+    //     paddingBottom: 6,
+    //   }}
+    // >
+    <Container maxWidth="sm">
       <Box
         sx={{
-          padding: 3,
-          width: 400,
-          borderRadius: 2,
-          boxShadow: 3,
-          backgroundColor: "rgba(255, 255, 255, 0.98)",
-          textAlign: "center",
-          opacity: 0.95,
+          backgroundColor: "#ffffff",
+          padding: 4,
+          borderRadius: 4,
+          boxShadow: "0 8px 30px rgba(0,0,0,0.1)",
         }}
       >
-        <Typography variant="h4" color="#e93345" gutterBottom>
+        <Typography
+          variant="h3"
+          color="#e93345"
+          gutterBottom
+          textAlign="center"
+          sx={{
+            fontWeight: "bold",
+            marginBottom: 4,
+            textShadow: "0 2px 8px rgba(233, 51, 69, 0.2)",
+            background: "linear-gradient(45deg, #e93345, #d82d42)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
           Update {album?.name} Album
         </Typography>
-        <TextField
-          label="Name"
-          placeholder={album?.name ? album.name : ""}
-          variant="outlined"
-          fullWidth
-          {...register("name")}
-          error={!!errors.name}
-          helperText={errors.name?.message}
-          margin="normal"
-          InputLabelProps={{ style: { color: "#e93345" } }}
-          InputProps={{
-            style: { color: "black" },
-            startAdornment: (
-              <InputAdornment position="start">
-                <Person sx={{ color: "#e93345" }} />
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: errors.name ? "red" : "#e93345",
-              },
-              "&:hover fieldset": { borderColor: "#d0d0d0" },
-              "&.Mui-focused fieldset": {
-                borderColor: "#d0d0d0 !important",
-              },
-            },
-          }}
-        />
 
-        <TextField
-          label="Description"
-          id="filled-multiline-static"
-          fullWidth
-          multiline
-          placeholder={album?.description ? album.description : ""}
-          rows={2}
-          {...register("description")}
-          error={!!errors.description}
-          helperText={errors.description?.message}
-          margin="normal"
-          InputLabelProps={{ style: { color: "#e93345" } }}
-          InputProps={{
-            style: { backgroundColor: "#ffff", color: "black" },
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: errors.description ? "red" : "#e93345",
-              },
-              "&:hover fieldset": { borderColor: "#d0d0d0" },
-              "&.Mui-focused fieldset": {
-                borderColor: "#d0d0d0 !important",
-              },
-            },
-          }}
-        />
-
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center"
-          sx={{ marginTop: 2 }}
-        >
-          <Button
-            onClick={handleSubmit(onSubmit)}
-            variant="contained"
+        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            label="Album Name"
+            variant="outlined"
             fullWidth
-            sx={{
-              backgroundColor: "#d0d0d0",
-              "&:hover": { backgroundColor: "#d0d0d0", opacity: 0.9 },
+            defaultValue={album?.name}
+            {...register("name")}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+            margin="normal"
+            InputLabelProps={{
+              style: {
+                color: "#e93345",
+                fontWeight: "600",
+                fontSize: "18px",
+              },
             }}
+            InputProps={{
+              style: {
+                color: "black",
+                fontSize: "16px",
+                fontWeight: "500",
+              },
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Person sx={{ color: "#e93345", fontSize: 28 }} />
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "16px",
+                backgroundColor: "#fff",
+                boxShadow: "0 2px 8px rgba(233, 51, 69, 0.1)",
+                transition: "all 0.3s ease",
+                "& fieldset": {
+                  borderColor: errors.name ? "#d32f2f" : "#e93345",
+                  borderWidth: "2px",
+                },
+                "&:hover": {
+                  boxShadow: "0 4px 12px rgba(233, 51, 69, 0.2)",
+                  transform: "translateY(-2px)",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#f1ede9",
+                  borderWidth: "2px",
+                },
+                "&.Mui-focused": {
+                  boxShadow: "0 6px 20px rgba(233, 51, 69, 0.3)",
+                  transform: "translateY(-2px)",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#e93345 !important",
+                  borderWidth: "3px",
+                },
+              },
+            }}
+          />
+
+          <TextField
+            label="Description"
+            variant="outlined"
+            multiline
+            rows={4}
+            fullWidth
+            defaultValue={album?.description}
+            {...register("description")}
+            error={!!errors.description}
+            helperText={errors.description?.message}
+            margin="normal"
+            InputLabelProps={{
+              style: {
+                color: "#e93345",
+                fontWeight: "600",
+                fontSize: "18px",
+              },
+            }}
+            InputProps={{
+              style: {
+                backgroundColor: "#fff",
+                color: "black",
+                fontSize: "16px",
+                fontWeight: "500",
+              },
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "16px",
+                boxShadow: "0 2px 8px rgba(233, 51, 69, 0.1)",
+                transition: "all 0.3s ease",
+                "& fieldset": {
+                  borderColor: errors.description ? "#d32f2f" : "#e93345",
+                  borderWidth: "2px",
+                },
+                "&:hover": {
+                  boxShadow: "0 4px 12px rgba(233, 51, 69, 0.2)",
+                  transform: "translateY(-2px)",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#f1ede9",
+                  borderWidth: "2px",
+                },
+                "&.Mui-focused": {
+                  boxShadow: "0 6px 20px rgba(233, 51, 69, 0.3)",
+                  transform: "translateY(-2px)",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#e93345 !important",
+                  borderWidth: "3px",
+                },
+              },
+            }}
+          />
+
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+            sx={{ marginTop: 4 }}
           >
-            Save
-          </Button>
-        </Stack>
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              size="large"
+              sx={{
+                background: "linear-gradient(45deg, #e93345, #d82d42)",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                padding: "16px 0",
+                borderRadius: "16px",
+                textTransform: "none",
+                boxShadow: "0 6px 20px rgba(233, 51, 69, 0.4)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                "&:hover": {
+                  background: "linear-gradient(45deg, #d82d42, #c22d42)",
+                  boxShadow: "0 8px 25px rgba(233, 51, 69, 0.5)",
+                  transform: "translateY(-3px) scale(1.02)",
+                },
+                "&:active": {
+                  transform: "translateY(-1px) scale(0.98)",
+                },
+              }}
+            >
+              Save Changes
+            </Button>
+          </Stack>
+        </Box>
       </Box>
-    </>
+    </Container>
+    // </Box>
   );
 };
 export default UpdateAlbum;

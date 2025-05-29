@@ -20,6 +20,16 @@ const Header = () => {
   const { name, token } = useContext(UserContext);
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
+
+  const handleLogOut = () => {
+    try {
+      dispatch(logout());
+      nav("/");
+    } catch (err) {
+      console.error("failed", err);
+    }
+  };
+
   return (
     <>
       <AppBar
@@ -77,7 +87,7 @@ const Header = () => {
                   {/* Albums Button */}
                   <Box sx={{ my: 2, px: 2 }}>
                     <Button
-                      onClick={()=>dispatch(logout())}
+                      onClick={() => handleLogOut()}
                       sx={{
                         color: "#e93345",
                         display: "flex",

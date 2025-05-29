@@ -1,0 +1,431 @@
+/* Import modern fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Global container styling */
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='nonzero'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M60 60c0-16.569-13.431-30-30-30s-30 13.431-30 30 13.431 30 30 30 30-13.431 30-30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: backgroundMove 20s ease-in-out infinite;
+  pointer-events: none;
+}
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+  padding: 20px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes backgroundMove {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-20px, -20px) rotate(1deg);
+  }
+  66% {
+    transform: translate(20px, -10px) rotate(-1deg);
+  }
+}
+
+/* Login title styling */
+.login-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff025f, #ff6b9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.login-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff025f, #ff6b9d);
+  border-radius: 2px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scaleX(1.2);
+  }
+}
+
+/* Login form container */
+.login-form {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff025f, #ff6b9d, #ff025f);
+  background-size: 200% 100%;
+  animation: slideGradient 3s ease-in-out infinite;
+}
+
+@keyframes slideGradient {
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+}
+
+/* Form container */
+.form-container {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Form field styling */
+.form-field {
+  width: 100%;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+/* Angular Material form field overrides */
+::ng-deep .mat-form-field {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 16px 20px 16px 0;
+  border-top: none;
+  border-bottom: 2px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 12px 12px 0 0;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .mat-form-field-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  top: 20px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep
+  .mat-form-field-label.mat-form-field-can-float.mat-form-field-should-float {
+  transform: translateY(-20px) scale(0.85);
+  color: #ff025f;
+  font-weight: 600;
+}
+
+::ng-deep .mat-input-element {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #374151;
+  background: transparent;
+  padding: 16px 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+::ng-deep .mat-input-element:focus {
+  border-color: #ff025f;
+  box-shadow: 0 0 0 4px rgba(255, 2, 95, 0.1);
+  transform: translateY(-1px);
+}
+
+::ng-deep .mat-input-element::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Remove default Material underline */
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-form-field-ripple {
+  display: none;
+}
+
+/* Error styling */
+::ng-deep .mat-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: slideInError 0.3s ease;
+}
+
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Password toggle button */
+::ng-deep .mat-icon-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+::ng-deep .mat-icon-button:hover {
+  color: #ff025f;
+  background: rgba(255, 2, 95, 0.1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+::ng-deep .mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Submit button styling */
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff025f, #ff4081);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 18px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0 4px 12px rgba(255, 2, 95, 0.3);
+}
+
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 2, 95, 0.4);
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submit-btn:disabled {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:disabled::before {
+  display: none;
+}
+
+/* Message styling */
+p {
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #64748b;
+}
+
+/* New user section */
+.is_new {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(229, 231, 235, 0.6);
+}
+
+.is_new p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+#button_is_new:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+/* Floating background elements */
+.form-container::before,
+.form-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 2, 95, 0.05),
+    rgba(255, 107, 157, 0.05)
+  );
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.form-container::before {
+  width: 80px;
+  /* height: 80px; */
+  top: 20%;
+  right: -20px;
+  animation-delay: -2s;
+}
+
+.form-container::after {
+  width: 120px;
+  /* height: 120px; */
+  bottom: 20%;
+  left: -30px;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .wrap {
+    padding: 16px;
+  }
+
+  .login-title {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .login-form {
+    max-width: 100%;
+  }
+
+  ::ng-deep .mat-input-element {
+    padding: 14px 16px;
+  }
+
+  .submit-btn {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Additional hover effects for form fields */
+.form-field:hover ::ng-deep .mat-input-element {
+  border-color: rgba(255, 2, 95, 0.3);
+}
+
+/* Focus within form field */
+.form-field:focus-within ::ng-deep .mat-form-field-label {
+  color: #ff025f;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

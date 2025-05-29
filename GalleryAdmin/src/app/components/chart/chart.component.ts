@@ -3,7 +3,8 @@ import { NgxChartsModule, Color, ScaleType } from '@swimlane/ngx-charts';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-chart',
@@ -12,7 +13,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './chart.component.css',
 })
 export class ChartComponent implements OnInit {
-  constructor(private AuthService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
   view: [number, number] = [950, 500];
 
   chartData: any[] = [];
@@ -22,9 +26,9 @@ export class ChartComponent implements OnInit {
   showYAxis = true;
   legend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'חודש';
+  xAxisLabel = 'month';
   showYAxisLabel = true;
-  yAxisLabel = 'כמות';
+  yAxisLabel = 'amount Of New';
   colorScheme: Color = {
     name: 'customScheme',
     selectable: true,
@@ -33,18 +37,18 @@ export class ChartComponent implements OnInit {
   };
 
   months = [
-    { key: '01', label: 'ינואר' },
-    { key: '02', label: 'פברואר' },
-    { key: '03', label: 'מרץ' },
-    { key: '04', label: 'אפריל' },
-    { key: '05', label: 'מאי' },
-    { key: '06', label: 'יוני' },
-    { key: '07', label: 'יולי' },
-    { key: '08', label: 'אוגוסט' },
-    { key: '09', label: 'ספטמבר' },
-    { key: '10', label: 'אוקטובר' },
-    { key: '11', label: 'נובמבר' },
-    { key: '12', label: 'דצמבר' },
+    { key: '01', label: 'Jan' },
+    { key: '02', label: 'Feb' },
+    { key: '03', label: 'Mar' },
+    { key: '04', label: 'Apr' },
+    { key: '05', label: 'May' },
+    { key: '06', label: 'Jun' },
+    { key: '07', label: 'Jul' },
+    { key: '08', label: 'Aug' },
+    { key: '09', label: 'Sep' },
+    { key: '10', label: 'Oct' },
+    { key: '11', label: 'Nov' },
+    { key: '12', label: 'Dec' },
   ];
 
   ngOnInit(): void {
@@ -53,8 +57,8 @@ export class ChartComponent implements OnInit {
 
   async loadData() {
     const [users, images] = await Promise.all([
-      this.AuthService.getUsers(),
-      this.AuthService.getImages(),
+      this.userService.getUsers(),
+      this.authService.getImages(),
     ]);
 
     const monthlyMap: Record<string, { users: number; images: number }> = {};
@@ -84,8 +88,8 @@ export class ChartComponent implements OnInit {
     this.chartData = this.months.map(({ key, label }) => ({
       name: label,
       series: [
-        { name: 'משתמשים חדשים', value: monthlyMap[key].users },
-        { name: 'תמונות שהועלו', value: monthlyMap[key].images },
+        { name: 'New Users ', value: monthlyMap[key].users },
+        { name: 'Uploaded photos', value: monthlyMap[key].images },
       ],
     }));
   }

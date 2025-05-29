@@ -1,4 +1,3 @@
-
 import {
   Box,
   Container,
@@ -52,22 +51,20 @@ const theme = createTheme({
   direction: "rtl",
 });
 
-
-
-
 export default function MyAlbumHomepage() {
-
   const features = [
     {
       icon: <Cloud sx={{ fontSize: 40, color: "#2196f3" }} />,
       title: "Secure Cloud Storage",
-      description: "Your photos are safely stored in the cloud with automatic backup",
+      description:
+        "Your photos are safely stored in the cloud with automatic backup",
       bgColor: "#e3f2fd",
     },
     {
       icon: <Palette sx={{ fontSize: 40, color: "#9c27b0" }} />,
       title: "AI Album Design",
-      description: "Give a description and let AI generate a beautifully designed album",
+      description:
+        "Give a description and let AI generate a beautifully designed album",
       bgColor: "#f3e5f5",
     },
     {
@@ -79,7 +76,8 @@ export default function MyAlbumHomepage() {
     {
       icon: <Security sx={{ fontSize: 40, color: "#ff9800" }} />,
       title: "Full Privacy",
-      description: "Complete control over who sees what, with advanced privacy protection",
+      description:
+        "Complete control over who sees what, with advanced privacy protection",
       bgColor: "#fff3e0",
     },
     {
@@ -91,14 +89,11 @@ export default function MyAlbumHomepage() {
     {
       icon: <Camera sx={{ fontSize: 40, color: "#607d8b" }} />,
       title: "Easy Management",
-      description: "A simple and intuitive interface to manage your albums and photos",
+      description:
+        "A simple and intuitive interface to manage your albums and photos",
       bgColor: "#eceff1",
     },
   ];
-  
-
-
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -175,7 +170,7 @@ export default function MyAlbumHomepage() {
                         px: 4,
                       }}
                     >
-                      ?
+                      Upload Images
                     </Button>
                     <Button
                       variant="outlined"
@@ -219,7 +214,9 @@ export default function MyAlbumHomepage() {
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Check sx={{ fontSize: 20 }} />
-                      <Typography variant="body2">Setup in 30 seconds</Typography>
+                      <Typography variant="body2">
+                        Setup in 30 seconds
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -306,7 +303,7 @@ export default function MyAlbumHomepage() {
             </Grid>
           </Container>
         </Box>
-  
+
         {/* Features Section */}
         <Container maxWidth="lg" sx={{ py: 10 }}>
           <Box sx={{ textAlign: "center", mb: 8 }}>
@@ -325,7 +322,7 @@ export default function MyAlbumHomepage() {
               fun and simple
             </Typography>
           </Box>
-  
+
           <Grid container spacing={4}>
             {features.map((feature, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
@@ -372,7 +369,7 @@ export default function MyAlbumHomepage() {
             ))}
           </Grid>
         </Container>
-  
+
         {/* How it Works */}
         <Box sx={{ bgcolor: "grey.50", py: 10 }}>
           <Container maxWidth="lg">
@@ -387,7 +384,7 @@ export default function MyAlbumHomepage() {
                 Three simple steps to perfect albums
               </Typography>
             </Box>
-  
+
             <Grid container spacing={6}>
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
@@ -425,7 +422,7 @@ export default function MyAlbumHomepage() {
                   </Typography>
                 </Box>
               </Grid>
-  
+
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <Box sx={{ position: "relative", mb: 4 }}>
@@ -457,12 +454,12 @@ export default function MyAlbumHomepage() {
                     Give AI a description
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    Write a short description for the uploaded photo – "Wedding",
-                    "Family Trip", or any other idea.
+                    Write a short description for the uploaded photo –
+                    "Wedding", "Family Trip", or any other idea.
                   </Typography>
                 </Box>
               </Grid>
-  
+
               <Grid item xs={12} md={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <Box sx={{ position: "relative", mb: 4 }}>
@@ -502,7 +499,7 @@ export default function MyAlbumHomepage() {
             </Grid>
           </Container>
         </Box>
-  
+
         {/* CTA Section */}
         <Box
           sx={{
@@ -520,7 +517,8 @@ export default function MyAlbumHomepage() {
                 Ready to start saving your moments?
               </Typography>
               <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-                Join thousands of users already creating amazing albums with MYALBUM
+                Join thousands of users already creating amazing albums with
+                MYALBUM
               </Typography>
               <Box
                 sx={{
@@ -571,11 +569,14 @@ export default function MyAlbumHomepage() {
               <Typography variant="body2" sx={{ mt: 3, opacity: 0.8 }}>
                 Free • Photo Security
               </Typography>
+              <Typography variant="body1" sx={{ mt: 3, opacity: 0.8 }}>
+                © MyAlbum System by m. Elkayam {new Date().getFullYear()} | All
+                rights reserved
+              </Typography>
             </Box>
           </Container>
         </Box>
       </Box>
     </ThemeProvider>
   );
-  
 }

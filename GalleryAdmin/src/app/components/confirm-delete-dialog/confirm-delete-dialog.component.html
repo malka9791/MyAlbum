@@ -1,0 +1,12 @@
+<div class="container">
+<mat-dialog-content>
+    <h2 mat-dialog-title>Delete User </h2>
+  <p class="sure">Are you sure you want to delete the user?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button  class="cancel-btn" (click)="onCancel()">ביטול / Cancel</button>
+  <button mat-raised-button  mat-flat-button
+        color="primary"
+        class="save-btn" (click)="onConfirm()">מחק / Delete</button>
+</mat-dialog-actions>
+</div>

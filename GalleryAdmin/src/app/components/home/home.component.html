@@ -1,35 +1,80 @@
-<!-- home.component.html -->
-<div class="dashboard-container">
-    <header class="dashboard-header">
-      <h1>מערכת ניהול אלבומי תמונות</h1>
-      <button class="login-btn">כניסה</button>
-    </header>
-  
-    <section class="dashboard-stats">
-      
-      <div class="card">
-        <h3>תמונות ומשתמשים  חדשות</h3>
-    <app-chart></app-chart>
-      </div>
-    </section>
-  
-    <section class="dashboard-users">
-      <h2>רשימת משתמשים</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>שם</th>
-            <th>אימייל</th>
-            <th>תאריך הרשמה</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr *ngFor="let user of users">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.registered | date:'dd/MM/yyyy' }}</td>
-          </tr> -->
-        </tbody>
-      </table>
-    </section>
-  </div>
+<div class="background">
+    <div class="admin-login-wrapper">
+        <!-- Left Section -->
+        <div class="login-container">
+            <div class="header-decoration"></div>
+            <div class="logo-section">
+                <h1 class="title">MyAlbum Admin</h1>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <h3 class="section-title">Management Features</h3>
+                <div class="feature-card">
+                    <i class="material-icons">people</i>
+                    <div class="feature-text">
+                        <span class="feature-title">User Management</span>
+                        <span class="feature-description">Manage designers and clients</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="material-icons">collections</i>
+                    <div class="feature-text">
+                        <span class="feature-title">Albums And Pictures Control</span>
+                        <span class="feature-description">Review and moderate content</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="material-icons">insights</i>
+                    <div class="feature-text">
+                        <span class="feature-title">Analytics</span>
+                        <span class="feature-description">Track platform performance</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="material-icons">security</i>
+                    <div class="feature-text">
+                        <span class="feature-title">Security Center</span>
+                        <span class="feature-description">Monitor system security</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="material-icons">settings</i>
+                    <div class="feature-text">
+                        <span class="feature-title">System Settings</span>
+                        <span class="feature-description">Configure platform settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="action-section">
+            <!-- Login Section -->
+            <div class="login-section">
+                <div class="login-info">
+                    <p>Access the admin dashboard to manage your platform</p>
+                </div>
+                <button mat-raised-button class="action-button" (click)="navigate('/login')">
+                    <mat-icon>login</mat-icon>
+                    Admin Login
+                </button>
+                <button mat-raised-button class="action-button secondary" (click)="navigate('/')">
+                    <mat-icon>help</mat-icon>
+                    Support
+                </button>
+            </div>
+        </div>
+        @if(getIsValidChart())
+        {
+        <app-chart></app-chart>
+        }
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <p>MyAlbum Admin System © {{ currentYear }} | All rights reserved</p>
+        </div>
+    </div>
+</div>

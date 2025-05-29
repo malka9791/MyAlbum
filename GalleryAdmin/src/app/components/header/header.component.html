@@ -1,31 +1,29 @@
 <header>
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="/home">
-            <mat-icon>home</mat-icon> Home
-          </a>
-        </li>
-        <li>
-          <a routerLink="/signup">
-            <mat-icon>person_add</mat-icon> Graph 
-          </a>
-        </li>
-        <li>
-          <a routerLink="/courses">
-            <mat-icon>menu_book</mat-icon> Users
-          </a>
-        </li>
-        <li>
-          <a routerLink="/login">
-            <mat-icon>login</mat-icon> Login
-          </a>
-        </li>
-        
-      </ul>
-    </nav>
-    <div class="date">
-        <p>Current Date: {{ currentDate | dateFormat }}</p>
-      </div>
-  </header>
-  <!-- <router-outlet></router-outlet> -->
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/home">
+          <mat-icon>home</mat-icon> Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/chart">
+          <mat-icon>bar_chart</mat-icon> Chart
+        </a>
+      </li>
+      <li>
+        <a routerLink="/myUsers">
+          <mat-icon>group</mat-icon> Users
+        </a>
+      </li>
+      <li>
+        <a routerLink="/login">
+          <mat-icon>login</mat-icon> Login
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="date">
+    <p>Current Date: {{ currentDate | dateFormat }}</p>
+  </div>
+</header>
