@@ -109,6 +109,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+app.UseRouting();
 app.UseCors("MyPolicy");
 
 // Configure the HTTP request pipeline.
