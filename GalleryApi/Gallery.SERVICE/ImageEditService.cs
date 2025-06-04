@@ -27,7 +27,7 @@ public class ImageEditService : IImageEditService
             model = "gpt-4o-mini",
             messages = new[]
             {
-            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה שמש לב סמיילי או כיתוב אבל אני כן מעדיף שיהיה משהו שלא דוקא כיתוב.  אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
+            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה מסגרת בלון לב סמיילי או כיתוב אבל אני כן מעדיף שיהיה משהו שלא דוקא כיתוב.  אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
             new { role = "user", content = $"התיאור של התמונה הוא: {description}. מה כדאי להוסיף כאלמנט גרפי?" }
         }
         };
@@ -83,7 +83,7 @@ public class ImageEditService : IImageEditService
         Console.WriteLine("Image URL: " + imageUrl);
 
         if (string.IsNullOrEmpty(transformation))
-            return new AiAnalysisResult(imageUrl, $"{suggestion} .; {englishText}");
+            return new AiAnalysisResult(imageUrl, $"{suggestion}  {englishText}");
         ;
 
         // 3. יצירת URL חדש עם טרנספורמציה מסוג fetch
