@@ -64,10 +64,9 @@ public class ImageEditService : IImageEditService
           lower.Contains("heart") || lower.Contains("לב") ? "l_emoji_heart_diy6wg,w_300,g_south_east" :
           lower.Contains("smile") || lower.Contains("סמיילי") ? "l_smile_n6jsyt,w_400,g_south_east" :
           !string.IsNullOrWhiteSpace(englishText) ? $"l_text:Arial_100:{englishText},co_white,g_south" :
-          lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frame_xqrskn,w_1.0,h_1.0,g_center,fl_relative" :
-          lower.Contains("balloon") || lower.Contains("בלון") ? "l_ballon_o8qebf,w_300,g_south_west" :
+          lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frame_x83xdk,w_1.0,h_1.0,g_center,fl_relative" :
+          lower.Contains("balloon") || lower.Contains("בלון") ? "l_ballon_yklarj,w_320,g_north_west" :
           "";
-
 
 
         }
@@ -88,7 +87,7 @@ public class ImageEditService : IImageEditService
         var encodedImageUrl = Uri.EscapeDataString(imageUrl);
         var decoratedUrl = $"https://res.cloudinary.com/{cloudName}/image/fetch/{transformation}/{encodedImageUrl}";
 
-        AiAnalysisResult res = new AiAnalysisResult(decoratedUrl, $"{suggestion} ");
+        AiAnalysisResult res = new AiAnalysisResult(decoratedUrl, $"{suggestion}");
         return res;
     }
 
