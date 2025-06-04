@@ -27,7 +27,7 @@ public class ImageEditService : IImageEditService
             model = "gpt-4o-mini",
             messages = new[]
             {
-            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה שמש לב סמיילי או כיתוב. אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
+            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה שמש לב סמיילי או כיתוב אבל אני כן מעדיף שיהיה משהו שלא דוקא כיתוב.  אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
             new { role = "user", content = $"התיאור של התמונה הוא: {description}. מה כדאי להוסיף כאלמנט גרפי?" }
         }
         };
@@ -43,6 +43,7 @@ public class ImageEditService : IImageEditService
         string transformation = "";
         var suggestion = "";
         using var doc = JsonDocument.Parse(responseContent);
+        string englishText = "";
         if (doc.RootElement.TryGetProperty("choices", out var choicesElement) &&
             choicesElement.GetArrayLength() > 0 &&
             choicesElement[0].TryGetProperty("message", out var messageElement) &&
@@ -51,7 +52,6 @@ public class ImageEditService : IImageEditService
             
             suggestion = contentElement.GetString()?.ToLower() ?? "";
             var match = Regex.Match(suggestion, @"[a-z\s]+");
-            string englishText = "";
             if (match.Success)
             {
                 englishText = match.Value.Trim();
@@ -64,7 +64,7 @@ public class ImageEditService : IImageEditService
             lower.Contains("heart") || lower.Contains("לב") ? "l_emoji_heart_diy6wg,w_300,g_south_east" :
             lower.Contains("star") || lower.Contains("כוכב") ? "l_star_icon,w_400,h_400,g_north_west" :
             lower.Contains("smile") || lower.Contains("סמיילי") ? "smile,w_400,g_south_east" :
-                        lower.Contains("text") || englishText != "" ? $"l_text:Arial_60:{englishText},co_white,g_south" :
+            !string.IsNullOrWhiteSpace(englishText) ? $"l_text:Arial_100:{englishText},co_white,g_south" :
             lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frames:fancy_border,g_center" :
             lower.Contains("party") || lower.Contains("מסיבה") ? "l_party_icon,w_300,g_center" :
             lower.Contains("flower") || lower.Contains("פרח") ? "l_flower_icon,w_400,h_400,g_north" :
@@ -83,7 +83,7 @@ public class ImageEditService : IImageEditService
         Console.WriteLine("Image URL: " + imageUrl);
 
         if (string.IsNullOrEmpty(transformation))
-            return new AiAnalysisResult(imageUrl, suggestion);
+            return new AiAnalysisResult(imageUrl, $"{suggestion} .; {englishText}");
         ;
 
         // 3. יצירת URL חדש עם טרנספורמציה מסוג fetch
