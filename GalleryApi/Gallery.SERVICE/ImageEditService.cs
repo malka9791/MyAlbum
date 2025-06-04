@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Gallery.CORE.Models;
 using Gallery.CORE.Services;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,7 @@ public class ImageEditService : IImageEditService
             model = "gpt-4o-mini",
             messages = new[]
             {
-            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוכמא שמש לב סמיילי או כיתוב כלשהו להוסיף לתמונה." },
+            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה שמש לב סמיילי או כיתוב. אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
             new { role = "user", content = $"התיאור של התמונה הוא: {description}. מה כדאי להוסיף כאלמנט גרפי?" }
         }
         };
@@ -47,16 +48,23 @@ public class ImageEditService : IImageEditService
             choicesElement[0].TryGetProperty("message", out var messageElement) &&
             messageElement.TryGetProperty("content", out var contentElement))
         {
+            
             suggestion = contentElement.GetString()?.ToLower() ?? "";
+            var match = Regex.Match(suggestion, @"[a-z\s]+");
+            string englishText = "";
+            if (match.Success)
+            {
+                englishText = match.Value.Trim();
+            }
 
-            // 2. תרגום ההצעה לטרנספורמציה ב־Cloudinary
-            string lower = suggestion?.ToLower() ?? "";
+                // 2. תרגום ההצעה לטרנספורמציה ב־Cloudinary
+                string lower = suggestion?.ToLower() ?? "";
 
             transformation =
             lower.Contains("heart") || lower.Contains("לב") ? "l_emoji_heart_diy6wg,w_300,g_south_east" :
-            lower.Contains("text") || lower.Contains("טקסט") ? "l_text:Arial_60:Hello!,co_white,g_south" :
             lower.Contains("star") || lower.Contains("כוכב") ? "l_star_icon,w_400,h_400,g_north_west" :
-            lower.Contains("smile") || lower.Contains("חיוך") ? "smile,w_400,g_south_east" :
+            lower.Contains("smile") || lower.Contains("סמיילי") ? "smile,w_400,g_south_east" :
+                        lower.Contains("text") || englishText != "" ? $"l_text:Arial_60:{englishText},co_white,g_south" :
             lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frames:fancy_border,g_center" :
             lower.Contains("party") || lower.Contains("מסיבה") ? "l_party_icon,w_300,g_center" :
             lower.Contains("flower") || lower.Contains("פרח") ? "l_flower_icon,w_400,h_400,g_north" :
