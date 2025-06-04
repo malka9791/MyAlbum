@@ -27,7 +27,7 @@ public class ImageEditService : IImageEditService
             model = "gpt-4o-mini",
             messages = new[]
             {
-            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה מסגרת בלון לב סמיילי או כיתוב אבל אני כן מעדיף שיהיה משהו שלא דוקא כיתוב.  אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
+            new { role = "system", content = "אתה עוזר גרפי מוסמך. לפי תיאור טקסטואלי של תמונה, תציע אלמנט גרפי (אימוג'י, טקסט, מסגרת) לדוגמה  בלון לב סמיילי או כיתוב אבל אני כן מעדיף שיהיה משהו שלא דוקא כיתוב.  אם אתה כותב כיתוב שיהיה מקסימום 2 מילים ותכתוב אותו באותיות גדולות באנגלית, כלשהו להוסיף לתמונה.." },
             new { role = "user", content = $"התיאור של התמונה הוא: {description}. מה כדאי להוסיף כאלמנט גרפי?" }
         }
         };
@@ -49,7 +49,7 @@ public class ImageEditService : IImageEditService
             choicesElement[0].TryGetProperty("message", out var messageElement) &&
             messageElement.TryGetProperty("content", out var contentElement))
         {
-            
+
             suggestion = contentElement.GetString()?.ToLower() ?? "";
             var match = Regex.Match(suggestion, @"[a-z\s]+");
             if (match.Success)
@@ -57,21 +57,17 @@ public class ImageEditService : IImageEditService
                 englishText = match.Value.Trim();
             }
 
-                // 2. תרגום ההצעה לטרנספורמציה ב־Cloudinary
-                string lower = suggestion?.ToLower() ?? "";
+            // 2. תרגום ההצעה לטרנספורמציה ב־Cloudinary
+            string lower = suggestion?.ToLower() ?? "";
 
             transformation =
-            lower.Contains("heart") || lower.Contains("לב") ? "l_emoji_heart_diy6wg,w_300,g_south_east" :
-            lower.Contains("star") || lower.Contains("כוכב") ? "l_star_icon,w_400,h_400,g_north_west" :
-            lower.Contains("smile") || lower.Contains("סמיילי") ? "smile,w_400,g_south_east" :
-            !string.IsNullOrWhiteSpace(englishText) ? $"l_text:Arial_100:{englishText},co_white,g_south" :
-            lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frames:fancy_border,g_center" :
-            lower.Contains("party") || lower.Contains("מסיבה") ? "l_party_icon,w_300,g_center" :
-            lower.Contains("flower") || lower.Contains("פרח") ? "l_flower_icon,w_400,h_400,g_north" :
-            lower.Contains("balloon") || lower.Contains("בלון") ? "l_balloon_icon,w_300,g_south_west" :
-            lower.Contains("gift") || lower.Contains("מתנה") ? "l_gift_icon,w_350,g_south_east" :
-            lower.Contains("love") || lower.Contains("אהבה") ? "l_text:Arial_50:Love,co_red,g_center" :
-            "";
+          lower.Contains("heart") || lower.Contains("לב") ? "l_emoji_heart_diy6wg,w_300,g_south_east" :
+          lower.Contains("smile") || lower.Contains("סמיילי") ? "l_smile_n6jsyt,w_400,g_south_east" :
+          !string.IsNullOrWhiteSpace(englishText) ? $"l_text:Arial_100:{englishText},co_white,g_south" :
+          lower.Contains("frame") || lower.Contains("מסגרת") ? "l_frame_xqrskn,w_1.0,h_1.0,g_center,fl_relative" :
+          lower.Contains("balloon") || lower.Contains("בלון") ? "l_ballon_o8qebf,w_300,g_south_west" :
+          "";
+
 
 
         }
@@ -83,15 +79,16 @@ public class ImageEditService : IImageEditService
         Console.WriteLine("Image URL: " + imageUrl);
 
         if (string.IsNullOrEmpty(transformation))
-            return new AiAnalysisResult(imageUrl, $"{suggestion}  {englishText}");
+            return new AiAnalysisResult(imageUrl, $"{suggestion} ");
         ;
+        await Console.Out.WriteLineAsync(transformation);
 
         // 3. יצירת URL חדש עם טרנספורמציה מסוג fetch
         var cloudName = _config["Cloudinary:CloudName"];
         var encodedImageUrl = Uri.EscapeDataString(imageUrl);
         var decoratedUrl = $"https://res.cloudinary.com/{cloudName}/image/fetch/{transformation}/{encodedImageUrl}";
 
-        AiAnalysisResult res= new AiAnalysisResult(decoratedUrl, suggestion);
+        AiAnalysisResult res = new AiAnalysisResult(decoratedUrl, $"{suggestion} ");
         return res;
     }
 
